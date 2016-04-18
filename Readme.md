@@ -3,6 +3,55 @@ FPGA-SoC-Linux
 
 # Build 
 
+## Build U-boot for ZYBO
+
+### Download U-boot Source
+
+#### Clone from git.denx.de/u-boot.git
+
+```
+shell$ git clone git://git.denx.de/u-boot.git u-boot-zynq-zybo
+````
+
+#### CHeckout v2016.03
+
+```
+shell$ cd u-boot-zynq-zybo
+shell$ git checkout -b u-boot-2016.03-zynq-zybo refs/tags/v2016.03
+```
+
+### Patch for zynq-zybo
+
+```
+shell$ patch -p0 < ../files/u-boot-2016.03-zynq-zybo.diff
+shell$ git add --update
+shell$ git commit -m "patch for zynq-zybo"
+shell$ git tag -a v2016.03-zynq-zybo -m "relase v2016.03-zynq-zybo"
+```
+
+### Setup for Build 
+
+```
+shell$ cd u-boot-zynq-zybo
+shell$ export ARCH=arm
+shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
+shell$ make zynq_zybo_defconfig
+```
+
+### Build u-boot
+
+```
+shell$ make
+```
+
+### Copy zImage and devicetree to zybo-zynq/boot/
+
+```
+shell$ cp spl/boot.bin  ../zynq-zybo/boot/
+shell$ cp u-boot.img    ../zynq-zybo/boot/
+```
+
+
 ## Build Linux Kernel
 
 There are two ways
