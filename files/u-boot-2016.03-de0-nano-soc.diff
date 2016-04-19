@@ -1,0 +1,44 @@
+diff --git include/configs/socfpga_de0_nano_soc.h include/configs/socfpga_de0_nano_soc.h
+index cbc7396..1b68bdb 100644
+--- include/configs/socfpga_de0_nano_soc.h
++++ include/configs/socfpga_de0_nano_soc.h
+@@ -37,7 +37,22 @@
+ #define CONFIG_BOOTDELAY	3
+ #define CONFIG_BOOTFILE		"fitImage"
+ #define CONFIG_BOOTARGS		"console=ttyS0," __stringify(CONFIG_BAUDRATE)
+-#define CONFIG_BOOTCOMMAND	"run mmcload; run mmcboot"
++#define CONFIG_BOOTCOMMAND     \
++	"if mmc rescan; then " \
++		"echo SD/MMC found on device...;" \
++		"if run loadbootenv; then " \
++			"echo Loaded environment from ${bootenv};" \
++			"run importbootenv;" \
++		"fi;" \
++		"if test -n $uenvcmd; then " \
++			"echo Running uenvcmd ...;" \
++			"run uenvcmd;" \
++		"fi;" \
++		"if run loadbootscript; then " \
++			"run bootscript; " \
++		"fi; " \
++	"fi;" \
++        "run mmcload; run mmcboot"
+ #define CONFIG_LOADADDR		0x01000000
+ #define CONFIG_SYS_LOAD_ADDR	CONFIG_LOADADDR
+ 
+@@ -65,6 +80,15 @@
+ 	"mmcload=mmc rescan;" \
+ 		"load mmc 0:1 ${loadaddr} ${bootimage};" \
+ 		"load mmc 0:1 ${fdt_addr} ${fdtimage}\0" \
++        "fpgadata=0x02000000\0" \
++	"bootenv=uEnv.txt\0" \
++	"config=" CONFIG_DEFAULT_DEVICE_TREE "\0" \
++	"loadbootenv=load mmc 0 ${loadaddr} ${bootenv}\0" \
++	"importbootenv=echo Importing environment from mmc ...;" \
++		"env import -t $loadaddr $filesize\0" \
++        "loadbootscript=load mmc 0 ${loadaddr} boot.scr\0" \
++        "bootscript=echo Running bootscript from mmc ...;" \
++                "source ${loadaddr}\0" \
+ 
+ /* The rest of the configuration is shared */
+ #include <configs/socfpga_common.h>
