@@ -25,7 +25,7 @@ make zynq_zybo_defconfig
 
 make
 
-### Copy zImage and devicetree to zybo-zynq/boot/
+### Copy boot.bin and u-boot.img to zybo-zynq/boot/
 
 cp spl/boot.bin  ../zynq-zybo/boot/
 cp u-boot.img    ../zynq-zybo/boot/
