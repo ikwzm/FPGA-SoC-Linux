@@ -12,18 +12,9 @@ index 39c470e..6a4de91 100644
  
  		i2c2: i2c@ffc06000 {
 diff --git arch/arm/boot/dts/zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dts
-index 16c9cac..a584e76 100644
+index 16c9cac..cbc19e9 100644
 --- arch/arm/boot/dts/zynq-zybo.dts
 +++ arch/arm/boot/dts/zynq-zybo.dts
-@@ -29,7 +29,7 @@
- 	};
- 
- 	chosen {
--		bootargs = "earlyprintk";
-+		bootargs = "console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio earlyprintk";
- 		stdout-path = "serial0:115200n8";
- 	};
- 
 @@ -37,6 +37,7 @@
  
  &clkc {
@@ -34,7 +25,7 @@ index 16c9cac..a584e76 100644
  &gem0 {
 diff --git arch/arm/configs/armv7_fpga_defconfig arch/arm/configs/armv7_fpga_defconfig
 new file mode 100644
-index 0000000..e617172
+index 0000000..79b144d
 --- /dev/null
 +++ arch/arm/configs/armv7_fpga_defconfig
 @@ -0,0 +1,4123 @@
