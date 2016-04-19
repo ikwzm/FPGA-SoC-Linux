@@ -2,7 +2,7 @@
 
 UBOOT_BUILD_DIR=u-boot-zynq-zybo
 
-### Download Linux Kernel Source
+### Download U-Boot Source
 git clone git://git.denx.de/u-boot.git $UBOOT_BUILD_DIR
 cd $UBOOT_BUILD_DIR
 
@@ -14,7 +14,6 @@ git checkout -b u-boot-2016.03-zynq-zybo refs/tags/v2016.03
 patch -p0 < ../files/u-boot-2016.03-zynq-zybo.diff
 git add --update
 git commit -m "patch for zynq-zybo"
-git tag -a v2016.03-zynq-zybo -m "relase v2016.03-zynq-zybo"
 
 ### Setup for Build 
 

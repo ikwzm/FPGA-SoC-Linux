@@ -9,7 +9,7 @@ index 7c23fec..8fc954e 100644
 +# CONFIG_OF_SEPARATE is not set
 +CONFIG_OF_EMBED=y
 diff --git include/configs/zynq-common.h include/configs/zynq-common.h
-index 982905d..4c3990c 100644
+index 982905d..fd50c69 100644
 --- include/configs/zynq-common.h
 +++ include/configs/zynq-common.h
 @@ -227,10 +227,35 @@
@@ -23,7 +23,7 @@ index 982905d..4c3990c 100644
 +			"bootm ${load_addr}\0" \
 +		"fi\0" \
 +	"bootenv=uEnv.txt\0" \
-+        "model=" CONFIG_DEFAULT_DEVICE_TREE "\0" \
++        "config=" CONFIG_DEFAULT_DEVICE_TREE "\0" \
 +	"loadbootenv=load mmc 0 ${load_addr} ${bootenv}\0" \
 +	"importbootenv=echo Importing environment from mmc ...;" \
 +		"env import -t $load_addr $filesize\0" \
