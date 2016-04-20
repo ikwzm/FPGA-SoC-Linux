@@ -26,11 +26,11 @@ make zynq-zybo.dtb
 make socfpga_cyclone5_de0_sockit.dtb
  
 ### Copy zImage and devicetree to zybo-zynq/boot/
-cp arch/arm/boot/zImage            ../zynq-zybo/boot/zImage
+cp arch/arm/boot/zImage            ../zynq-zybo/boot/vmlinuz-4.4.7-armv7-fpga
 cp arch/arm/boot/dts/zynq-zybo.dtb ../zynq-zybo/boot/zynq-zybo.dtb
 
 ### Copy zImage and devicetree to de0-nano-soc/boot/
-cp arch/arm/boot/zImage                              ../de0-nano-soc/boot/zImage
+cp arch/arm/boot/zImage                              ../de0-nano-soc/boot/vmlinuz-4.4.7-armv7-fpga
 cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../de0-nano-soc/boot/socfpga.dtb
 
 cd ..
