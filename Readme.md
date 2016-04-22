@@ -13,7 +13,7 @@ FPGA-SoC-Linux
      * design_1_wrapper.bit     : FPGA configuration file (Xilinx Bitstream Format)
      * u-boot.img               : Stage 2 Boot Loader(U-boot)
      * uEnv.txt                 : U-Boot environment variables for linux boot
-     * vmlinuz-4.4.7-armv7-fpga : Linux Kernel Image
+     * zImage-4.4.7-armv7-fpga  : Linux Kernel Image
      * zynq-zybo.dtb            : Linux Device Tree Blob
      * zynq-zybo.dts            : Linux Device Tree Source
 
@@ -49,7 +49,7 @@ shell# umount mnt/usb2
      * socfpga.dtb              : Linux Device Tree Blob
      * socfpga.dts              : Linux Device Tree Source
      * uEnv.txt                 : U-Boot environment variables for linux boot
-     * vmlinuz-4.4.7-armv7-fpga : Linux Kernel Image
+     * zImage-4.4.7-armv7-fpga  : Linux Kernel Image
    - u-boot/
      * u-boot-spl.sfp           : Stage 1 Boot Loader(U-boot-spl)
      * u-boot.img               : Stage 2 Boot Loader(U-boot)
@@ -234,18 +234,18 @@ shell$ zynq-zybo.dtb
 shell$ make socfpga_cyclone5_de0_sockit.dtb
 ````
 
-### Copy zImage and devicetree to zybo-zynq/boot/
+### Copy zImage and devicetree to target/zybo-zynq/boot/
 
 ```
-shell$ cp arch/arm/boot/zImage            ../zynq-zybo/boot/vmlinuz-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../zynq-zybo/boot/zynq-zybo.dtb
+shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.4.7-armv7-fpga
+shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/zynq-zybo.dtb
 ```
 
-### Copy zImage and devicetree to de0-nano-soc/boot/
+### Copy zImage and devicetree to target/de0-nano-soc/boot/
 
 ```
-shell$ cp arch/arm/boot/zImage                              ../de0-nano-soc/boot/vmlinuz-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../de0-nano-soc/boot/socfpga.dtb
+shell$ cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.4.7-armv7-fpga
+shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/socfpga.dtb
 ```
 
 ## Build Debian8 RootFS
@@ -317,6 +317,8 @@ debian8-rootfs# apt-get update
 debian8-rootfs# apt-get install -y locales dialog
 debian8-rootfs# dpkg-reconfigure locales
 debian8-rootfs# apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
+debian8-rootfs# apt-get install -y device-tree-compiler
+debian8-rootfs# apt-get install -y u-boot-tools
 ```
 
 #### Setup hostname
@@ -374,11 +376,26 @@ iface eth0 inet dhcp
 EOT
 ````
 
+#### Install Development applications
+
+```
+debian8-rootfs# apt-get install -y build-essential
+debian8-rootfs# apt-get install -y device-tree-compiler
+debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
+debian8-rootfs# apt-get install -y u-boot-tools
+```
+
 #### Finish
 
 ```
 debian8-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian8-rootfs-with-qemu.sh
+```
+
+### Install linux modules
+
+```
+shell$ sudo cp -rf target/linux-4.4.7-armv7-fpga/lib $targetdir
 ```
 

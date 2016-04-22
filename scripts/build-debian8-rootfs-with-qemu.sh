@@ -22,7 +22,7 @@ EOT
 
 apt-get update  -y
 
-#### Install applications
+#### Install Core applications
 
 apt-get install -y locales dialog
 dpkg-reconfigure locales
@@ -65,3 +65,9 @@ allow-hotplug eth0
 iface eth0 inet dhcp
 EOT
 
+#### Install Development applications
+
+apt-get install -y build-essential
+apt-get install -y device-tree-compiler
+apt-get install -y ruby ruby-msgpack ruby-serialport
+apt-get install -y u-boot-tools
