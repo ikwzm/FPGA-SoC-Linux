@@ -170,3 +170,137 @@ shell$ cp arch/arm/boot/zImage                              ../de0-nano-soc/boot
 shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../de0-nano-soc/boot/socfpga.dtb
 ```
 
+## Build Debian8 RootFS
+
+### Setup parameters 
+
+```
+shell$ apt-get install qemu-user-static debootstrap binfmt-support
+shell$ export targetdir=debian8-rootfs
+shell$ export distro=jessie
+```
+
+### Build the root file system in $targetdir (=debian8-rootfs)
+
+```
+shell$ mkdir $targetdir
+shell$ sudo debootstrap --arch=armhf --foreign $distro $targetdir
+shell$ sudo cp /usr/bin/qemu-arm-static $targetdir/usr/bin
+shell$ sudo cp /etc/resolv.conf $targetdir/etc
+shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh $targetdir
+````
+
+### Build rootfs with QEMU
+
+#### Change Root to debian8-rootfs
+
+```
+shell$ sudo chroot $targetdir
+```
+
+There are two ways
+
+1. run build-debian8-rootfs-with-qemu.sh (easy)
+2. run this chapter step-by-step (annoying)
+
+#### Setup APT
+
+````
+debian8-rootfs# distro=jessie
+debian8-rootfs# export LANG=C
+debian8-rootfs# /debootstrap/debootstrap --second-stage
+````
+
+```
+debian8-rootfs# cat <<EOT > /etc/apt/sources.list
+deb     http://ftp.jp.debian.org/debian            jessie         main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            jessie         main contrib non-free
+deb     http://ftp.jp.debian.org/debian            jessie-updates main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            jessie-updates main contrib non-free
+deb     http://security.debian.org/debian-security jessie/updates main contrib non-free
+deb-src http://security.debian.org/debian-security jessie/updates main contrib non-free
+EOT
+```
+
+```
+debian8-rootfs# cat <<EOT > /etc/apt/apt.conf.d/71-no-recommends
+APT::Install-Recommends "0";
+APT::Install-Suggests   "0";
+EOT
+```
+
+```
+debian8-rootfs# apt-get update
+```
+
+#### Install applications
+
+```
+debian8-rootfs# apt-get install -y locales dialog
+debian8-rootfs# dpkg-reconfigure locales
+debian8-rootfs# apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
+```
+
+#### Setup hostname
+
+```
+debian8-rootfs# echo debian-fpga > /etc/hostname
+```
+
+#### Setup root password
+
+```
+debian8-rootfs# passwd
+```
+
+This time, we set the "admin" at the root' password.
+
+To be able to login as root from Zynq serial port.
+
+```
+debian8-rootfs# cat <<EOT >> /etc/securetty
+# Seral Port for Xilinx Zynq
+ttyPS0
+EOT
+```
+
+#### Add a new guest user
+
+```
+debian8-rootfs# adduser guest
+```
+
+This time, we set the "guest" at the guest'password.
+
+#### Setup sshd config
+
+```
+debian8-rootfs# sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
+```
+
+#### Setup fstab
+
+```
+debian8-rootfs# cat <<EOT > /etc/fstab
+/dev/mmcblk0p1	/boot	auto		defaults	0	0
+none		/config	configfs	defaults	0	0
+EOT
+````
+
+#### Setup Network Interface
+
+```
+debian8-rootfs# cat <<EOT > /etc/network/interfaces.d/eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+EOT
+````
+
+#### Finish
+
+```
+debian8-rootfs# exit
+shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
+shell$ sudo rm -f $targetdir/build-debian8-rootfs-with-qemu.sh
+```
+
