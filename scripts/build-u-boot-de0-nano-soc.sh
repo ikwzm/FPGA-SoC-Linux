@@ -27,7 +27,7 @@ make
 
 ### Copy u-boot-spl.sfp and u-boot.img de0-nano-soc/u-boot/
 
-cp spl/u-boot-spl.sfp ../de0-nano-soc/u-boot/u-boot-spl.sfp
-cp u-boot.img         ../de0-nano-soc/u-boot/u-boot.img
+cp spl/u-boot-spl.sfp ../target/de0-nano-soc/u-boot/u-boot-spl.sfp
+cp u-boot.img         ../target/de0-nano-soc/u-boot/u-boot.img
 
 cd ..

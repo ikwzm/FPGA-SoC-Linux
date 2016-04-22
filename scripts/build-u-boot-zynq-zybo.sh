@@ -27,7 +27,7 @@ make
 
 ### Copy boot.bin and u-boot.img to zybo-zynq/boot/
 
-cp spl/boot.bin  ../zynq-zybo/boot/
-cp u-boot.img    ../zynq-zybo/boot/
+cp spl/boot.bin  ../target/zynq-zybo/boot/
+cp u-boot.img    ../target/zynq-zybo/boot/
 
 cd ..
