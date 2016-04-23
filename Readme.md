@@ -1,21 +1,23 @@
 FPGA-SoC-Linux
-==============
+====================================================================================
 
-# Install
+Install
+------------------------------------------------------------------------------------
 
 ## ZYNQ-ZYBO
 
 ### File Description
 
  * tareget/zynq-zybo/
-   - boot/
-     * boot.bin                 : Stage 1 Boot Loader(U-boot-spl)
-     * design_1_wrapper.bit     : FPGA configuration file (Xilinx Bitstream Format)
-     * u-boot.img               : Stage 2 Boot Loader(U-boot)
-     * uEnv.txt                 : U-Boot environment variables for linux boot
-     * zImage-4.4.7-armv7-fpga  : Linux Kernel Image
-     * zynq-zybo.dtb            : Linux Device Tree Blob
-     * zynq-zybo.dts            : Linux Device Tree Source
+   + boot/
+     - boot.bin                 : Stage 1 Boot Loader(U-boot-spl)
+     - design_1_wrapper.bit     : FPGA configuration file (Xilinx Bitstream Format)
+     - u-boot.img               : Stage 2 Boot Loader(U-boot)
+     - uEnv.txt                 : U-Boot environment variables for linux boot
+     - zImage-4.4.7-armv7-fpga  : Linux Kernel Image
+     - zynq-zybo.dtb            : Linux Device Tree Blob
+     - zynq-zybo.dts            : Linux Device Tree Source
+ * debian8-rootfs.tgz           : Debian8 Root File System(not yet, comming soon)
 
 ### Format SD-Card
 
@@ -44,15 +46,16 @@ shell# umount mnt/usb2
 ### File Description
 
  * target/de0-nano-soc/
-   - boot/
-     * DE0_NANO_SOC.rbf         : FPGA configuration file (Raw Binary Format)
-     * socfpga.dtb              : Linux Device Tree Blob
-     * socfpga.dts              : Linux Device Tree Source
-     * uEnv.txt                 : U-Boot environment variables for linux boot
-     * zImage-4.4.7-armv7-fpga  : Linux Kernel Image
-   - u-boot/
-     * u-boot-spl.sfp           : Stage 1 Boot Loader(U-boot-spl)
-     * u-boot.img               : Stage 2 Boot Loader(U-boot)
+   + boot/
+     - DE0_NANO_SOC.rbf         : FPGA configuration file (Raw Binary Format)
+     - socfpga.dtb              : Linux Device Tree Blob
+     - socfpga.dts              : Linux Device Tree Source
+     - uEnv.txt                 : U-Boot environment variables for linux boot
+     - zImage-4.4.7-armv7-fpga  : Linux Kernel Image
+   + u-boot/
+     - u-boot-spl.sfp           : Stage 1 Boot Loader(U-boot-spl)
+     - u-boot.img               : Stage 2 Boot Loader(U-boot)
+ * debian8-rootfs.tgz           : Debian8 Root File System(not yet, comming soon)
 
 ### Format SD-Card
 
@@ -79,7 +82,8 @@ shell# umount mnt/usb2
 ````
 
 
-# Build 
+Build 
+------------------------------------------------------------------------------------
 
 ## Build U-boot for ZYBO
 
@@ -258,7 +262,7 @@ shell$ export targetdir=debian8-rootfs
 shell$ export distro=jessie
 ```
 
-### Build the root file system in $targetdir (=debian8-rootfs)
+### Build the root file system in $targetdir(=debian8-rootfs)
 
 ```
 shell$ mkdir $targetdir
@@ -269,7 +273,7 @@ shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                 $target
 shell$ sudo cp linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb $targetdir
 ````
 
-### Build rootfs with QEMU
+### Build debian8-rootfs with QEMU
 
 #### Change Root to debian8-rootfs
 
@@ -407,9 +411,10 @@ shell$ sudo rm -f $targetdir/build-debian8-rootfs-with-qemu.sh
 shell$ sudo rm -f $targetdir/linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
 ```
 
-### Install linux modules
+### Build debian8-rootfs.tgz
 
 ```
-shell$ sudo cp -rf target/linux-4.4.7-armv7-fpga/lib $targetdir
+shell$ cd $targetdir
+shell$ sudo tar cfz ../debian8-rootfs.tgz *
 ```
 
