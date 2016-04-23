@@ -348,10 +348,10 @@ EOT
 #### Add a new guest user
 
 ```
-debian8-rootfs# adduser guest
+debian8-rootfs# adduser fpga
 ```
 
-This time, we set the "guest" at the guest'password.
+This time, we set the "fpga" at the fpga'password.
 
 #### Setup sshd config
 
@@ -392,6 +392,7 @@ debian8-rootfs# apt-get install -y u-boot-tools
 debian8-rootfs# mv    boot boot.org
 debian8-rootfs# mkdir boot
 debian8-rootfs# dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+debian8-rootfs# rm    boot/*
 debian8-rootfs# rmdir boot
 debian8-rootfs# mv    boot.org boot
 ```
@@ -403,6 +404,7 @@ debian8-rootfs# mv    boot.org boot
 debian8-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian8-rootfs-with-qemu.sh
+shell$ sudo rm -f $targetdir/linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
 ```
 
 ### Install linux modules

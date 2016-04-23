@@ -42,10 +42,10 @@ cat <<EOT >> /etc/securetty
 ttyPS0
 EOT
 
-#### Add guest user
+#### Add fpga user
 
-echo Add guest user
-adduser guest
+echo Add fpga user
+adduser fpga
 
 #### Setup sshd config
 
@@ -77,7 +77,6 @@ apt-get install -y u-boot-tools
 mv    boot boot.org
 mkdir boot
 dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+rm    boot/*
 rmdir boot
 mv    boot.org boot
-
-
