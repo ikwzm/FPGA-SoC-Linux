@@ -1,10 +1,36 @@
 FPGA-SoC-Linux
 ====================================================================================
 
+Overview
+------------------------------------------------------------------------------------
+
+## Introduction
+
+This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-SoC.
+
+## Features
+
+* Hardware
+  + ZYBO : Xilinx Zynq-7000 ARM/FPGA SoC Trainer Board by Digilent
+  + DE0-Nano-SoC : Altera SoC FPGA Development Kit by terasic
+* U-Boot v2016.03 (customized)
+  + Build for ZYBO and DE0-Nano-SoC
+  + Customized boot by uEnv.txt
+  + Customized boot by boot.scr
+* Linux Kernel Version v4.4.7
+  + Abailable in both Xilinx-Zynq-7000 and Altera-SoC in a single image
+  + Enable Device Tree Overlay
+  + Enable FPGA Manager
+* Debian8(jessie) Root File System (not yet, comming soon)
+  + Installed build-essential
+  + Installed device-tree-compiler
+  + Installed ruby ruby-msgpack ruby-serialport
+  + Installed u-boot-tools
+
 Install
 ------------------------------------------------------------------------------------
 
-## ZYNQ-ZYBO
+## ZYBO
 
 ### File Description
 
