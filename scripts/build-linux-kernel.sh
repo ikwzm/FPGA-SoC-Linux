@@ -21,7 +21,7 @@ export CROSS_COMPILE=arm-linux-gnueabihf-
 make armv7_fpga_defconfig
 
 ### Build Linux Kernel and device tree
-make zImage
+make deb-pkg
 make zynq-zybo.dtb
 make socfpga_cyclone5_de0_sockit.dtb
  

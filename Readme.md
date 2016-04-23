@@ -229,8 +229,8 @@ shell$ make armv7_fpga_defconfig
 ### Build Linux Kernel and device tree
 
 ````
-shell$ make zImage
-shell$ zynq-zybo.dtb
+shell$ make deb-pkg
+shell$ make zynq-zybo.dtb
 shell$ make socfpga_cyclone5_de0_sockit.dtb
 ````
 
