@@ -71,3 +71,13 @@ apt-get install -y build-essential
 apt-get install -y device-tree-compiler
 apt-get install -y ruby ruby-msgpack ruby-serialport
 apt-get install -y u-boot-tools
+
+#### Install Linux Modules
+
+mv    boot boot.org
+mkdir boot
+dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+rmdir boot
+mv    boot.org boot
+
+

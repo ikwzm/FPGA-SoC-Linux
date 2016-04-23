@@ -262,10 +262,11 @@ shell$ export distro=jessie
 
 ```
 shell$ mkdir $targetdir
-shell$ sudo debootstrap --arch=armhf --foreign $distro $targetdir
-shell$ sudo cp /usr/bin/qemu-arm-static $targetdir/usr/bin
-shell$ sudo cp /etc/resolv.conf $targetdir/etc
-shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh $targetdir
+shell$ sudo debootstrap --arch=armhf --foreign $distro                   $targetdir
+shell$ sudo cp /usr/bin/qemu-arm-static                                  $targetdir/usr/bin
+shell$ sudo cp /etc/resolv.conf                                          $targetdir/etc
+shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                 $targetdir
+shell$ sudo cp linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb $targetdir
 ````
 
 ### Build rootfs with QEMU
@@ -384,6 +385,17 @@ debian8-rootfs# apt-get install -y device-tree-compiler
 debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
 debian8-rootfs# apt-get install -y u-boot-tools
 ```
+
+#### Install Linux Modules
+
+```
+debian8-rootfs# mv    boot boot.org
+debian8-rootfs# mkdir boot
+debian8-rootfs# dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+debian8-rootfs# rmdir boot
+debian8-rootfs# mv    boot.org boot
+```
+
 
 #### Finish
 
