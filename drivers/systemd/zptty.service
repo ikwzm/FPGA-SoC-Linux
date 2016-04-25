@@ -1,0 +1,16 @@
+[Unit]
+Description=Pseudo TTY Driver for communication with FPGA.
+After=udev.target
+After=dbus.target
+After=avahi.target
+After=syslog.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/sbin/modprobe zptty
+ExecStop=/sbin/rmmod zptty
+
+[Install]
+WantedBy=multi-user.target
+

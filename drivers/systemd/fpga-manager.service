@@ -1,0 +1,14 @@
+[Unit]
+Description=FPGA Manager Service.
+After=device-tree-overlay.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/fpgacfg_load_overlay.rb
+ExecStart=/sbin/modprobe fpgacfg
+ExecStop=/sbin/rmmod fpgacfg
+ExecStopPost=/bin/rmdir /config/device-tree/overlays/fpgacfg*
+
+[Install]
+WantedBy=multi-user.target

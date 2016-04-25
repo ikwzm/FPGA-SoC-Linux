@@ -1,0 +1,5 @@
+fpga-soc-linux-drivers (0.0.1-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- ichiro <ichiro@unknown>  Mon, 25 Apr 2016 14:36:21 +0900
