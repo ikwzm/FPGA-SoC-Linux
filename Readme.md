@@ -526,16 +526,16 @@ shell$ sudo rm -f $targetdir/linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_arm
 shell$ sudo rm -f $targetdir/linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
 ```
 
-### Build debian8-rootfs.tgz
+### Build debian8-rootfs-vanilla.tgz
 
 ```
 shell$ cd $targetdir
-shell$ sudo tar cfz ../debian8-rootfs.tgz *
+shell$ sudo tar cfz ../debian8-rootfs-vanilla.tgz *
 ```
 
-## Build Device Drivers
+## Build Device Drivers Package
 
-### Donwload from github
+### Donwload Sources from github
 
 ```
 shell$ git clone https://github.com/ikwzm/dtbocfg
@@ -545,7 +545,7 @@ shell$ git clone https://github.com/ikwzm/udmabuf
 shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 ```
 
-### Source Files to drivers/
+### Copy Source Files to drivers/
 
 ```
 shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.1 | tar xf - -C drivers
