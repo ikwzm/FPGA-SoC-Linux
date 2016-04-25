@@ -46,6 +46,7 @@ EOT
 
 echo Add fpga user
 adduser fpga
+echo "fpga ALL=(ALL:ALL) ALL" > /etc/sudoers.d/fpga
 
 #### Setup sshd config
 

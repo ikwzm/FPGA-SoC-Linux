@@ -467,6 +467,10 @@ debian8-rootfs# adduser fpga
 
 This time, we set the "fpga" at the fpga'password.
 
+```
+debian8-rootfs# echo "fpga ALL=(ALL:ALL) ALL" > /etc/sudoers.d/fpga
+```
+
 #### Setup sshd config
 
 ```
