@@ -70,8 +70,9 @@ EOT
 
 apt-get install -y build-essential
 apt-get install -y device-tree-compiler
-apt-get install -y ruby ruby-msgpack ruby-serialport
 apt-get install -y u-boot-tools
+apt-get install -y ruby ruby-msgpack ruby-serialport
+gem install rake
 
 #### Install Linux Modules
 

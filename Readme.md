@@ -432,8 +432,6 @@ debian8-rootfs# apt-get update
 debian8-rootfs# apt-get install -y locales dialog
 debian8-rootfs# dpkg-reconfigure locales
 debian8-rootfs# apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
-debian8-rootfs# apt-get install -y device-tree-compiler
-debian8-rootfs# apt-get install -y u-boot-tools
 ```
 
 #### Setup hostname
@@ -500,8 +498,9 @@ EOT
 ```
 debian8-rootfs# apt-get install -y build-essential
 debian8-rootfs# apt-get install -y device-tree-compiler
-debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
 debian8-rootfs# apt-get install -y u-boot-tools
+debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
+debian8-rootfs# gem install rake
 ```
 
 #### Install Linux Header and Modules
