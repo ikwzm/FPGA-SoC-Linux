@@ -124,18 +124,22 @@ shell# umount mnt/usb2
 ```
 debian-fpga login: fpga
 Password:
+fpga@debian-fpga:~$
 ```
 
 ### Install Debian Package
 
 ```
-fpga@debian-fpga:~$
 fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers_0.0.1-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers.
 (Reading database ... 30688 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-drivers_0.0.1-1_armhf.deb ...
 Unpacking fpga-soc-linux-drivers (0.0.1-1) ...
 Setting up fpga-soc-linux-drivers (0.0.1-1) ...
+```
+
+```
+fpga@debian-fpga:~$ sudo depmod
 ```
 
 ### Check Installed Package
