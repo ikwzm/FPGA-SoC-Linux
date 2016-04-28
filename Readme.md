@@ -551,7 +551,7 @@ shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 ### Copy Source Files to drivers/
 
 ```
-shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.1 | tar xf - -C drivers
+shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.2 | tar xf - -C drivers
 shell$ git archive --remote fpgacfg   --prefix=fpgacfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.5.0 | tar xf - -C drivers
