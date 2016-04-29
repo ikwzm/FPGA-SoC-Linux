@@ -27,10 +27,10 @@ install: all
 	install -d $(lib_dir)
 	install -d $(prefix)/usr/bin
 	install -d $(prefix)/etc/systemd/system
-	install ../scripts/fpgacfg_load_overlay.rb  $(prefix)/usr/bin/
-	install dtbocfg/dtbocfg.rb                  $(prefix)/usr/bin/
-	install systemd/device-tree-overlay.service $(prefix)/etc/systemd/system/
-	install systemd/fpga-manager.service        $(prefix)/etc/systemd/system/
-	install systemd/udmabuf.service             $(prefix)/etc/systemd/system/
-	install systemd/zptty.service               $(prefix)/etc/systemd/system/
-	for ko in $(kmod_objects); do install $$ko $(lib_dir) ; done
+	install -m 0755 ../scripts/fpgacfg_load_overlay.rb  $(prefix)/usr/bin/
+	install -m 0755 dtbocfg/dtbocfg.rb                  $(prefix)/usr/bin/
+	install -m 0644 systemd/device-tree-overlay.service $(prefix)/etc/systemd/system/
+	install -m 0644 systemd/fpga-manager.service        $(prefix)/etc/systemd/system/
+	install -m 0644 systemd/udmabuf.service             $(prefix)/etc/systemd/system/
+	install -m 0644 systemd/zptty.service               $(prefix)/etc/systemd/system/
+	for ko in $(kmod_objects); do install -m 0644 $$ko $(lib_dir) ; done
