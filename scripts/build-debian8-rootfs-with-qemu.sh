@@ -52,6 +52,10 @@ echo "fpga ALL=(ALL:ALL) ALL" > /etc/sudoers.d/fpga
 
 sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
 
+#### Setup Time Zone
+
+dpkg-reconfigure tzdata
+
 #### Setup fstab
 
 cat <<EOT > /etc/fstab

@@ -479,6 +479,20 @@ debian8-rootfs# echo "fpga ALL=(ALL:ALL) ALL" > /etc/sudoers.d/fpga
 debian8-rootfs# sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
 ```
 
+#### Setup Time Zone
+
+```
+debian8-rootfs# dpkg-reconfigure tzdata
+```
+
+or if noninteractive set to Asia/Tokyo
+
+```
+debian8-rootfs# echo "Asia/Tokyo" > /etc/timezone
+debian8-rootfs# dpkg-reconfigure -f noninteractive tzdata
+```
+
+
 #### Setup fstab
 
 ```
