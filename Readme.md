@@ -136,64 +136,57 @@ Selecting previously unselected package fpga-soc-linux-drivers.
 Preparing to unpack fpga-soc-linux-drivers_0.0.1-1_armhf.deb ...
 Unpacking fpga-soc-linux-drivers (0.0.1-1) ...
 Setting up fpga-soc-linux-drivers (0.0.1-1) ...
-```
-
-```
-fpga@debian-fpga:~$ sudo depmod
+Created symlink from /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service to /etc/systemd/system/device-tree-overlay.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/fpga-manager.service to /etc/systemd/system/fpga-manager.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/udmabuf.service to /etc/systemd/system/udmabuf.service.
+Created symlink from /etc/systemd/system/multi-user.target.wants/zptty.service to /etc/systemd/system/zptty.service.
 ```
 
 ### Check Installed Package
 
 ```
-fpga@debian-fpga:~$ ls -la /lib/modules/4.4.7-armv7-fpga/ikwzm/
-total 684
-drwxr-xr-x 2 root root   4096 Apr 25 23:14 .
-drwxr-xr-x 4 root root   4096 Apr 25 23:14 ..
--rwxr-xr-x 1 root root  61468 Apr 25 21:15 dtbocfg.ko
--rwxr-xr-x 1 root root 105428 Apr 25 21:15 fclkcfg.ko
--rwxr-xr-x 1 root root 161736 Apr 25 21:15 fpgacfg.ko
--rwxr-xr-x 1 root root 168152 Apr 25 21:15 udmabuf.ko
--rwxr-xr-x 1 root root 160432 Apr 25 21:15 zptty.ko
+fpga@debian-fpga:~$ sudo lsmod
+Module                  Size  Used by
+zptty                   8529  0
+udmabuf                10177  0
+fpgacfg                12287  0
+dtbocfg                 3200  2
 fpga@debian-fpga:~$ sudo systemctl status device-tree-overlay.service
 ● device-tree-overlay.service - Device Tree Overlay Service.
-   Loaded: loaded (/etc/systemd/system/device-tree-overlay.service; disabled)
-   Active: inactive (dead)
-fpga@debian-fpga:~$ sudo systemctl status fpga-managers.service
-● fpga-managers.service
-   Loaded: not-found (Reason: No such file or directory)
-   Active: inactive (dead)
+   Loaded: loaded (/etc/systemd/system/device-tree-overlay.service; enabled)
+   Active: active (exited) since Sat 2016-04-30 07:50:08 JST; 1min 22s ago
+  Process: 1461 ExecStart=/sbin/modprobe dtbocfg (code=exited, status=0/SUCCESS)
+ Main PID: 1461 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/device-tree-overlay.service
+
+Apr 30 07:50:08 debian-fpga systemd[1]: Started Device Tree Overlay Service..
+fpga@debian-fpga:~$ sudo systemctl status fpga-manager.service
+● fpga-manager.service - FPGA Manager Service.
+   Loaded: loaded (/etc/systemd/system/fpga-manager.service; enabled)
+   Active: active (exited) since Sat 2016-04-30 07:50:09 JST; 2min 46s ago
+  Process: 1477 ExecStart=/sbin/modprobe fpgacfg (code=exited, status=0/SUCCESS)
+  Process: 1467 ExecStartPre=/usr/bin/fpgacfg_load_overlay.rb (code=exited, status=0/SUCCESS)
+ Main PID: 1477 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/fpga-manager.service
+
+Apr 30 07:50:09 debian-fpga systemd[1]: Started FPGA Manager Service..
 fpga@debian-fpga:~$ sudo systemctl status udmabuf.service
 ● udmabuf.service - User space mappable DMA Buffer Service.
-   Loaded: loaded (/etc/systemd/system/udmabuf.service; disabled)
-   Active: inactive (dead)
+   Loaded: loaded (/etc/systemd/system/udmabuf.service; enabled)
+   Active: active (exited) since Sat 2016-04-30 07:50:09 JST; 3min 50s ago
+  Process: 1484 ExecStart=/sbin/modprobe udmabuf (code=exited, status=0/SUCCESS)
+ Main PID: 1484 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/udmabuf.service
+
+Apr 30 07:50:09 debian-fpga systemd[1]: Started User space mappable DMA Buff....
+Hint: Some lines were ellipsized, use -l to show in full.
 fpga@debian-fpga:~$ sudo systemctl status zptty.service
 ● zptty.service - Pseudo TTY Driver for communication with FPGA.
-   Loaded: loaded (/etc/systemd/system/zptty.service; disabled)
-   Active: inactive (dead)
-
+   Loaded: loaded (/etc/systemd/system/zptty.service; enabled)
+   Active: active (exited) since Sat 2016-04-30 07:50:09 JST; 4min 40s ago
+  Process: 1491 ExecStart=/sbin/modprobe zptty (code=exited, status=0/SUCCESS)
+ Main PID: 1491 (code=exited, status=0/SUCCESS)
 ```
-
-### Enable Device Drivers at BOOT
-
-```
-fpga@debian-fpga:~$ sudo systemctl enable device-tree-overlay.service
-Created symlink from /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service to /etc/systemd/system/device-tree-overlay.service.
-sudo systemctl enable fpga-manager.service
-Created symlink from /etc/systemd/system/multi-user.target.wants/fpga-manager.service to /etc/systemd/system/fpga-manager.service.
-fpga@debian-fpga:~$ sudo systemctl enable udmabuf.service
-Created symlink from /etc/systemd/system/multi-user.target.wants/udmabuf.service to /etc/systemd/system/udmabuf.service.
-fpga@debian-fpga:~$ sudo systemctl enable zptty.service
-Created symlink from /etc/systemd/system/multi-user.target.wants/zptty.service to /etc/systemd/system/zptty.service.
-```
-
-### Reboot Linux
-
-```
-fpga@debian-fpga:~$ sudo reboot
-```
-
-
-
 
 Build 
 ------------------------------------------------------------------------------------
@@ -551,6 +544,11 @@ shell$ sudo tar cfz ../debian8-rootfs-vanilla.tgz *
 ```
 
 ## Build Device Drivers Package
+
+There are two ways
+
+1. run build-fpga-linux-driver-package.sh (easy)
+2. run this chapter step-by-step (annoying)
 
 ### Donwload Sources from github
 

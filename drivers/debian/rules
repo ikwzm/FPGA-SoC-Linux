@@ -26,6 +26,9 @@ binary-arch: build
 	# gzip -r9 debian/tmp/usr/share/man
 	dpkg-gencontrol
 	sed -i -e 's/^Architecture: .*$$/Architecture: armhf/g' debian/tmp/DEBIAN/control
+	cp -a debian/postinst       debian/tmp/DEBIAN
+	cp -a debian/prerm          debian/tmp/DEBIAN
+	cp -a debian/postrm         debian/tmp/DEBIAN
 	chown -R root:root debian/tmp
 	chmod -$ u+w,go=rX debian/tmp
 	dpkg-deb --build debian/tmp ..

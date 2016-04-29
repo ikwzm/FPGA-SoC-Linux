@@ -11,5 +11,10 @@ Homepage: <https://github.com/ikwzm/FPGA-SoC-Linux>
 Package: fpga-soc-linux-drivers
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <FPGA+SoC+Linux Boot Images and device drivers> <insert long description, indented with spaces>
-
+Description: FPGA+SoC+Linux device drivers
+ FPGA+SoC+Linux device drivers.
+  dtbocfg: Device Tree Blob Overlay Configuration File System.
+  fpgacfg: FPGA Configuration Interface for Linux FPGA Manager Framework.
+  fclkcfg: FPGA Clock Configuration Device Driver.
+  udmabuf: User space mappable DMA Buffer.
+  zptty  : Pseudo TeleTYpewriter for FPGA Device.
