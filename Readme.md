@@ -42,15 +42,15 @@ Install
 
  * tareget/zynq-zybo/
    + boot/
-     - boot.bin                             : Stage 1 Boot Loader(U-boot-spl)
-     - design_1_wrapper.bit                 : FPGA configuration file (Xilinx Bitstream Format)
-     - u-boot.img                           : Stage 2 Boot Loader(U-boot)
-     - uEnv.txt                             : U-Boot environment variables for linux boot
-     - zImage-4.4.7-armv7-fpga              : Linux Kernel Image
-     - zynq-zybo.dtb                        : Linux Device Tree Blob
-     - zynq-zybo.dts                        : Linux Device Tree Source
- * debian8-rootfs-vanilla.tgz               : Debian8 Root File System(not yet, comming soon)
- * fpga-soc-linux-drivers_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
+     - boot.bin                                              : Stage 1 Boot Loader(U-boot-spl)
+     - design_1_wrapper.bit                                  : FPGA configuration file (Xilinx Bitstream Format)
+     - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
+     - uEnv.txt                                              : U-Boot environment variables for linux boot
+     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
+     - zynq-zybo.dtb                                         : Linux Device Tree Blob
+     - zynq-zybo.dts                                         : Linux Device Tree Source
+ * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System(not yet, comming soon)
+ * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
 
 ### Format SD-Card
 
@@ -68,9 +68,9 @@ shell# mkfs.ext3 /dev/sdc2
 ````
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
-shell# cp target/zynq-zybo/boot/*                  /mnt/usb1
-shell# tar xfz debian8-rootfs-vanilla.tgz -C       /mnt/usb2
-shell# cp fpga-soc-linux-drivers_0.0.1-1_armhf.deb /mnt/usb2/home/fpga
+shell# cp target/zynq-zybo/boot/*                                   /mnt/usb1
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
+shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -81,16 +81,16 @@ shell# umount mnt/usb2
 
  * target/de0-nano-soc/
    + boot/
-     - DE0_NANO_SOC.rbf                     : FPGA configuration file (Raw Binary Format)
-     - socfpga.dtb                          : Linux Device Tree Blob
-     - socfpga.dts                          : Linux Device Tree Source
-     - uEnv.txt                             : U-Boot environment variables for linux boot
-     - zImage-4.4.7-armv7-fpga              : Linux Kernel Image
+     - DE0_NANO_SOC.rbf                                      : FPGA configuration file (Raw Binary Format)
+     - socfpga.dtb                                           : Linux Device Tree Blob
+     - socfpga.dts                                           : Linux Device Tree Source
+     - uEnv.txt                                              : U-Boot environment variables for linux boot
+     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
    + u-boot/
-     - u-boot-spl.sfp                       : Stage 1 Boot Loader(U-boot-spl)
-     - u-boot.img                           : Stage 2 Boot Loader(U-boot)
- * debian8-rootfs-vanilla.tgz               : Debian8 Root File System(not yet, comming soon)
- * fpga-soc-linux-drivers_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
+     - u-boot-spl.sfp                                        : Stage 1 Boot Loader(U-boot-spl)
+     - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
+ * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System(not yet, comming soon)
+ * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
 
 ### Format SD-Card
 
@@ -111,8 +111,8 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/de0-nano-soc/boot/* /mnt/usb1
 shell# dd if=target/de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
 shell# dd if=target/de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
-shell# tar xfz debian8-rootfs-vanilla.tgz -C       /mnt/usb2
-shell# cp fpga-soc-linux-drivers_0.0.1-1_armhf.deb /mnt/usb2/home/fpga
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
+shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -130,7 +130,7 @@ fpga@debian-fpga:~$
 ### Install Debian Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers_0.0.1-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers.
 (Reading database ... 30688 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-drivers_0.0.1-1_armhf.deb ...

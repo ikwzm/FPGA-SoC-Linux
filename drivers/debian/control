@@ -8,9 +8,9 @@ Homepage: <https://github.com/ikwzm/FPGA-SoC-Linux>
 #Vcs-Git: git://anonscm.debian.org/collab-maint/fpga-soc-linux-drivers.git
 #Vcs-Browser: https://anonscm.debian.org/gitweb/?p=collab-maint/fpga-soc-linux-drivers.git;a=summary
 
-Package: fpga-soc-linux-drivers
+Package: fpga-soc-linux-drivers-4.4.7-armv7-fpga
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, linux-image-4.4.7-armv7-fpga
 Description: FPGA+SoC+Linux device drivers
  FPGA+SoC+Linux device drivers.
   dtbocfg: Device Tree Blob Overlay Configuration File System.
