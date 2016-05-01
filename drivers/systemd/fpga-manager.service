@@ -5,10 +5,10 @@ After=device-tree-overlay.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStartPre=/usr/bin/fpgacfg_load_overlay.rb
 ExecStart=/sbin/modprobe fpgacfg
+ExecStartPost=/usr/bin/fpgacfg-service.rb --install
 ExecStop=/sbin/rmmod fpgacfg
-ExecStopPost=/bin/rmdir /config/device-tree/overlays/fpgacfg*
+ExecStopPost=/usr/bin/fpgacfg-service.rb --remove
 
 [Install]
 WantedBy=multi-user.target

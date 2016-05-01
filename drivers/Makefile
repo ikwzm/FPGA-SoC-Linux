@@ -27,7 +27,7 @@ install: all
 	install -d $(lib_dir)
 	install -d $(prefix)/usr/bin
 	install -d $(prefix)/etc/systemd/system
-	install -m 0755 ../scripts/fpgacfg_load_overlay.rb  $(prefix)/usr/bin/
+	install -m 0755 ../scripts/fpgacfg-service.rb       $(prefix)/usr/bin/
 	install -m 0755 dtbocfg/dtbocfg.rb                  $(prefix)/usr/bin/
 	install -m 0644 systemd/device-tree-overlay.service $(prefix)/etc/systemd/system/
 	install -m 0644 systemd/fpga-manager.service        $(prefix)/etc/systemd/system/
