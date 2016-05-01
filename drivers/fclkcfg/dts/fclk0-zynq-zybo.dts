@@ -1,0 +1,12 @@
+/dts-v1/;
+/ {
+	fragment@0 {
+		target-path = "/amba";
+		__overlay__ {
+			fclk0 {
+				compatible  = "ikwzm,fclkcfg-0.10.a";
+				clocks      = <1 15>;
+			};
+		};
+	};
+};
