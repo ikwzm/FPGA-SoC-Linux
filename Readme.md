@@ -21,12 +21,12 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Abailable in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
-* Debian8(jessie) Root File System (not yet, comming soon)
+* Debian8(jessie) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
   + Installed ruby ruby-msgpack ruby-serialport
   + Installed u-boot-tools
-* FPGA Device Drivers  (not yet, comming soon)
+* FPGA Device Drivers
   + dtbocfg (Device Tree Blob Overlay Configuration File System)
   + fpgacfg (FPGA Configuration Interface for Linux FPGA Manager Framework)
   + fclkcfg (FPGA Clock Configuration Device Driver)
@@ -37,6 +37,14 @@ Install
 ------------------------------------------------------------------------------------
 
 ## ZYBO
+
+### Downlowd from github
+
+```
+shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ cd FPGA-SoC-Linux
+shell$ git lfs pull origin master
+```
 
 ### File Description
 
@@ -49,8 +57,8 @@ Install
      - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
      - zynq-zybo.dtb                                         : Linux Device Tree Blob
      - zynq-zybo.dts                                         : Linux Device Tree Source
- * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System(not yet, comming soon)
- * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
+ * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
+ * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package   (use Git LFS)
 
 ### Format SD-Card
 
@@ -77,6 +85,14 @@ shell# umount mnt/usb2
 
 ## DE0-Nano-SoC
 
+### Downlowd from github
+
+```
+shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ cd FPGA-SoC-Linux
+shell$ git lfs pull origin master
+```
+
 ### File Description
 
  * target/de0-nano-soc/
@@ -89,8 +105,8 @@ shell# umount mnt/usb2
    + u-boot/
      - u-boot-spl.sfp                                        : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
- * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System(not yet, comming soon)
- * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package  (not yet, comming soon)
+ * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
+ * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package   (use Git LFS)
 
 ### Format SD-Card
 
