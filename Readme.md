@@ -18,7 +18,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
 * Linux Kernel Version v4.4.7
-  + Abailable in both Xilinx-Zynq-7000 and Altera-SoC in a single image
+  + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
 * Debian8(jessie) Root File System
@@ -135,12 +135,22 @@ shell# umount mnt/usb2
 
 ## Install Device Drivers 
 
-### Boot ZYBO or DE0-Nano-SoC and login fpga user
+### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
+
+fpga'password is "fpga".
 
 ```
 debian-fpga login: fpga
 Password:
 fpga@debian-fpga:~$
+```
+
+root'password is "admin".
+
+```
+debian-fpga login: root
+Password:
+root@debian-fpga:~#
 ```
 
 ### Install Debian Package
