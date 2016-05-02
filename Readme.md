@@ -57,6 +57,7 @@ shell$ git lfs pull origin master
      - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
      - zynq-zybo.dtb                                         : Linux Device Tree Blob
      - zynq-zybo.dts                                         : Linux Device Tree Source
+   + examples-001.tgz                                        : Examples Programs        (use Git LFS)
  * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
  * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package   (use Git LFS)
 
@@ -79,6 +80,7 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-zybo/boot/*                                   /mnt/usb1
 shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
 shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb /mnt/usb2/home/fpga
+shell# tar xfz target/zynq-zybo/examples-001.tgz -C                 /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
