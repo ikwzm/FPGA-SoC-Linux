@@ -4,11 +4,11 @@ FPGA-SoC-Linux
 Overview
 ------------------------------------------------------------------------------------
 
-## Introduction
+### Introduction
 
 This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-SoC.
 
-## Features
+### Features
 
 * Hardware
   + ZYBO : Xilinx Zynq-7000 ARM/FPGA SoC Trainer Board by Digilent
@@ -27,18 +27,18 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Installed ruby ruby-msgpack ruby-serialport
   + Installed u-boot-tools
 * FPGA Device Drivers
-  + dtbocfg (Device Tree Blob Overlay Configuration File System)
-  + fpgacfg (FPGA Configuration Interface for Linux FPGA Manager Framework)
-  + fclkcfg (FPGA Clock Configuration Device Driver)
-  + udmabuf (User space mappable DMA Buffer)
-  + zptty   (Pseudo TeleTYpewriter for FPGA Device)
+  + [dtbocfg (Device Tree Blob Overlay Configuration File System)](https://github.com/ikwzm/dtbocfg)
+  + [fpgacfg (FPGA Configuration Interface for Linux FPGA Manager Framework)](https://github.com/ikwzm/fpgacfg)
+  + [fclkcfg (FPGA Clock Configuration Device Driver)](https://github.com/ikwzm/fclkcfg)
+  + [udmabuf (User space mappable DMA Buffer)](https://github.com/ikwzm/udmabuf)
+  + [zptty   (Pseudo TeleTYpewriter for FPGA Device)](https://github.com/ikwzm/PTTY_AXI4)
 
 Install
 ------------------------------------------------------------------------------------
 
-## ZYBO
+### ZYBO
 
-### Downlowd from github
+#### Downlowd from github
 
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
@@ -46,7 +46,7 @@ shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull origin master
 ```
 
-### File Description
+#### File Description
 
  * tareget/zynq-zybo/
    + boot/
@@ -61,7 +61,7 @@ shell$ git lfs pull origin master
  * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
  * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package   (use Git LFS)
 
-### Format SD-Card
+#### Format SD-Card
 
 ````
 shell# fdisk /dev/sdc
@@ -72,7 +72,7 @@ shell# mkfs-vfat /dev/sdc1
 shell# mkfs.ext3 /dev/sdc2
 ````
 
-### Write to SD-Card
+#### Write to SD-Card
 
 ````
 shell# mount /dev/sdc1 /mnt/usb1
@@ -85,9 +85,9 @@ shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
-## DE0-Nano-SoC
+### DE0-Nano-SoC
 
-### Downlowd from github
+#### Downlowd from github
 
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
@@ -95,7 +95,7 @@ shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull origin master
 ```
 
-### File Description
+#### File Description
 
  * target/de0-nano-soc/
    + boot/
@@ -110,7 +110,7 @@ shell$ git lfs pull origin master
  * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
  * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb : Device Drivers Package   (use Git LFS)
 
-### Format SD-Card
+#### Format SD-Card
 
 ````
 shell# fdisk /dev/sdc
@@ -121,7 +121,7 @@ shell# mkfs-vfat /dev/sdc1
 shell# mkfs.ext3 /dev/sdc2
 ````
 
-### Write to SD-Card
+#### Write to SD-Card
 
 ````
 shell# mount /dev/sdc1 /mnt/usb1
@@ -135,9 +135,9 @@ shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
-## Install Device Drivers 
+### Install Device Drivers 
 
-### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
+#### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
 
 fpga'password is "fpga".
 
@@ -155,7 +155,7 @@ Password:
 root@debian-fpga:~#
 ```
 
-### Install Debian Package
+#### Install Debian Package
 
 ```
 fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.1-1_armhf.deb
@@ -170,7 +170,7 @@ Created symlink from /etc/systemd/system/multi-user.target.wants/udmabuf.service
 Created symlink from /etc/systemd/system/multi-user.target.wants/zptty.service to /etc/systemd/system/zptty.service.
 ```
 
-### Check Installed Package
+#### Check Installed Package
 
 ```
 fpga@debian-fpga:~$ sudo lsmod
@@ -219,29 +219,29 @@ fpga@debian-fpga:~$ sudo systemctl status zptty.service
 Build 
 ------------------------------------------------------------------------------------
 
-## Build U-boot for ZYBO
+### Build U-boot for ZYBO
 
 There are two ways
 
 1. run scripts/build-u-boot-zynq-zybo.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-### Download U-boot Source
+#### Download U-boot Source
 
-#### Clone from git.denx.de/u-boot.git
+##### Clone from git.denx.de/u-boot.git
 
 ```
 shell$ git clone git://git.denx.de/u-boot.git u-boot-zynq-zybo
 ````
 
-#### Checkout v2016.03
+##### Checkout v2016.03
 
 ```
 shell$ cd u-boot-zynq-zybo
 shell$ git checkout -b u-boot-2016.03-zynq-zybo refs/tags/v2016.03
 ```
 
-### Patch for zynq-zybo
+#### Patch for zynq-zybo
 
 ```
 shell$ patch -p0 < ../files/u-boot-2016.03-zynq-zybo.diff
@@ -249,7 +249,7 @@ shell$ git add --update
 shell$ git commit -m "patch for zynq-zybo"
 ```
 
-### Setup for Build 
+#### Setup for Build 
 
 ```
 shell$ cd u-boot-zynq-zybo
@@ -258,42 +258,42 @@ shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
 shell$ make zynq_zybo_defconfig
 ```
 
-### Build u-boot
+#### Build u-boot
 
 ```
 shell$ make
 ```
 
-### Copy boot.bin and u-boot.img to zybo-zynq/boot/
+#### Copy boot.bin and u-boot.img to zybo-zynq/boot/
 
 ```
 shell$ cp spl/boot.bin  ../zynq-zybo/boot/
 shell$ cp u-boot.img    ../zynq-zybo/boot/
 ```
 
-## Build U-boot for DE0-Nano-SoC
+### Build U-boot for DE0-Nano-SoC
 
 There are two ways
 
 1. run scripts/build-u-boot-de0-nano-soc.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-### Download U-boot Source
+#### Download U-boot Source
 
-#### Clone from git.denx.de/u-boot.git
+##### Clone from git.denx.de/u-boot.git
 
 ```
 shell$ git clone git://git.denx.de/u-boot.git u-boot-de0-nano-soc
 ````
 
-#### Checkout v2016.03
+##### Checkout v2016.03
 
 ```
 shell$ cd u-boot-de0-nano-soc
 shell$ git checkout -b u-boot-2016.03-de0-nano-soc refs/tags/v2016.03
 ```
 
-### Patch for de0-nano-soc
+#### Patch for de0-nano-soc
 
 ```
 shell$ patch -p0 < ../files/u-boot-2016.03-de0-nano-soc.diff
@@ -301,7 +301,7 @@ shell$ git add --update
 shell$ git commit -m "patch for de0-nano-soc"
 ```
 
-### Setup for Build 
+#### Setup for Build 
 
 ```
 shell$ cd u-boot-de0-nano-soc
@@ -310,42 +310,42 @@ shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
 shell$ make socfpga_de0_nano_soc_defconfig
 ```
 
-### Build u-boot
+#### Build u-boot
 
 ```
 shell$ make
 ```
 
-### Copy u-boot-spl.sfp and u-boot.img de0-nano-soc/u-boot/
+#### Copy u-boot-spl.sfp and u-boot.img de0-nano-soc/u-boot/
 
 ```
 shell$ cp spl/u-boot-spl.sfp ../de0-nano-soc/u-boot/u-boot-spl.sfp
 shell$ cp u-boot.img         ../de0-nano-soc/u-boot/u-boot.img
 ```
 
-## Build Linux Kernel
+### Build Linux Kernel
 
 There are two ways
 
 1. run scripts/build-linux-kernel.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-### Download Linux Kernel Source
+#### Download Linux Kernel Source
 
-#### Clone from linux-stable.git
+##### Clone from linux-stable.git
 
 ```
 shell$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-4.4.7-armv7-fpga
 ```
 
-#### Checkout v4.4.7
+##### Checkout v4.4.7
 
 ```
 shell$ cd linux-4.4.7-armv7-fpga
 shell$ git checkout -b linux-4.4.7-armv7-fpga refs/tags/v4.4.7
 ```
 
-### Patch for armv7-fpga
+#### Patch for armv7-fpga
 
 ```
 shell$ patch -p0 < ../files/linux-4.4.7-armv7-fpga.diff
@@ -355,7 +355,7 @@ shell$ git commit -m "patch for armv7-fpga"
 shell$ git tag -a v4.4.7-armv7-fpga -m "relase v4.4.7-armv7-fpga"
 ```
 
-### Setup for Build 
+#### Setup for Build 
 
 ````
 shell$ cd linux-4.4.7-armv7-fpga
@@ -364,7 +364,7 @@ shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
 shell$ make armv7_fpga_defconfig
 ````
 
-### Build Linux Kernel and device tree
+#### Build Linux Kernel and device tree
 
 ````
 shell$ make deb-pkg
@@ -372,23 +372,23 @@ shell$ make zynq-zybo.dtb
 shell$ make socfpga_cyclone5_de0_sockit.dtb
 ````
 
-### Copy zImage and devicetree to target/zybo-zynq/boot/
+#### Copy zImage and devicetree to target/zybo-zynq/boot/
 
 ```
 shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.4.7-armv7-fpga
 shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/zynq-zybo.dtb
 ```
 
-### Copy zImage and devicetree to target/de0-nano-soc/boot/
+#### Copy zImage and devicetree to target/de0-nano-soc/boot/
 
 ```
 shell$ cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.4.7-armv7-fpga
 shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/socfpga.dtb
 ```
 
-## Build Debian8 RootFS
+### Build Debian8 RootFS
 
-### Setup parameters 
+#### Setup parameters 
 
 ```
 shell$ apt-get install qemu-user-static debootstrap binfmt-support
@@ -396,7 +396,7 @@ shell$ export targetdir=debian8-rootfs
 shell$ export distro=jessie
 ```
 
-### Build the root file system in $targetdir(=debian8-rootfs)
+#### Build the root file system in $targetdir(=debian8-rootfs)
 
 ```
 shell$ mkdir $targetdir
@@ -408,9 +408,9 @@ shell$ sudo cp linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb   $targ
 shell$ sudo cp linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb $targetdir
 ````
 
-### Build debian8-rootfs with QEMU
+#### Build debian8-rootfs with QEMU
 
-#### Change Root to debian8-rootfs
+##### Change Root to debian8-rootfs
 
 ```
 shell$ sudo chroot $targetdir
@@ -421,7 +421,7 @@ There are two ways
 1. run build-debian8-rootfs-with-qemu.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-#### Setup APT
+##### Setup APT
 
 ````
 debian8-rootfs# distro=jessie
@@ -451,7 +451,7 @@ EOT
 debian8-rootfs# apt-get update
 ```
 
-#### Install applications
+##### Install applications
 
 ```
 debian8-rootfs# apt-get install -y locales dialog
@@ -459,13 +459,13 @@ debian8-rootfs# dpkg-reconfigure locales
 debian8-rootfs# apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
 ```
 
-#### Setup hostname
+##### Setup hostname
 
 ```
 debian8-rootfs# echo debian-fpga > /etc/hostname
 ```
 
-#### Setup root password
+##### Setup root password
 
 ```
 debian8-rootfs# passwd
@@ -482,7 +482,7 @@ ttyPS0
 EOT
 ```
 
-#### Add a new guest user
+##### Add a new guest user
 
 ```
 debian8-rootfs# adduser fpga
@@ -494,13 +494,13 @@ This time, we set the "fpga" at the fpga'password.
 debian8-rootfs# echo "fpga ALL=(ALL:ALL) ALL" > /etc/sudoers.d/fpga
 ```
 
-#### Setup sshd config
+##### Setup sshd config
 
 ```
 debian8-rootfs# sed -i -e 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
 ```
 
-#### Setup Time Zone
+##### Setup Time Zone
 
 ```
 debian8-rootfs# dpkg-reconfigure tzdata
@@ -514,7 +514,7 @@ debian8-rootfs# dpkg-reconfigure -f noninteractive tzdata
 ```
 
 
-#### Setup fstab
+##### Setup fstab
 
 ```
 debian8-rootfs# cat <<EOT > /etc/fstab
@@ -523,7 +523,7 @@ none		/config	configfs	defaults	0	0
 EOT
 ````
 
-#### Setup Network Interface
+##### Setup Network Interface
 
 ```
 debian8-rootfs# cat <<EOT > /etc/network/interfaces.d/eth0
@@ -532,7 +532,7 @@ iface eth0 inet dhcp
 EOT
 ````
 
-#### Install Development applications
+##### Install Development applications
 
 ```
 debian8-rootfs# apt-get install -y build-essential
@@ -542,7 +542,7 @@ debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
 debian8-rootfs# gem install rake
 ```
 
-#### Install Linux Header and Modules
+##### Install Linux Header and Modules
 
 ```
 debian8-rootfs# mv    boot boot.org
@@ -554,7 +554,7 @@ debian8-rootfs# rmdir boot
 debian8-rootfs# mv    boot.org boot
 ```
 
-#### Finish
+##### Finish
 
 ```
 debian8-rootfs# exit
@@ -564,21 +564,21 @@ shell$ sudo rm -f $targetdir/linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_arm
 shell$ sudo rm -f $targetdir/linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
 ```
 
-### Build debian8-rootfs-vanilla.tgz
+#### Build debian8-rootfs-vanilla.tgz
 
 ```
 shell$ cd $targetdir
 shell$ sudo tar cfz ../debian8-rootfs-vanilla.tgz *
 ```
 
-## Build Device Drivers Package
+### Build Device Drivers Package
 
 There are two ways
 
 1. run build-fpga-linux-driver-package.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-### Donwload Sources from github
+#### Donwload Sources from github
 
 ```
 shell$ git clone https://github.com/ikwzm/dtbocfg
@@ -588,7 +588,7 @@ shell$ git clone https://github.com/ikwzm/udmabuf
 shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 ```
 
-### Copy Source Files to drivers/
+#### Copy Source Files to drivers/
 
 ```
 shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.2 | tar xf - -C drivers
@@ -598,7 +598,7 @@ shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.5.0 | t
 shell$ cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd ..
 ```
 
-### Build debian package
+#### Build debian package
 
 ```
 shell$ cd drivers
