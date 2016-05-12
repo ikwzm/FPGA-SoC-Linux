@@ -1,5 +1,13 @@
+fpga-soc-linux-drivers (0.0.2-1) unstable; urgency=low
+
+  * Append fpga-bridge and altera-hps2fpga 
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Thu, 12 May 2016 14:51:02 +0900
+
+
 fpga-soc-linux-drivers (0.0.1-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release
 
- -- ichiro <ichiro@unknown>  Mon, 25 Apr 2016 14:36:21 +0900
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Mon, 25 Apr 2016 14:36:21 +0900
+
