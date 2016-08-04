@@ -342,7 +342,7 @@ dtbocfg.rb --remove uio_irq_sample
 ### accumulator
 
 - [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
-- [https://github.com/ikwzm/msgpack-vhdl-examples/examples/accumulator](https://github.com/ikwzm/msgpack-vhdl-examples/examples/accumulator)
+- [https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/accumulator](https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/accumulator)
 
 #### Rake Task Description
 
@@ -436,7 +436,7 @@ dtbocfg.rb --remove zptty0
 ### fibonacci
 
 - [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
-- [https://github.com/ikwzm/msgpack-vhdl-examples/examples/fibonacci](https://github.com/ikwzm/msgpack-vhdl-examples/examples/fibonacci)
+- [https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/fibonacci](https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/fibonacci)
 
 #### Rake Task Description
 
