@@ -341,6 +341,9 @@ dtbocfg.rb --remove uio_irq_sample
 
 ### accumulator
 
+- [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
+- [https://github.com/ikwzm/msgpack-vhdl-examples/examples/accumulator](https://github.com/ikwzm/msgpack-vhdl-examples/examples/accumulator)
+
 #### Rake Task Description
 
 use rake (make for ruby) script.
@@ -431,6 +434,9 @@ dtbocfg.rb --remove zptty0
 ```
 
 ### fibonacci
+
+- [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
+- [https://github.com/ikwzm/msgpack-vhdl-examples/examples/fibonacci](https://github.com/ikwzm/msgpack-vhdl-examples/examples/fibonacci)
 
 #### Rake Task Description
 
