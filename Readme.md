@@ -56,8 +56,8 @@ shell$ git lfs pull origin master
      - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                              : U-Boot environment variables for linux boot
      - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
-     - zynq-zybo.dtb                                         : Linux Device Tree Blob
-     - zynq-zybo.dts                                         : Linux Device Tree Source
+     - devicetree-4.4.7-zynq-zybo.dtb                        : Linux Device Tree Blob
+     - devicetree-4.4.7-zynq-zybo.dts                        : Linux Device Tree Source
    + examples-001.tgz                                        : Examples Programs        (use Git LFS)
  * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
  * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb : Device Drivers Package   (use Git LFS)
@@ -101,10 +101,10 @@ shell$ git lfs pull origin master
  * target/de0-nano-soc/
    + boot/
      - DE0_NANO_SOC.rbf                                      : FPGA configuration file (Raw Binary Format)
-     - socfpga.dtb                                           : Linux Device Tree Blob
-     - socfpga.dts                                           : Linux Device Tree Source
      - uEnv.txt                                              : U-Boot environment variables for linux boot
      - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
+     - devicetree-4.4.7-socfpga.dtb                          : Linux Device Tree Blob
+     - devicetree-4.4.7-socfpga.dts                          : Linux Device Tree Source
    + u-boot/
      - u-boot-spl.sfp                                        : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
@@ -765,14 +765,16 @@ shell$ make socfpga_cyclone5_de0_sockit.dtb
 
 ```
 shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/zynq-zybo.dtb
+shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb
+shell$ dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
 ```
 
 #### Copy zImage and devicetree to target/de0-nano-soc/boot/
 
 ```
 shell$ cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/socfpga.dtb
+shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/devicetree-4.4.7-socfpga.dtb
+shell$ dtc -I dtb -O dts -o ../target/de0-nano-soc/boot/devicetree-4.4.7-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
 ```
 
 ### Build Debian8 RootFS
