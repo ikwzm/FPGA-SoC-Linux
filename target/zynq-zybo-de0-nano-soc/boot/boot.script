@@ -1,0 +1,30 @@
+if test $config = "zynq-zybo"; then
+    echo "Configuration for " $config
+    boot_image=zImage-$kernel_version-armv7-fpga
+    fdt_image=devicetree-$kernel_version-zynq-zybo.dtb
+    fpga_image=design_1_wrapper.bit
+    if  fatload mmc 0 0x03000000 $fpga_image; then
+        fpga loadb  0 0x03000000 $filesize
+        mw.l 0xF8000008 0xDF0D
+        mw.l 0xF8000170 0x00100A00
+        mw.l 0xF8000004 0x767B
+    fi
+    fatload mmc 0 0x03000000 $boot_image
+    fatload mmc 0 0x02A00000 $fdt_image
+    setenv bootargs console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
+    bootz 0x03000000 - 0x02A00000
+fi
+if test $config = "socfpga_cyclone5_de0_nano_soc"; then
+    echo "Configuration for " $config
+    boot_image=zImage-$kernel_version-armv7-fpga
+    fdt_image=devicetree-$kernel_version-socfpga.dtb
+    fpga_image=DE0_NANO_SOC.rbf
+    if  fatload mmc 0 $fpgadata $fpga_image; then
+        fpga load 0   $fpgadata $filesize
+        bridge enable
+    fi
+    fatload mmc 0 $loadaddr $boot_image
+    fatload mmc 0 $fdt_addr $fdt_image
+    setenv bootargs console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
+    bootz $loadaddr - $fdt_addr
+fi

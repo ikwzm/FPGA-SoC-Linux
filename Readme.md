@@ -136,6 +136,90 @@ shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
+### Dual Boot (ZYBO and DE0-Nano-SoC)
+
+It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
+
+#### Downlowd from github
+
+```
+shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ cd FPGA-SoC-Linux
+shell$ git lfs pull origin master
+```
+#### Build boot files
+
+```
+shell$ cd target/zynq-zybo-de0-nano-soc/
+shell$ make
+mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "linux boot script" -d boot/boot.script boot/boot.scr
+Image Name:   linux-4.6.6 boot script
+Created:      Mon Aug 15 15:30:45 2016
+Image Type:   ARM Linux Script (uncompressed)
+Data Size:    1212 Bytes = 1.18 kB = 0.00 MB
+Load Address: 00000000
+Entry Point:  00000000
+Contents:
+   Image 0: 1204 Bytes = 1.18 kB = 0.00 MB
+cp ../zynq-zybo/boot/zImage-4.4.7-armv7-fpga boot/zImage-4.4.7-armv7-fpga
+cp ../zynq-zybo/boot/boot.bin boot/boot.bin
+cp ../zynq-zybo/boot/design_1_wrapper.bit boot/design_1_wrapper.bit
+cp ../zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb boot/devicetree-4.4.7-zynq-zybo.dtb
+cp ../zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb boot/devicetree-4.4.7-zynq-zybo.dts
+cp ../zynq-zybo/boot/u-boot.img boot/u-boot.img
+cp ../de0-nano-soc//boot/devicetree-4.4.7-socfpga.dtb boot/devicetree-4.4.7-socfpga.dtb
+cp ../de0-nano-soc//boot/devicetree-4.4.7-socfpga.dts boot/devicetree-4.4.7-socfpga.dts
+cp ../de0-nano-soc//boot/DE0_NANO_SOC.rbf boot/DE0_NANO_SOC.rbf
+cp ../de0-nano-soc//u-boot/u-boot-spl.sfp u-boot/u-boot-spl.sfp
+cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
+```
+
+#### File Description
+
+ * tareget/zynq-zybo/
+   + boot/
+     - boot.bin                                              : Stage 1 Boot Loader      (for ZYBO U-boot-spl)
+     - design_1_wrapper.bit                                  : FPGA configuration file  (Xilinx Bitstream Format)
+     - u-boot.img                                            : Stage 2 Boot Loader      (for ZYBO U-boot image)
+     - uEnv.txt                                              : U-Boot environment variables for set kernel version
+     - boot.script                                           : U-Boot boot script       (source)
+     - boot.scr                                              : U-Boot boot script       (binary)
+     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
+     - devicetree-4.4.7-zynq-zybo.dtb                        : Linux Device Tree Blob   (for ZYBO)
+     - devicetree-4.4.7-zynq-zybo.dts                        : Linux Device Tree Source (for ZYBO)
+     - devicetree-4.4.7-socfpga.dtb                          : Linux Device Tree Blob   (for DE0-Nano-SoC)
+     - devicetree-4.4.7-socfpga.dts                          : Linux Device Tree Source (for DE0-Nano-SoC)
+   + u-boot/
+     - u-boot-spl.sfp                                        : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
+     - u-boot.img                                            : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
+ * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
+ * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb : Device Drivers Package   (use Git LFS)
+
+#### Format SD-Card
+
+````
+shell# fdisk /dev/sdc
+   :
+   :
+   :
+shell# mkfs-vfat /dev/sdc1
+shell# mkfs.ext3 /dev/sdc2
+````
+
+#### Write to SD-Card
+
+````
+shell# mount /dev/sdc1 /mnt/usb1
+shell# mount /dev/sdc2 /mnt/usb2
+shell# cp target/zynq-zybo-de0-nano-soc/boot/*                      /mnt/usb1
+shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
+shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
+shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb /mnt/usb2/home/fpga
+shell# umount mnt/usb1
+shell# umount mnt/usb2
+````
+
 ### Install Device Drivers 
 
 #### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
