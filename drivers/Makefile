@@ -1,7 +1,7 @@
 
 prefix   ?= ./
 curr_dir ?= $(shell pwd)
-lib_dir  ?= $(prefix)/lib/modules/4.4.7-armv7-fpga/ikwzm
+lib_dir  ?= $(prefix)/lib/modules/4.8.17-armv7-fpga/ikwzm
 
 kmod_objects += dtbocfg/dtbocfg.ko
 kmod_objects += fpgacfg/fpgacfg.ko
@@ -16,12 +16,12 @@ kmod_subdirs  = $(dir $(kmod_objects))
 
 all:
 	for dir in $(kmod_subdirs); do \
-		cd $$dir ; $(MAKE) KERNEL_SRC_DIR=$(curr_dir)/../linux-4.4.7-armv7-fpga all   ; cd $(curr_dir) ;\
+		cd $$dir ; $(MAKE) KERNEL_SRC_DIR=$(curr_dir)/../linux-4.8.17-armv7-fpga all   ; cd $(curr_dir) ;\
 	done
 
 clean:
 	for dir in $(kmod_subdirs); do \
-		cd $$dir ; $(MAKE) KERNEL_SRC_DIR=$(curr_dir)/../linux-4.4.7-armv7-fpga clean ; cd $(curr_dir) ;\
+		cd $$dir ; $(MAKE) KERNEL_SRC_DIR=$(curr_dir)/../linux-4.8.17-armv7-fpga clean ; cd $(curr_dir) ;\
 	done
 
 install: all

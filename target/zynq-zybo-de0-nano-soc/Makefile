@@ -1,4 +1,4 @@
-VERSION=4.4.7
+VERSION=4.8.17
 XILINX_TARGET_PATH=../zynq-zybo
 ALTERA_TARGET_PATH=../de0-nano-soc/
 
