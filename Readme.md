@@ -17,7 +17,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Build for ZYBO and DE0-Nano-SoC
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
-* Linux Kernel Version v4.4.7
+* Linux Kernel Version v4.8.17
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
@@ -51,16 +51,18 @@ shell$ git lfs pull origin master
 
  * tareget/zynq-zybo/
    + boot/
-     - boot.bin                                              : Stage 1 Boot Loader(U-boot-spl)
-     - design_1_wrapper.bit                                  : FPGA configuration file (Xilinx Bitstream Format)
-     - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
-     - uEnv.txt                                              : U-Boot environment variables for linux boot
-     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
-     - devicetree-4.4.7-zynq-zybo.dtb                        : Linux Device Tree Blob
-     - devicetree-4.4.7-zynq-zybo.dts                        : Linux Device Tree Source
-   + examples-001.tgz                                        : Examples Programs        (use Git LFS)
- * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
- * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb : Device Drivers Package   (use Git LFS)
+     - boot.bin                                                  : Stage 1 Boot Loader(U-boot-spl)
+     - design_1_wrapper.bit                                      : FPGA configuration file (Xilinx Bitstream Format)
+     - u-boot.img                                                : Stage 2 Boot Loader(U-boot)
+     - uEnv.txt                                                  : U-Boot environment variables for linux boot
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
+     - devicetree-4.8.17-zynq-zybo.dtb                           : Linux Device Tree Blob   (use Git LFS)
+     - devicetree-4.8.17-zynq-zybo.dts                           : Linux Device Tree Source
+   + examples-001.tgz                                            : Examples Programs        (use Git LFS)
+ * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
+ * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -78,10 +80,12 @@ shell# mkfs.ext3 /dev/sdc2
 ````
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
-shell# cp target/zynq-zybo/boot/*                                   /mnt/usb1
-shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
-shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb /mnt/usb2/home/fpga
-shell# tar xfz target/zynq-zybo/examples-001.tgz -C                 /mnt/usb2/home/fpga
+shell# cp target/zynq-zybo/boot/*                                       /mnt/usb1
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
+shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
+shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
+shell# tar xfz target/zynq-zybo/examples-001.tgz -C                     /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -100,16 +104,18 @@ shell$ git lfs pull origin master
 
  * target/de0-nano-soc/
    + boot/
-     - DE0_NANO_SOC.rbf                                      : FPGA configuration file (Raw Binary Format)
-     - uEnv.txt                                              : U-Boot environment variables for linux boot
-     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
-     - devicetree-4.4.7-socfpga.dtb                          : Linux Device Tree Blob
-     - devicetree-4.4.7-socfpga.dts                          : Linux Device Tree Source
+     - DE0_NANO_SOC.rbf                                          : FPGA configuration file (Raw Binary Format)
+     - uEnv.txt                                                  : U-Boot environment variables for linux boot
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
+     - devicetree-4.8.17-socfpga.dtb                             : Linux Device Tree Blob   (use Git LFS)
+     - devicetree-4.8.17-socfpga.dts                             : Linux Device Tree Source
    + u-boot/
-     - u-boot-spl.sfp                                        : Stage 1 Boot Loader(U-boot-spl)
-     - u-boot.img                                            : Stage 2 Boot Loader(U-boot)
- * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
- * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb : Device Drivers Package   (use Git LFS)
+     - u-boot-spl.sfp                                            : Stage 1 Boot Loader(U-boot-spl)
+     - u-boot.img                                                : Stage 2 Boot Loader(U-boot)
+ * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
+ * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -130,8 +136,10 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/de0-nano-soc/boot/* /mnt/usb1
 shell# dd if=target/de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
 shell# dd if=target/de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
-shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
-shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb /mnt/usb2/home/fpga
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
+shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
+shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -153,22 +161,22 @@ shell$ git lfs pull origin master
 shell$ cd target/zynq-zybo-de0-nano-soc/
 shell$ make
 mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "linux boot script" -d boot/boot.script boot/boot.scr
-Image Name:   linux-4.6.6 boot script
-Created:      Mon Aug 15 15:30:45 2016
+Image Name:   linux boot script
+Created:      Fri Jan 13 17:05:07 2017
 Image Type:   ARM Linux Script (uncompressed)
-Data Size:    1212 Bytes = 1.18 kB = 0.00 MB
+Data Size:    1324 Bytes = 1.29 kB = 0.00 MB
 Load Address: 00000000
 Entry Point:  00000000
 Contents:
-   Image 0: 1204 Bytes = 1.18 kB = 0.00 MB
-cp ../zynq-zybo/boot/zImage-4.4.7-armv7-fpga boot/zImage-4.4.7-armv7-fpga
+   Image 0: 1316 Bytes = 1.29 kB = 0.00 MB
+cp ../zynq-zybo/boot/zImage-4.8.17-armv7-fpga boot/zImage-4.8.17-armv7-fpga
 cp ../zynq-zybo/boot/boot.bin boot/boot.bin
 cp ../zynq-zybo/boot/design_1_wrapper.bit boot/design_1_wrapper.bit
-cp ../zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb boot/devicetree-4.4.7-zynq-zybo.dtb
-cp ../zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb boot/devicetree-4.4.7-zynq-zybo.dts
+cp ../zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dtb boot/devicetree-4.8.17-zynq-zybo.dtb
+cp ../zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dts boot/devicetree-4.8.17-zynq-zybo.dts
 cp ../zynq-zybo/boot/u-boot.img boot/u-boot.img
-cp ../de0-nano-soc//boot/devicetree-4.4.7-socfpga.dtb boot/devicetree-4.4.7-socfpga.dtb
-cp ../de0-nano-soc//boot/devicetree-4.4.7-socfpga.dts boot/devicetree-4.4.7-socfpga.dts
+cp ../de0-nano-soc//boot/devicetree-4.8.17-socfpga.dtb boot/devicetree-4.8.17-socfpga.dtb
+cp ../de0-nano-soc//boot/devicetree-4.8.17-socfpga.dts boot/devicetree-4.8.17-socfpga.dts
 cp ../de0-nano-soc//boot/DE0_NANO_SOC.rbf boot/DE0_NANO_SOC.rbf
 cp ../de0-nano-soc//u-boot/u-boot-spl.sfp u-boot/u-boot-spl.sfp
 cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
@@ -178,23 +186,25 @@ cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
 
  * tareget/zynq-zybo-de0-nano-soc/
    + boot/
-     - boot.bin                                              : Stage 1 Boot Loader      (for ZYBO U-boot-spl)
-     - u-boot.img                                            : Stage 2 Boot Loader      (for ZYBO U-boot image)
-     - uEnv.txt                                              : U-Boot environment variables for set kernel version
-     - boot.script                                           : U-Boot boot script       (source)
-     - boot.scr                                              : U-Boot boot script       (binary)
-     - design_1_wrapper.bit                                  : FPGA configuration file  (for ZYBO)
-     - DE0_NANO_SOC.rbf                                      : FPGA configuration file  (for DE0-Nano-SoC)
-     - zImage-4.4.7-armv7-fpga                               : Linux Kernel Image
-     - devicetree-4.4.7-zynq-zybo.dtb                        : Linux Device Tree Blob   (for ZYBO)
-     - devicetree-4.4.7-zynq-zybo.dts                        : Linux Device Tree Source (for ZYBO)
-     - devicetree-4.4.7-socfpga.dtb                          : Linux Device Tree Blob   (for DE0-Nano-SoC)
-     - devicetree-4.4.7-socfpga.dts                          : Linux Device Tree Source (for DE0-Nano-SoC)
+     - boot.bin                                                  : Stage 1 Boot Loader      (for ZYBO U-boot-spl)
+     - u-boot.img                                                : Stage 2 Boot Loader      (for ZYBO U-boot image)
+     - uEnv.txt                                                  : U-Boot environment variables for set kernel version
+     - boot.script                                               : U-Boot boot script       (source)
+     - boot.scr                                                  : U-Boot boot script       (binary)
+     - design_1_wrapper.bit                                      : FPGA configuration file  (for ZYBO)
+     - DE0_NANO_SOC.rbf                                          : FPGA configuration file  (for DE0-Nano-SoC)
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image
+     - devicetree-4.8.17-zynq-zybo.dtb                           : Linux Device Tree Blob   (for ZYBO)
+     - devicetree-4.8.17-zynq-zybo.dts                           : Linux Device Tree Source (for ZYBO)
+     - devicetree-4.8.17-socfpga.dtb                             : Linux Device Tree Blob   (for DE0-Nano-SoC)
+     - devicetree-4.8.17-socfpga.dts                             : Linux Device Tree Source (for DE0-Nano-SoC)
    + u-boot/
-     - u-boot-spl.sfp                                        : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
-     - u-boot.img                                            : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
- * debian8-rootfs-vanilla.tgz                                : Debian8 Root File System (use Git LFS)
- * fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb : Device Drivers Package   (use Git LFS)
+     - u-boot-spl.sfp                                            : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
+     - u-boot.img                                                : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
+ * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
+ * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -212,11 +222,13 @@ shell# mkfs.ext3 /dev/sdc2
 ````
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
-shell# cp target/zynq-zybo-de0-nano-soc/boot/*                      /mnt/usb1
+shell# cp target/zynq-zybo-de0-nano-soc/boot/*                          /mnt/usb1
 shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
 shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
-shell# tar xfz debian8-rootfs-vanilla.tgz -C                        /mnt/usb2
-shell# cp fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb /mnt/usb2/home/fpga
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
+shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
+shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -241,10 +253,17 @@ Password:
 root@debian-fpga:~#
 ```
 
+#### Install Linux Headers Package
+
+```
+fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb
+```
+
 #### Install Debian Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.4.7-armv7-fpga_0.0.2-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers.
 (Reading database ... 17830 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-drivers_0.0.2-1_armhf.deb ...
@@ -809,30 +828,30 @@ There are two ways
 ##### Clone from linux-stable.git
 
 ```
-shell$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-4.4.7-armv7-fpga
+shell$ git clone git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-4.8.17-armv7-fpga
 ```
 
-##### Checkout v4.4.7
+##### Checkout v4.8.17
 
 ```
-shell$ cd linux-4.4.7-armv7-fpga
-shell$ git checkout -b linux-4.4.7-armv7-fpga refs/tags/v4.4.7
+shell$ cd linux-4.8.17-armv7-fpga
+shell$ git checkout -b linux-4.8.17-armv7-fpga refs/tags/v4.8.17
 ```
 
 #### Patch for armv7-fpga
 
 ```
-shell$ patch -p0 < ../files/linux-4.4.7-armv7-fpga.diff
+shell$ patch -p0 < ../files/linux-4.8.17-armv7-fpga.diff
 shell$ git add --update
 shell$ git add arch/arm/configs/armv7_fpga_defconfig
 shell$ git commit -m "patch for armv7-fpga"
-shell$ git tag -a v4.4.7-armv7-fpga -m "relase v4.4.7-armv7-fpga"
+shell$ git tag -a v4.8.17-armv7-fpga -m "relase v4.8.17-armv7-fpga"
 ```
 
 #### Setup for Build 
 
 ````
-shell$ cd linux-4.4.7-armv7-fpga
+shell$ cd linux-4.8.17-armv7-fpga
 shell$ export ARCH=arm
 shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
 shell$ make armv7_fpga_defconfig
@@ -849,17 +868,17 @@ shell$ make socfpga_cyclone5_de0_sockit.dtb
 #### Copy zImage and devicetree to target/zybo-zynq/boot/
 
 ```
-shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dtb
-shell$ dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.4.7-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
+shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.8.17-armv7-fpga
+shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dtb
+shell$ dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
 ```
 
 #### Copy zImage and devicetree to target/de0-nano-soc/boot/
 
 ```
-shell$ cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.4.7-armv7-fpga
-shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/devicetree-4.4.7-socfpga.dtb
-shell$ dtc -I dtb -O dts -o ../target/de0-nano-soc/boot/devicetree-4.4.7-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
+shell$ cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.8.17-armv7-fpga
+shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/devicetree-4.8.17-socfpga.dtb
+shell$ dtc -I dtb -O dts -o ../target/de0-nano-soc/boot/devicetree-4.8.17-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
 ```
 
 ### Build Debian8 RootFS
@@ -876,12 +895,12 @@ shell$ export distro=jessie
 
 ```
 shell$ mkdir $targetdir
-shell$ sudo debootstrap --arch=armhf --foreign $distro                     $targetdir
-shell$ sudo cp /usr/bin/qemu-arm-static                                    $targetdir/usr/bin
-shell$ sudo cp /etc/resolv.conf                                            $targetdir/etc
-shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                   $targetdir
-shell$ sudo cp linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb   $targetdir
-shell$ sudo cp linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb $targetdir
+shell$ sudo debootstrap --arch=armhf --foreign $distro                       $targetdir
+shell$ sudo cp /usr/bin/qemu-arm-static                                      $targetdir/usr/bin
+shell$ sudo cp /etc/resolv.conf                                              $targetdir/etc
+shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                     $targetdir
+shell$ sudo cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   $targetdir
+shell$ sudo cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb $targetdir
 ````
 
 #### Build debian8-rootfs with QEMU
@@ -1067,7 +1086,7 @@ shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 #### Copy Source Files to drivers/
 
 ```
-shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.2 | tar xf - -C drivers
+shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.3 | tar xf - -C drivers
 shell$ git archive --remote fpgacfg   --prefix=fpgacfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.5.0 | tar xf - -C drivers
@@ -1078,5 +1097,5 @@ shell$ cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd
 
 ```
 shell$ cd drivers
-shell$ sudo debian/rule binary
+shell$ sudo debian/rules binary
 ```

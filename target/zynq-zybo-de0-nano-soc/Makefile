@@ -1,4 +1,4 @@
-VERSION=4.4.7
+VERSION=4.8.17
 XILINX_TARGET_PATH=../zynq-zybo
 ALTERA_TARGET_PATH=../de0-nano-soc/
 
@@ -39,7 +39,7 @@ boot/design_1_wrapper.bit                : $(XILINX_TARGET_PATH)/boot/design_1_w
 boot/devicetree-$(VERSION)-zynq-zybo.dtb : $(XILINX_TARGET_PATH)/boot/devicetree-$(VERSION)-zynq-zybo.dtb
 	$(COPY) $< $@
 
-boot/devicetree-$(VERSION)-zynq-zybo.dts : $(XILINX_TARGET_PATH)/boot/devicetree-$(VERSION)-zynq-zybo.dtb
+boot/devicetree-$(VERSION)-zynq-zybo.dts : $(XILINX_TARGET_PATH)/boot/devicetree-$(VERSION)-zynq-zybo.dts
 	$(COPY) $< $@
 
 boot/u-boot.img                          : $(XILINX_TARGET_PATH)/boot/u-boot.img

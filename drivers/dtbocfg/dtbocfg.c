@@ -1,6 +1,6 @@
 /*********************************************************************************
  *
- *       Copyright (C) 2016 Ichiro Kawazome
+ *       Copyright (C) 2016-2017 Ichiro Kawazome
  *       All rights reserved.
  * 
  *       Redistribution and use in source and binary forms, with or without
@@ -37,6 +37,7 @@
 #include <linux/stat.h>
 #include <linux/limits.h>
 #include <linux/file.h>
+#include <linux/version.h>
 
 /**
  * Device Tree Overlay Item Structure
@@ -58,7 +59,11 @@ static int dtbocfg_overlay_item_create(struct dtbocfg_overlay_item *overlay)
 {
     int ret_val;
 
+#if     (LINUX_VERSION_CODE >= 0x040700)
+    of_fdt_unflatten_tree(overlay->dtbo, NULL, &overlay->node);
+#else
     of_fdt_unflatten_tree(overlay->dtbo, &overlay->node);
+#endif
     if (overlay->node == NULL) {
         pr_err("%s: failed to unflatten tree\n", __func__);
         ret_val = -EINVAL;

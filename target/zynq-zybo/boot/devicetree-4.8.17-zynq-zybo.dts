@@ -7,7 +7,7 @@
 	model = "Zynq ZYBO Development Board";
 
 	chosen {
-		bootargs = "earlyprintk";
+		bootargs = "earlycon";
 		stdout-path = "serial0:115200n8";
 	};
 
@@ -105,9 +105,13 @@
 			#gpio-cells = <0x2>;
 			clocks = <0x1 0x2a>;
 			gpio-controller;
+			interrupt-controller;
+			#interrupt-cells = <0x2>;
 			interrupt-parent = <0x3>;
 			interrupts = <0x0 0x14 0x4>;
 			reg = <0xe000a000 0x1000>;
+			linux,phandle = <0x7>;
+			phandle = <0x7>;
 		};
 
 		i2c@e0004000 {
@@ -251,7 +255,7 @@
 		slcr@f8000000 {
 			#address-cells = <0x1>;
 			#size-cells = <0x1>;
-			compatible = "xlnx,zynq-slcr", "syscon", "simple-bus";
+			compatible = "xlnx,zynq-slcr", "syscon", "simple-mfd";
 			reg = <0xf8000000 0x1000>;
 			ranges;
 			linux,phandle = <0x5>;
@@ -339,12 +343,14 @@
 
 		usb@e0002000 {
 			compatible = "xlnx,zynq-usb-2.20a", "chipidea,usb2";
-			status = "disabled";
+			status = "okay";
 			clocks = <0x1 0x1c>;
 			interrupt-parent = <0x3>;
 			interrupts = <0x0 0x15 0x4>;
 			reg = <0xe0002000 0x1000>;
 			phy_type = "ulpi";
+			dr_mode = "host";
+			usb-phy = <0x6>;
 		};
 
 		usb@e0003000 {
@@ -365,5 +371,13 @@
 			reg = <0xf8005000 0x1000>;
 			timeout-sec = <0xa>;
 		};
+	};
+
+	phy0 {
+		#phy-cells = <0x0>;
+		compatible = "usb-nop-xceiv";
+		reset-gpios = <0x7 0x2e 0x1>;
+		linux,phandle = <0x6>;
+		phandle = <0x6>;
 	};
 };

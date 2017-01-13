@@ -66,7 +66,7 @@
 		ranges;
 
 		amba {
-			compatible = "arm,amba-bus";
+			compatible = "simple-bus";
 			#address-cells = <0x1>;
 			#size-cells = <0x1>;
 			ranges;
@@ -80,8 +80,8 @@
 				#dma-requests = <0x20>;
 				clocks = <0x3>;
 				clock-names = "apb_pclk";
-				linux,phandle = <0x2a>;
-				phandle = <0x2a>;
+				linux,phandle = <0x2b>;
+				phandle = <0x2b>;
 			};
 		};
 
@@ -323,8 +323,8 @@
 					compatible = "altr,socfpga-perip-clk";
 					clocks = <0xd>;
 					fixed-divider = <0x4>;
-					linux,phandle = <0x29>;
-					phandle = <0x29>;
+					linux,phandle = <0x2a>;
+					phandle = <0x2a>;
 				};
 
 				mpu_l2_ram_clk {
@@ -454,8 +454,8 @@
 					clocks = <0x10>;
 					clk-gate = <0xa0 0x2>;
 					div-reg = <0xa4 0x0 0x3>;
-					linux,phandle = <0x2b>;
-					phandle = <0x2b>;
+					linux,phandle = <0x2c>;
+					phandle = <0x2c>;
 				};
 
 				spi_m_clk {
@@ -464,8 +464,8 @@
 					clocks = <0x10>;
 					clk-gate = <0xa0 0x3>;
 					div-reg = <0xa4 0x3 0x3>;
-					linux,phandle = <0x28>;
-					phandle = <0x28>;
+					linux,phandle = <0x29>;
+					phandle = <0x29>;
 				};
 
 				can0_clk {
@@ -519,8 +519,8 @@
 					clocks = <0x19>;
 					clk-gate = <0xa0 0x8>;
 					fixed-divider = <0x4>;
-					linux,phandle = <0x25>;
-					phandle = <0x25>;
+					linux,phandle = <0x26>;
+					phandle = <0x26>;
 				};
 
 				nand_x_clk {
@@ -616,7 +616,6 @@
 			rx-fifo-depth = <0x1000>;
 			status = "okay";
 			phy-mode = "rgmii";
-			phy-addr = <0xffffffff>;
 			txd0-skew-ps = <0x0>;
 			txd1-skew-ps = <0x0>;
 			txd2-skew-ps = <0x0>;
@@ -669,8 +668,8 @@
 				interrupt-controller;
 				#interrupt-cells = <0x2>;
 				interrupts = <0x0 0xa5 0x4>;
-				linux,phandle = <0x2d>;
-				phandle = <0x2d>;
+				linux,phandle = <0x2e>;
+				phandle = <0x2e>;
 			};
 		};
 
@@ -721,7 +720,7 @@
 			reg = <0xffc05000 0x1000>;
 			clocks = <0x23>;
 			interrupts = <0x0 0x9f 0x4>;
-			status = "okay";
+			status = "disabled";
 		};
 
 		i2c@ffc06000 {
@@ -742,6 +741,26 @@
 			clocks = <0x23>;
 			interrupts = <0x0 0xa1 0x4>;
 			status = "disabled";
+		};
+
+		eccmgr@ffd08140 {
+			compatible = "altr,socfpga-ecc-manager";
+			#address-cells = <0x1>;
+			#size-cells = <0x1>;
+			ranges;
+
+			l2-ecc@ffd08140 {
+				compatible = "altr,socfpga-l2-ecc";
+				reg = <0xffd08140 0x4>;
+				interrupts = <0x0 0x24 0x1 0x0 0x25 0x1>;
+			};
+
+			ocram-ecc@ffd08144 {
+				compatible = "altr,socfpga-ocram-ecc";
+				reg = <0xffd08144 0x4>;
+				iram = <0x25>;
+				interrupts = <0x0 0xb2 0x1 0x0 0xb3 0x1>;
+			};
 		};
 
 		l2-cache@fffef000 {
@@ -765,20 +784,23 @@
 			fifo-depth = <0x400>;
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			clocks = <0x22 0x25>;
+			clocks = <0x22 0x26>;
 			clock-names = "biu", "ciu";
+			status = "okay";
 			num-slots = <0x1>;
 			broken-cd;
 			bus-width = <0x4>;
 			cap-mmc-highspeed;
 			cap-sd-highspeed;
-			vmmc-supply = <0x26>;
-			vqmmc-supply = <0x26>;
+			vmmc-supply = <0x27>;
+			vqmmc-supply = <0x27>;
 		};
 
 		sram@ffff0000 {
 			compatible = "mmio-sram";
 			reg = <0xffff0000 0x10000>;
+			linux,phandle = <0x25>;
+			phandle = <0x25>;
 		};
 
 		rstmgr@ffd05000 {
@@ -798,13 +820,13 @@
 		sdr@ffc25000 {
 			compatible = "syscon";
 			reg = <0xffc25000 0x1000>;
-			linux,phandle = <0x27>;
-			phandle = <0x27>;
+			linux,phandle = <0x28>;
+			phandle = <0x28>;
 		};
 
 		sdramedac {
 			compatible = "altr,sdram-edac";
-			altr,sdr-syscon = <0x27>;
+			altr,sdr-syscon = <0x28>;
 			interrupts = <0x0 0x27 0x4>;
 		};
 
@@ -815,7 +837,7 @@
 			reg = <0xfff00000 0x1000>;
 			interrupts = <0x0 0x9a 0x4>;
 			num-cs = <0x4>;
-			clocks = <0x28>;
+			clocks = <0x29>;
 			status = "disabled";
 		};
 
@@ -826,7 +848,7 @@
 			reg = <0xfff01000 0x1000>;
 			interrupts = <0x0 0x9b 0x4>;
 			num-cs = <0x4>;
-			clocks = <0x28>;
+			clocks = <0x29>;
 			status = "disabled";
 		};
 
@@ -842,7 +864,7 @@
 			compatible = "arm,cortex-a9-twd-timer";
 			reg = <0xfffec600 0x100>;
 			interrupts = <0x1 0xd 0xf04>;
-			clocks = <0x29>;
+			clocks = <0x2a>;
 		};
 
 		timer0@ffc08000 {
@@ -884,7 +906,7 @@
 			reg-shift = <0x2>;
 			reg-io-width = <0x4>;
 			clocks = <0x23>;
-			dmas = <0x2a 0x1c 0x2a 0x1d>;
+			dmas = <0x2b 0x1c 0x2b 0x1d>;
 			dma-names = "tx", "rx";
 			status = "okay";
 		};
@@ -896,7 +918,7 @@
 			reg-shift = <0x2>;
 			reg-io-width = <0x4>;
 			clocks = <0x23>;
-			dmas = <0x2a 0x1e 0x2a 0x1f>;
+			dmas = <0x2b 0x1e 0x2b 0x1f>;
 			dma-names = "tx", "rx";
 		};
 
@@ -904,17 +926,19 @@
 			#phy-cells = <0x0>;
 			compatible = "usb-nop-xceiv";
 			status = "okay";
-			linux,phandle = <0x2c>;
-			phandle = <0x2c>;
+			linux,phandle = <0x2d>;
+			phandle = <0x2d>;
 		};
 
 		usb@ffb00000 {
 			compatible = "snps,dwc2";
 			reg = <0xffb00000 0xffff>;
 			interrupts = <0x0 0x7d 0x4>;
-			clocks = <0x2b>;
+			clocks = <0x2c>;
 			clock-names = "otg";
-			phys = <0x2c>;
+			resets = <0x21 0x22>;
+			reset-names = "dwc2";
+			phys = <0x2d>;
 			phy-names = "usb2-phy";
 			status = "disabled";
 		};
@@ -923,9 +947,11 @@
 			compatible = "snps,dwc2";
 			reg = <0xffb40000 0xffff>;
 			interrupts = <0x0 0x80 0x4>;
-			clocks = <0x2b>;
+			clocks = <0x2c>;
 			clock-names = "otg";
-			phys = <0x2c>;
+			resets = <0x21 0x23>;
+			reset-names = "dwc2";
+			phys = <0x2d>;
 			phy-names = "usb2-phy";
 			status = "okay";
 		};
@@ -952,8 +978,8 @@
 		regulator-name = "3.3V";
 		regulator-min-microvolt = <0x325aa0>;
 		regulator-max-microvolt = <0x325aa0>;
-		linux,phandle = <0x26>;
-		phandle = <0x26>;
+		linux,phandle = <0x27>;
+		phandle = <0x27>;
 	};
 
 	leds {
@@ -961,7 +987,7 @@
 
 		hps0 {
 			label = "hps_led0";
-			gpios = <0x2d 0x18 0x0>;
+			gpios = <0x2e 0x18 0x0>;
 			linux,default-trigger = "heartbeat";
 		};
 	};
