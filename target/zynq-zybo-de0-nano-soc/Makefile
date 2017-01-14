@@ -1,6 +1,6 @@
 VERSION=4.8.17
 XILINX_TARGET_PATH=../zynq-zybo
-ALTERA_TARGET_PATH=../de0-nano-soc/
+ALTERA_TARGET_PATH=../de0-nano-soc
 
 TARGET = boot/boot.scr \
          boot/zImage-$(VERSION)-armv7-fpga \
@@ -18,6 +18,7 @@ TARGET = boot/boot.scr \
 
 COPY   = cp
 REMOVE = rm
+MKDIR  = mkdir
 
 target : $(TARGET)
 
@@ -55,8 +56,10 @@ boot/DE0_NANO_SOC.rbf                    : $(ALTERA_TARGET_PATH)/boot/DE0_NANO_S
 	$(COPY) $< $@
 
 u-boot/u-boot-spl.sfp                    : $(ALTERA_TARGET_PATH)/u-boot/u-boot-spl.sfp
+	@if [ ! -d u-boot ] ; then $(MKDIR) -p u-boot; fi
 	$(COPY) $< $@
 
 u-boot/u-boot.img                        : $(ALTERA_TARGET_PATH)/u-boot/u-boot.img
+	@if [ ! -d u-boot ] ; then $(MKDIR) -p u-boot; fi
 	$(COPY) $< $@
 
