@@ -1,6 +1,6 @@
 /*********************************************************************************
  *
- *       Copyright (C) 2015-2016 Ichiro Kawazome
+ *       Copyright (C) 2015-2017 Ichiro Kawazome
  *       All rights reserved.
  * 
  *       Redistribution and use in source and binary forms, with or without
@@ -61,7 +61,11 @@
 #define DEVICE_NAME_FORMAT "udmabuf%d"
 #define DEVICE_MAX_NUM      256
 #define UDMABUF_DEBUG       1
+#ifdef  CONFIG_ARM
 #define SYNC_ENABLE         1
+#else
+#define SYNC_ENABLE         0
+#endif
 
 #if     (LINUX_VERSION_CODE >= 0x030B00)
 #define USE_DEV_GROUPS      1
@@ -77,6 +81,7 @@
 
 static struct class*  udmabuf_sys_class     = NULL;
 static dev_t          udmabuf_device_number = 0;
+static int            dma_mask_bit          = 32;
 
 /**
  * struct udmabuf_driver_data - Device driver structure
@@ -91,6 +96,7 @@ struct udmabuf_driver_data {
     size_t               alloc_size;
     void*                virt_addr;
     dma_addr_t           phys_addr;
+    u64                  dma_mask;
 #if (SYNC_ENABLE == 1)
     int                  sync_mode;
     int                  sync_offset;
@@ -199,7 +205,7 @@ DEF_ATTR_SHOW(sync_mode      , "%d\n"   , this->sync_mode                       
 DEF_ATTR_SET( sync_mode                 , 0, 7, NO_ACTION, NO_ACTION              );
 DEF_ATTR_SHOW(sync_offset    , "0x%lx\n", (long unsigned int)this->sync_offset    );
 DEF_ATTR_SET( sync_offset               , 0, 0xFFFFFFFF, NO_ACTION, NO_ACTION     );
-DEF_ATTR_SHOW(sync_size      , "%d\n"   , this->sync_size                         );
+DEF_ATTR_SHOW(sync_size      , "%zu\n"  , this->sync_size                         );
 DEF_ATTR_SET( sync_size                 , 0, 0xFFFFFFFF, NO_ACTION, NO_ACTION     );
 DEF_ATTR_SHOW(sync_direction , "%d\n"   , this->sync_direction                    );
 DEF_ATTR_SET( sync_direction            , 0, 3, NO_ACTION, NO_ACTION              );
@@ -511,6 +517,38 @@ static ssize_t udmabuf_driver_file_write(struct file* file, const char __user* b
 }
 
 /**
+ * udmabuf_driver_file_llseek() - This is the driver llseek function.
+ * @file:	Pointer to the file structure.
+ * @offset:	File offset to seek.
+ * @whence:	Type of seek.
+ * returns:	The new position.
+ */
+static loff_t udmabuf_driver_file_llseek(struct file* file, loff_t offset, int whence)
+{
+    struct udmabuf_driver_data* this = file->private_data;
+    loff_t                      new_pos;
+
+    switch (whence) {
+        case 0 : /* SEEK_SET */
+            new_pos = offset;
+            break;
+        case 1 : /* SEEK_CUR */
+            new_pos = file->f_pos + offset;
+            break;
+        case 2 : /* SEEK_END */
+            new_pos = this->size  + offset;
+            break;
+        default:
+            return -EINVAL;
+    }
+    if (new_pos < 0         ){return -EINVAL;}
+    if (new_pos > this->size){return -EINVAL;}
+    file->f_pos = new_pos;
+    return new_pos;
+}
+
+
+/**
  *
  */
 static const struct file_operations udmabuf_driver_file_ops = {
@@ -520,6 +558,7 @@ static const struct file_operations udmabuf_driver_file_ops = {
     .mmap    = udmabuf_driver_file_mmap,
     .read    = udmabuf_driver_file_read,
     .write   = udmabuf_driver_file_write,
+    .llseek  = udmabuf_driver_file_llseek,
 };
 
 /**
@@ -531,13 +570,14 @@ DECLARE_MINOR_NUMBER_ALLOCATOR(udmabuf_device, DEVICE_MAX_NUM);
  * udmabuf_driver_create() -  Create call for the device.
  *
  * @name:       device name or NULL
+ * @parent:     parent device
  * @minor:	minor_number or -1
  * @size:	buffer size
  * Returns device driver strcutre pointer
  *
  * It does all the memory allocation and registration for the device.
  */
-static struct udmabuf_driver_data* udmabuf_driver_create(const char* name, int minor, unsigned int size)
+static struct udmabuf_driver_data* udmabuf_driver_create(const char* name, struct device* parent, int minor, unsigned int size)
 {
     struct udmabuf_driver_data* this     = NULL;
     unsigned int                done     = 0;
@@ -601,13 +641,13 @@ static struct udmabuf_driver_data* udmabuf_driver_create(const char* name, int m
     {
         if (name == NULL) {
             this->device = device_create(udmabuf_sys_class,
-                                         NULL,
+                                         parent,
                                          this->device_number,
                                          (void *)this,
                                          DEVICE_NAME_FORMAT, MINOR(this->device_number));
         } else {
             this->device = device_create(udmabuf_sys_class,
-                                         NULL,
+                                         parent,
                                          this->device_number,
                                          (void *)this,
                                          name);
@@ -616,8 +656,20 @@ static struct udmabuf_driver_data* udmabuf_driver_create(const char* name, int m
             this->device = NULL;
             goto failed;
         }
-        dma_set_coherent_mask(this->device, 0xFFFFFFFF);
         done |= DONE_DEVICE_CREATE;
+    }
+    /*
+     * setup dma mask 
+     */
+    {
+        this->device->dma_mask = &this->dma_mask;
+        if (dma_set_mask(this->device, DMA_BIT_MASK(dma_mask_bit)) == 0) {
+            dma_set_coherent_mask(this->device, DMA_BIT_MASK(dma_mask_bit));
+        } else {
+            printk(KERN_WARNING "dma_set_mask(DMA_BIT_MASK(%d)) failed\n", dma_mask_bit);
+            dma_set_mask(this->device, DMA_BIT_MASK(32));
+            dma_set_coherent_mask(this->device, DMA_BIT_MASK(32));
+        }
     }
     /*
      * dma buffer allocation 
@@ -654,7 +706,7 @@ static struct udmabuf_driver_data* udmabuf_driver_create(const char* name, int m
     dev_info(this->device, "major number   = %d\n"    , MAJOR(this->device_number));
     dev_info(this->device, "minor number   = %d\n"    , MINOR(this->device_number));
     dev_info(this->device, "phys address   = 0x%lx\n" , (long unsigned int)this->phys_addr);
-    dev_info(this->device, "buffer size    = %d\n"    , this->alloc_size);
+    dev_info(this->device, "buffer size    = %zu\n"   , this->alloc_size);
 
     return this;
 
@@ -743,7 +795,7 @@ static int udmabuf_platform_driver_probe(struct platform_device *pdev)
      * create (udmabuf_driver_data*)this.
      */
     {
-        struct udmabuf_driver_data* driver_data = udmabuf_driver_create(device_name, minor_number, size);
+        struct udmabuf_driver_data* driver_data = udmabuf_driver_create(device_name, &pdev->dev, minor_number, size);
         if (IS_ERR_OR_NULL(driver_data)) {
             dev_err(&pdev->dev, "driver create fail.\n");
             retval = PTR_ERR(driver_data);
@@ -817,15 +869,18 @@ MODULE_PARM_DESC( udmabuf1, "udmabuf1 buffer size");
 MODULE_PARM_DESC( udmabuf2, "udmabuf2 buffer size");
 MODULE_PARM_DESC( udmabuf3, "udmabuf3 buffer size");
 
+module_param(     dma_mask_bit, int, S_IRUGO);
+MODULE_PARM_DESC( dma_mask_bit, "udmabuf dma mask bit(default=32)");
+
 struct udmabuf_driver_data* udmabuf_driver[4] = {NULL,NULL,NULL,NULL};
 
-#define CREATE_UDMABUF_DRIVER(__num)                                                      \
-    if (udmabuf ## __num > 0) {                                                           \
-        udmabuf_driver[__num] = udmabuf_driver_create(NULL, __num, udmabuf ## __num);     \
-        if (IS_ERR_OR_NULL(udmabuf_driver[__num])) {                                      \
-            udmabuf_driver[__num] = NULL;                                                 \
-            printk(KERN_ERR "%s: couldn't create udmabuf%d driver\n", DRIVER_NAME, __num);\
-        }                                                                                 \
+#define CREATE_UDMABUF_DRIVER(__num,parent)                                                  \
+    if (udmabuf ## __num > 0) {                                                              \
+        udmabuf_driver[__num] = udmabuf_driver_create(NULL, parent, __num, udmabuf ## __num);\
+        if (IS_ERR_OR_NULL(udmabuf_driver[__num])) {                                         \
+            udmabuf_driver[__num] = NULL;                                                    \
+            printk(KERN_ERR "%s: couldn't create udmabuf%d driver\n", DRIVER_NAME, __num);   \
+        }                                                                                    \
     }
 
 /**
@@ -867,10 +922,10 @@ static int __init udmabuf_module_init(void)
     }
     SET_SYS_CLASS_ATTRIBUTES(udmabuf_sys_class);
 
-    CREATE_UDMABUF_DRIVER(0);
-    CREATE_UDMABUF_DRIVER(1);
-    CREATE_UDMABUF_DRIVER(2);
-    CREATE_UDMABUF_DRIVER(3);
+    CREATE_UDMABUF_DRIVER(0, NULL);
+    CREATE_UDMABUF_DRIVER(1, NULL);
+    CREATE_UDMABUF_DRIVER(2, NULL);
+    CREATE_UDMABUF_DRIVER(3, NULL);
 
     retval = platform_driver_register(&udmabuf_platform_driver);
     if (retval) {
