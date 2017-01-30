@@ -1,3 +1,10 @@
+fpga-soc-linux-drivers (0.0.3-1) unstable; urgency=low
+
+  * Update udmabuf version 0.6.0 
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Mon, 30 Jan 2017 14:51:02 +0900
+
+
 fpga-soc-linux-drivers (0.0.2-1) unstable; urgency=low
 
   * Append fpga-bridge and altera-hps2fpga 

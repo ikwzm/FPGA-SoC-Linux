@@ -62,7 +62,7 @@ shell$ git lfs pull origin master
  * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
  * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -84,7 +84,7 @@ shell# cp target/zynq-zybo/boot/*                                       /mnt/usb
 shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
 shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
 shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    /mnt/usb2/home/fpga
 shell# tar xfz target/zynq-zybo/examples-001.tgz -C                     /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
@@ -115,7 +115,7 @@ shell$ git lfs pull origin master
  * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
  * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -139,7 +139,7 @@ shell# dd if=target/de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=
 shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
 shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
 shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -204,7 +204,7 @@ cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
  * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
  * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    : Device Drivers Package   (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    : Device Drivers Package   (use Git LFS)
 
 #### Format SD-Card
 
@@ -228,7 +228,7 @@ shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs
 shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
 shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
 shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb    /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
@@ -263,12 +263,13 @@ fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fp
 #### Install Debian Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.2-1_armhf.deb
-Selecting previously unselected package fpga-soc-linux-drivers.
-(Reading database ... 17830 files and directories currently installed.)
-Preparing to unpack fpga-soc-linux-drivers_0.0.2-1_armhf.deb ...
-Unpacking fpga-soc-linux-drivers (0.0.2-1) ...
-Setting up fpga-soc-linux-drivers (0.0.2-1) ...
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb
+sudo: unable to resolve host debian-fpga
+Selecting previously unselected package fpga-soc-linux-drivers-4.8.17-armv7-fpga.
+(Reading database ... 37627 files and directories currently installed.)
+Preparing to unpack fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb ...
+Unpacking fpga-soc-linux-drivers-4.8.17-armv7-fpga (0.0.3-1) ...
+Setting up fpga-soc-linux-drivers-4.8.17-armv7-fpga (0.0.3-1) ...
 Created symlink from /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service to /etc/systemd/system/device-tree-overlay.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/fpga-manager.service to /etc/systemd/system/fpga-manager.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/udmabuf.service to /etc/systemd/system/udmabuf.service.
@@ -1089,7 +1090,7 @@ shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.3 | tar xf - -C drivers
 shell$ git archive --remote fpgacfg   --prefix=fpgacfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v0.0.1 | tar xf - -C drivers
-shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.5.0 | tar xf - -C drivers
+shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.6.0 | tar xf - -C drivers
 shell$ cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd ..
 ```
 
