@@ -12,6 +12,7 @@ git checkout -b linux-4.8.17-armv7-fpga refs/tags/v4.8.17
 patch -p0 < ../files/linux-4.8.17-armv7-fpga.diff
 git add --update
 git add arch/arm/configs/armv7_fpga_defconfig
+git add arch/arm/boot/dts/zynq-pynqz1.dts
 git commit -m "patch for armv7-fpga"
 git tag -a v4.8.17-armv7-fpga -m "relase v4.8.17-armv7-fpga"
 
@@ -23,12 +24,18 @@ make armv7_fpga_defconfig
 ### Build Linux Kernel and device tree
 make deb-pkg
 make zynq-zybo.dtb
+make zynq-pynqz1.dtb
 make socfpga_cyclone5_de0_sockit.dtb
  
 ### Copy zImage and devicetree to tareget/zybo-zynq/boot/
 cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.8.17-armv7-fpga
 cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dtb
 dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
+
+### Copy zImage and devicetree to tareget/zybo-pynqz1/boot/
+cp arch/arm/boot/zImage              ../target/zynq-pynqz1/boot/zImage-4.8.17-armv7-fpga
+cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-4.8.17-zynq-pynqz1.dtb
+dtc -I dtb -O dts -o ../target/zynq-pynqz1/boot/devicetree-4.8.17-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
 
 ### Copy zImage and devicetree to tareget/de0-nano-soc/boot/
 cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/zImage-4.8.17-armv7-fpga

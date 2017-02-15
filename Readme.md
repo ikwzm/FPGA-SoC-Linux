@@ -12,9 +12,10 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
 
 * Hardware
   + ZYBO : Xilinx Zynq-7000 ARM/FPGA SoC Trainer Board by Digilent
+  + PYNQ-Z1 : Python Productive for Zynq by Digilent
   + DE0-Nano-SoC : Altera SoC FPGA Development Kit by terasic
 * U-Boot v2016.03 (customized)
-  + Build for ZYBO and DE0-Nano-SoC
+  + Build for ZYBO, PYNQ-Z1 and DE0-Nano-SoC
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
 * Linux Kernel Version v4.8.17
@@ -55,8 +56,8 @@ shell$ git lfs pull origin master
      - design_1_wrapper.bit                                      : FPGA configuration file (Xilinx Bitstream Format)
      - u-boot.img                                                : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                  : U-Boot environment variables for linux boot
-     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
-     - devicetree-4.8.17-zynq-zybo.dtb                           : Linux Device Tree Blob   (use Git LFS)
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       
+     - devicetree-4.8.17-zynq-zybo.dtb                           : Linux Device Tree Blob   
      - devicetree-4.8.17-zynq-zybo.dts                           : Linux Device Tree Source
    + examples-001.tgz                                            : Examples Programs        (use Git LFS)
  * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
@@ -90,6 +91,57 @@ shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
+### PYNQ-Z1
+
+#### Downlowd from github
+
+```
+shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ cd FPGA-SoC-Linux
+shell$ git lfs pull origin master
+```
+
+#### File Description
+
+ * tareget/zynq-pynqz1/
+   + boot/
+     - boot.bin                                                  : Stage 1 Boot Loader(U-boot-spl)
+     - u-boot.img                                                : Stage 2 Boot Loader(U-boot)
+     - uEnv.txt                                                  : U-Boot environment variables for linux boot
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       
+     - devicetree-4.8.17-zynq-pynqz1.dtb                         : Linux Device Tree Blob   
+     - devicetree-4.8.17-zynq-pynqz1.dts                         : Linux Device Tree Source
+ * debian8-rootfs-vanilla.tgz                                    : Debian8 Root File System (use Git LFS)
+ * linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    : Device Drivers Package   (use Git LFS)
+
+#### Format SD-Card
+
+````
+shell# fdisk /dev/sdc
+   :
+   :
+   :
+shell# mkfs-vfat /dev/sdc1
+shell# mkfs.ext3 /dev/sdc2
+````
+
+#### Write to SD-Card
+
+````
+shell# mount /dev/sdc1 /mnt/usb1
+shell# mount /dev/sdc2 /mnt/usb2
+shell# cp target/zynq-pynqz1/boot/*                                     /mnt/usb1
+shell# tar xfz debian8-rootfs-vanilla.tgz -C                            /mnt/usb2
+shell# cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
+shell# cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
+shell# cp fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.3-1_armhf.deb    /mnt/usb2/home/fpga
+shell# tar xfz target/zynq-zybo/examples-001.tgz -C                     /mnt/usb2/home/fpga
+shell# umount mnt/usb1
+shell# umount mnt/usb2
+````
+
 ### DE0-Nano-SoC
 
 #### Downlowd from github
@@ -106,8 +158,8 @@ shell$ git lfs pull origin master
    + boot/
      - DE0_NANO_SOC.rbf                                          : FPGA configuration file (Raw Binary Format)
      - uEnv.txt                                                  : U-Boot environment variables for linux boot
-     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
-     - devicetree-4.8.17-socfpga.dtb                             : Linux Device Tree Blob   (use Git LFS)
+     - zImage-4.8.17-armv7-fpga                                  : Linux Kernel Image       
+     - devicetree-4.8.17-socfpga.dtb                             : Linux Device Tree Blob   
      - devicetree-4.8.17-socfpga.dts                             : Linux Device Tree Source
    + u-boot/
      - u-boot-spl.sfp                                            : Stage 1 Boot Loader(U-boot-spl)
@@ -765,6 +817,58 @@ shell$ cp spl/boot.bin  ../zynq-zybo/boot/
 shell$ cp u-boot.img    ../zynq-zybo/boot/
 ```
 
+### Build U-boot for PYNQ-Z1
+
+There are two ways
+
+1. run scripts/build-u-boot-zynq-pynqz1.sh (easy)
+2. run this chapter step-by-step (annoying)
+
+#### Download U-boot Source
+
+##### Clone from git.denx.de/u-boot.git
+
+```
+shell$ git clone git://git.denx.de/u-boot.git u-boot-zynq-pynqz1
+````
+
+##### Checkout v2016.03
+
+```
+shell$ cd u-boot-zynq-pynqz1
+shell$ git checkout -b u-boot-2016.03-zynq-pynqz1 refs/tags/v2016.03
+```
+
+#### Patch for zynq-zybo
+
+```
+shell$ patch -p0 < ../files/u-boot-2016.03-zynq-pynqz1.diff
+shell$ git add --update
+shell$ git commit -m "patch for zynq-pynqz1"
+```
+
+#### Setup for Build 
+
+```
+shell$ cd u-boot-zynq-pynqz1
+shell$ export ARCH=arm
+shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
+shell$ make zynq_pynqz1_defconfig
+```
+
+#### Build u-boot
+
+```
+shell$ make
+```
+
+#### Copy boot.bin and u-boot.img to zybo-pynqz1/boot/
+
+```
+shell$ cp spl/boot.bin  ../zynq-pynqz1/boot/
+shell$ cp u-boot.img    ../zynq-pynqz1/boot/
+```
+
 ### Build U-boot for DE0-Nano-SoC
 
 There are two ways
@@ -845,6 +949,7 @@ shell$ git checkout -b linux-4.8.17-armv7-fpga refs/tags/v4.8.17
 shell$ patch -p0 < ../files/linux-4.8.17-armv7-fpga.diff
 shell$ git add --update
 shell$ git add arch/arm/configs/armv7_fpga_defconfig
+shell$ git add arch/arm/boot/dts/zynq-pynqz1.dts
 shell$ git commit -m "patch for armv7-fpga"
 shell$ git tag -a v4.8.17-armv7-fpga -m "relase v4.8.17-armv7-fpga"
 ```
@@ -863,6 +968,7 @@ shell$ make armv7_fpga_defconfig
 ````
 shell$ make deb-pkg
 shell$ make zynq-zybo.dtb
+shell$ make zynq-pynqz1.dtb
 shell$ make socfpga_cyclone5_de0_sockit.dtb
 ````
 
@@ -872,6 +978,14 @@ shell$ make socfpga_cyclone5_de0_sockit.dtb
 shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.8.17-armv7-fpga
 shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dtb
 shell$ dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.8.17-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
+```
+
+#### Copy zImage and devicetree to target/zybo-pynqz1/boot/
+
+```
+shell$ cp arch/arm/boot/zImage              ../target/zynq-pynqz1/boot/zImage-4.8.17-armv7-fpga
+shell$ cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-4.8.17-zynq-pynqz1.dtb
+shell$ dtc -I dtb -O dts -o ../target/zynq-pynqz1/boot/devicetree-4.8.17-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
 ```
 
 #### Copy zImage and devicetree to target/de0-nano-soc/boot/
