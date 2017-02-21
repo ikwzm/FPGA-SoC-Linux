@@ -26,14 +26,4 @@ clean:
 
 install: all
 	install -d $(lib_dir)
-	install -d $(prefix)/usr/bin
-	install -d $(prefix)/etc/systemd/system
-	install -m 0755 ../scripts/fpgacfg-service.rb       $(prefix)/usr/bin/
-	install -m 0755 dtbocfg/dtbocfg.rb                  $(prefix)/usr/bin/
-	install -m 0755 fpga-bridge/altera-hps2fpga.rb      $(prefix)/usr/bin/
-	install -m 0644 systemd/device-tree-overlay.service $(prefix)/etc/systemd/system/
-	install -m 0644 systemd/fpga-manager.service        $(prefix)/etc/systemd/system/
-	install -m 0644 systemd/udmabuf.service             $(prefix)/etc/systemd/system/
-	install -m 0644 systemd/zptty.service               $(prefix)/etc/systemd/system/
-	install -m 0644 systemd/altera-hps2fpga.service     $(prefix)/etc/systemd/system/
 	for ko in $(kmod_objects); do install -m 0644 $$ko $(lib_dir) ; done

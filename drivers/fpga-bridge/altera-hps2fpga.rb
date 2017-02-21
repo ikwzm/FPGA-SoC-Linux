@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 #---------------------------------------------------------------------------------
 #
-#       Version     :   0.0.1
-#       Created     :   2016/5/12
+#       Version     :   0.0.2
+#       Created     :   2017/2/21
 #       File name   :   altera-hps2fpga.rb
 #       Author      :   Ichiro Kawazome <ichiro_k@ca2.so-net.ne.jp>
 #       Description :   altera-hps2fpga service management script.
 #
 #---------------------------------------------------------------------------------
 #
-#       Copyright (C) 2016 Ichiro Kawazome
+#       Copyright (C) 2016-2017 Ichiro Kawazome
 #       All rights reserved.
 # 
 #       Redistribution and use in source and binary forms, with or without
@@ -142,7 +142,7 @@ class AlteraHps2Fpga
 
   def initialize
     @program_name      = "altera-hps2fpga.rb"
-    @program_version   = "0.0.1"
+    @program_version   = "0.0.2"
     @program_id        = @program_name + " " + @program_version
     @verbose           = false
     @debug             = false
@@ -194,8 +194,6 @@ class AlteraHps2Fpga
 	#{@name}@0 {
 		target-path = "/soc";
 		__overlay__ {
-			#address-cells = <0x1>;
-			#size-cells = <0x1>;
 			hps_fpgabridge0: fpgabridge@0 {
 				compatible = "altr,socfpga-hps2fpga-bridge";
 				label = "hps2fpga";
@@ -208,8 +206,6 @@ class AlteraHps2Fpga
 	#{@name}@1 {
 		target-path = "/soc";
 		__overlay__ {
-			#address-cells = <0x1>;
-			#size-cells = <0x1>;
 			hps_fpgabridge1: fpgabridge@1 {
 				compatible = "altr,socfpga-lwhps2fpga-bridge";
 				label = "lwhps2fpga";
@@ -222,8 +218,6 @@ class AlteraHps2Fpga
 	#{@name}@2 {
 		target-path = "/soc";
 		__overlay__ {
-			#address-cells = <0x1>;
-			#size-cells = <0x1>;
 			hps_fpgabridge2: fpgabridge@2 {
 				compatible = "altr,socfpga-fpga2hps-bridge";
 				label = "fpga2hps";
