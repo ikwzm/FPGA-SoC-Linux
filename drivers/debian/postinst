@@ -2,15 +2,3 @@
 
 depmod
 
-systemctl enable  device-tree-overlay.service
-systemctl enable  fpga-manager.service
-systemctl enable  udmabuf.service
-systemctl enable  zptty.service
-systemctl enable  altera-hps2fpga.service
-
-systemctl start   device-tree-overlay.service
-systemctl start   fpga-manager.service
-systemctl start   udmabuf.service
-systemctl start   zptty.service
-systemctl start   altera-hps2fpga.service
-

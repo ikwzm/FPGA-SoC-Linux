@@ -1,12 +1,2 @@
 #!/bin/sh -e
 
-systemctl stop    zptty.service
-systemctl stop    udmabuf.service
-systemctl stop    fpga-manager.service
-systemctl stop    device-tree-overlay.service
-
-systemctl disable zptty.service
-systemctl disable udmabuf.service
-systemctl disable fpga-manager.service
-systemctl disable device-tree-overlay.service
-

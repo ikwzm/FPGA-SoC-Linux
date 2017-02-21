@@ -15,10 +15,15 @@ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v0.0.1 | tar xf -
 git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.6.0 | tar xf - -C drivers
 cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd ..
 
-### Build debian package
+### Build Device Driver debian package
 
 cd drivers
 sudo debian/rule binary
+cd ..
 
+#### Build Device Services debian package
 
+cd services
+sudo debian/rule binary
+cd ..
 

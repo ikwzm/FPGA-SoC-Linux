@@ -1,3 +1,10 @@
+fpga-soc-linux-drivers (0.0.5-1) unstable; urgency=low
+
+  * Remove service scripst
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Thu, 21 Feb 2017 22:17:02 +0900
+
+
 fpga-soc-linux-drivers (0.0.4-1) unstable; urgency=low
 
   * Fix altera-hps2fpga.rb
