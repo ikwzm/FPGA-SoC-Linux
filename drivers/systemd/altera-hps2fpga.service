@@ -1,0 +1,12 @@
+[Unit]
+Description=Altera SoC HPS-FPGA Bridge Service.
+After=device-tree-overlay.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/altera-hps2fpga.rb --install
+ExecStop=/usr/bin/altera-hps2fpga.rb --remove
+
+[Install]
+WantedBy=multi-user.target
