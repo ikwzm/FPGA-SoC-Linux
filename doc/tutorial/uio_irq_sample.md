@@ -3,6 +3,28 @@
 - [https://github.com/ikwzm/ZYBO_UIO_IRQ_SAMPLE](https://github.com/ikwzm/ZYBO_UIO_IRQ_SAMPLE)
 
 
+#### File Description
+
+##### ZYBO
+
+ * examples/uio_irq_sample
+   + Rakefile               : rake(make for ruby)'s version of Makefile
+   + devicetree.dts         : device tree overlay source for uio and udmabuf
+   + sample_common.h        : sample programs common header file
+   + sample1.c              : sample1 program source
+   + sample2.c              : sample2 program source
+   + design_1_wrapper.bit   : memory to memory copy dma for ZYBO
+
+##### DE0-Nano-SoC
+
+ * examples/uio_irq_sample
+   + Rakefile               : rake(make for ruby)'s version of Makefile
+   + devicetree.dts         : device tree overlay source for uio and udmabuf
+   + sample_common.h        : sample programs common header file
+   + sample1.c              : sample1 program source
+   + sample2.c              : sample2 program source
+   + DE0_NANO_SOC.rbf       : memory to memory copy dma for DE0-Nano-SoC
+
 #### Rake Task Description
 
 use rake (make for ruby) script.

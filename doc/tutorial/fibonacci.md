@@ -3,6 +3,26 @@
 - [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
 - [https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/fibonacci](https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/fibonacci)
 
+#### File Description
+
+##### ZYBO
+
+ * examples/fibonacci
+   + Rakefile                : rake(make for ruby)'s version of Makefile
+   + zptty0-zynq-zybo.dts    : device tree overlay source for zptty
+   + fibonacci_server.rb     : fibonacci server library
+   + test.rb                 : fibonacci server test script
+   + design_1_wrapper.bit    : fibonacci server for ZYBO
+
+##### DE0-Nano-SoC
+
+ * examples/fibonacci
+   + Rakefile                : rake(make for ruby)'s version of Makefile
+   + zptty0-de0-nano-soc.dts : device tree overlay source for zptty
+   + fibonacci_server.rb     : fibonacci server library
+   + test.rb                 : fibonacci server test script
+   + DE0_NANO_SOC.rbf        : fibonacci server for DE0-Nano-SoC
+
 #### Rake Task Description
 
 use rake (make for ruby) script.

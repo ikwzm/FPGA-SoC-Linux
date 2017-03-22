@@ -3,6 +3,26 @@
 - [https://github.com/ikwzm/msgpack-vhdl-examples](https://github.com/ikwzm/msgpack-vhdl-examples)
 - [https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/accumulator](https://github.com/ikwzm/msgpack-vhdl-examples/tree/master/examples/accumulator)
 
+#### File Description
+
+##### ZYBO
+
+ * examples/accumulator
+   + Rakefile                : rake(make for ruby)'s version of Makefile
+   + zptty0-zynq-zybo.dts    : device tree overlay source for zptty
+   + accumulator_server.rb   : accumulator server library
+   + test.rb                 : accumulator server test script
+   + design_1_wrapper.bit    : accumulator server for ZYBO
+
+##### DE0-Nano-SoC
+
+ * examples/accumulator
+   + Rakefile                : rake(make for ruby)'s version of Makefile
+   + zptty0-de0-nano-soc.dts : device tree overlay source for zptty
+   + accumulator_server.rb   : accumulator server library
+   + test.rb                 : accumulator server test script
+   + DE0_NANO_SOC.rbf        : accumulator server for DE0-Nano-SoC
+
 #### Rake Task Description
 
 use rake (make for ruby) script.

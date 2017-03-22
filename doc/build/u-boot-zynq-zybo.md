@@ -43,10 +43,10 @@ shell$ make zynq_zybo_defconfig
 shell$ make
 ```
 
-#### Copy boot.bin and u-boot.img to zybo-zynq/boot/
+#### Copy boot.bin and u-boot.img to target/zybo-zynq/boot/
 
 ```
-shell$ cp spl/boot.bin  ../zynq-zybo/boot/
-shell$ cp u-boot.img    ../zynq-zybo/boot/
+shell$ cp spl/boot.bin  ../target/zynq-zybo/boot/
+shell$ cp u-boot.img    ../target/zynq-zybo/boot/
 ```
 

@@ -43,10 +43,10 @@ shell$ make socfpga_de0_nano_soc_defconfig
 shell$ make
 ```
 
-#### Copy u-boot-spl.sfp and u-boot.img de0-nano-soc/u-boot/
+#### Copy u-boot-spl.sfp and u-boot.img target/de0-nano-soc/u-boot/
 
 ```
-shell$ cp spl/u-boot-spl.sfp ../de0-nano-soc/u-boot/u-boot-spl.sfp
-shell$ cp u-boot.img         ../de0-nano-soc/u-boot/u-boot.img
+shell$ cp spl/u-boot-spl.sfp ../target/de0-nano-soc/u-boot/u-boot-spl.sfp
+shell$ cp u-boot.img         ../target/de0-nano-soc/u-boot/u-boot.img
 ```
 
