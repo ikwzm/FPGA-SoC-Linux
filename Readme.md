@@ -38,11 +38,11 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
 Install
 ------------------------------------------------------------------------------------
 
-* [Install ZYBO](doc/install/zynq-zybo.md)
-* [Install PYNQ-Z1](doc/install/zynq-pynqz1.md)
-* [Install DE0-Nano-SoC](doc/install/de0-nano-soc.md)
-* [Install Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
-
+* Install U-Boot and Linux to SD-Card
+  + [ZYBO](doc/install/zynq-zybo.md)
+  + [PYNQ-Z1](doc/install/zynq-pynqz1.md)
+  + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
+  + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
 * [Install Device Drivers](doc/install/device-drivers.md)
 
 Tutorial
