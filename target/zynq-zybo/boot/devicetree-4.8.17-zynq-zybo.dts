@@ -373,6 +373,16 @@
 		};
 	};
 
+	reserved-memory {
+		#address-cells = <0x1>;
+		#size-cells = <0x1>;
+		ranges;
+
+		zynq-dma-unusable-area {
+			reg = <0x0 0x80000>;
+		};
+	};
+
 	phy0 {
 		#phy-cells = <0x0>;
 		compatible = "usb-nop-xceiv";

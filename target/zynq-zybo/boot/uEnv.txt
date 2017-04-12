@@ -5,6 +5,6 @@ fpga_set_cmd=run slcr_unlock_cmd && mw.l 0xF8000170 0x00100A00 && run slcr_lock_
 boot_image=zImage-4.8.17-armv7-fpga
 fdt_image=devicetree-4.8.17-zynq-zybo.dtb
 linux_load_cmd=fatload mmc 0 0x03000000 $boot_image && fatload mmc 0 0x02A00000 $fdt_image
-linux_boot_cmd=setenv bootargs console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio sdhci.debug_quirks=64 && bootz 0x03000000 - 0x02A00000
+linux_boot_cmd=setenv bootargs console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio && bootz 0x03000000 - 0x02A00000
 uenvcmd=run fpga_load_cmd && run fpga_set_cmd && run linux_load_cmd && run linux_boot_cmd
 

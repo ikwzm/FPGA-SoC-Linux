@@ -12,9 +12,6 @@ if test $config = "zynq-zybo"; then
     fatload mmc 0 0x03000000 $boot_image
     fatload mmc 0 0x02A00000 $fdt_image
     setenv bootargs console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
-    if test $kernel_version = "4.8.17"; then
-        setenv bootargs $bootargs sdhci.debug_quirks=64
-    fi
     bootz 0x03000000 - 0x02A00000
 fi
 if test $config = "socfpga_cyclone5_de0_nano_soc"; then
