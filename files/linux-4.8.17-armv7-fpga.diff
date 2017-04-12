@@ -1,18 +1,25 @@
-diff --git arch/arm/boot/dts/Makefile arch/arm/boot/dts/Makefile
-index faacd52..9d09920 100644
---- arch/arm/boot/dts/Makefile
-+++ arch/arm/boot/dts/Makefile
-@@ -863,6 +863,7 @@ dtb-$(CONFIG_ARCH_VT8500) += \
- 	wm8850-w70v2.dtb
- dtb-$(CONFIG_ARCH_ZYNQ) += \
- 	zynq-parallella.dtb \
-+	zynq-pynqz1.dtb \
- 	zynq-zc702.dtb \
- 	zynq-zc706.dtb \
- 	zynq-zed.dtb \
+diff --git arch/arm/boot/dts/zynq-7000.dtsi arch/arm/boot/dts/zynq-7000.dtsi
+index f283ff0..2a9be16 100644
+--- arch/arm/boot/dts/zynq-7000.dtsi
++++ arch/arm/boot/dts/zynq-7000.dtsi
+@@ -364,4 +364,14 @@
+ 			timeout-sec = <10>;
+ 		};
+ 	};
++
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		zynq-dma-unusable-area {
++			reg = <0x0 0x80000>;
++		};
++	};
+ };
 diff --git arch/arm/boot/dts/zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dts
 new file mode 100644
-index 0000000..4a4a7b2
+index 0000000..6529ef8
 --- /dev/null
 +++ arch/arm/boot/dts/zynq-pynqz1.dts
 @@ -0,0 +1,64 @@
@@ -27,7 +34,7 @@ index 0000000..4a4a7b2
 +#include "zynq-7000.dtsi"
 +
 +/ {
-+	model = "Zynq ARTY Z7 Development Board";
++	model = "Zynq PYNQ-Z1 Development Board";
 +	compatible = "digilent,zynq-pynqz1", "xlnx,zynq-7000";
 +
 +	aliases {
