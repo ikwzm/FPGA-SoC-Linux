@@ -1,3 +1,15 @@
+diff --git arch/arm/boot/dts/Makefile arch/arm/boot/dts/Makefile
+index faacd52..9d09920 100644
+--- arch/arm/boot/dts/Makefile
++++ arch/arm/boot/dts/Makefile
+@@ -863,6 +863,7 @@ dtb-$(CONFIG_ARCH_VT8500) += \
+ 	wm8850-w70v2.dtb
+ dtb-$(CONFIG_ARCH_ZYNQ) += \
+ 	zynq-parallella.dtb \
++	zynq-pynqz1.dtb \
+ 	zynq-zc702.dtb \
+ 	zynq-zc706.dtb \
+ 	zynq-zed.dtb \
 diff --git arch/arm/boot/dts/zynq-7000.dtsi arch/arm/boot/dts/zynq-7000.dtsi
 index f283ff0..2a9be16 100644
 --- arch/arm/boot/dts/zynq-7000.dtsi
@@ -19,7 +31,7 @@ index f283ff0..2a9be16 100644
  };
 diff --git arch/arm/boot/dts/zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dts
 new file mode 100644
-index 0000000..6529ef8
+index 0000000..b708179
 --- /dev/null
 +++ arch/arm/boot/dts/zynq-pynqz1.dts
 @@ -0,0 +1,64 @@
@@ -85,7 +97,7 @@ index 0000000..6529ef8
 +&usb0 {
 +	status = "okay";
 +	dr_mode = "host";
-+	usb-phy = <&usb_phy0>;
++	usb-reset = <&gpio0 46 0>;
 +};
 diff --git arch/arm/boot/dts/zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dts
 index d9e0f3e..c99ddc3 100644
