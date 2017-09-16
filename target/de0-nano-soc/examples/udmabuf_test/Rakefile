@@ -1,0 +1,94 @@
+
+UDMABUF_DEVICE_NAME    = "udmabuf0"
+CC                     = "gcc"
+CFLAGS                 = ""
+TEST_BUFFER_SIZE_LIST  = [1024*1024, 1024*1024*2, 1024*1024*4]
+
+namespace :udmabuf do
+  SYS_DEVICE_TREE_PATH   = "/sys/firmware/devicetree/base/"
+  def get_of_target_path
+    return "/amba" if File.exist?(SYS_DEVICE_TREE_PATH + "amba")
+    return "/soc"  if File.exist?(SYS_DEVICE_TREE_PATH + "soc" )
+    return nil
+  end
+
+  def make_device_tree_source(device_name, target_path, buffer_size)
+    return <<"  EOT"
+  /dts-v1/;
+  / {
+          fragment@0 {
+                  target-path = "#{target_path}";
+                  __overlay__ {
+                          #{device_name} {
+                                  compatible  = "ikwzm,udmabuf-0.10.a";
+                                  device-name = "#{device_name}";
+                                  size        = <#{buffer_size}>;
+                          };
+                  };
+          };
+  };
+  EOT
+  end
+
+  desc "Install udmabuf."
+  task :install, ['buffer_size'] do | task, args |
+    buffer_size = eval(args['buffer_size'])
+    if (buffer_size == 0)
+      abort "invalid buffer_size = #{buffer_size}."
+    end
+    if (File.exist?("/dev/" + UDMABUF_DEVICE_NAME) == true)
+      abort "can not udmabuf installed: already exists."
+    end
+    target_path = get_of_target_path
+    if (target_path == nil)
+      abort "can not udmabuf installed: not found device tree target."
+    end
+    begin
+      IO.popen("dtbocfg.rb --install #{UDMABUF_DEVICE_NAME} --dts -", "r+") do |dtbocfg|
+        dtbocfg.write(make_device_tree_source(UDMABUF_DEVICE_NAME, target_path, buffer_size))
+      end
+    rescue => e
+      print "error raised:"
+      p e
+      abort
+    end
+    if (File.exist?("/dev/" + UDMABUF_DEVICE_NAME) == false)
+      abort "can not udmabuf installed."
+    end
+    File::chmod(0666, "/dev/" + UDMABUF_DEVICE_NAME)
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_mode")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_offset")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_size")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_direction")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_owner")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_for_cpu")
+    File::chmod(0666, "/sys/class/udmabuf/" + UDMABUF_DEVICE_NAME + "/sync_for_device")
+  end
+
+  desc "Uninstall udmabuf."
+  task :uninstall do
+    if (File.exist?("/dev/" + UDMABUF_DEVICE_NAME) == false)
+      abort "can not udmabuf uninstalled: does not already exists."
+    end
+    sh "dtbocfg.rb --remove #{UDMABUF_DEVICE_NAME}"
+  end
+end
+
+file "udmabuf_test" => "udmabuf_test.c" do
+  sh "#{CC} #{CFLAGS} -o udmabuf_test udmabuf_test.c"
+end
+
+desc "udmabuf test."
+task :test, [:buffer_size] => ["udmabuf_test"] do | task, args |
+  buffer_size = eval(args['buffer_size'])
+  Rake::Task["udmabuf:install"].execute(Rake::TaskArguments.new([:buffer_size], [buffer_size.to_s]))
+  sh "./udmabuf_test"
+  Rake::Task["udmabuf:uninstall"].execute
+end
+
+desc "udmabuf test all (buffer_size_list = #{TEST_BUFFER_SIZE_LIST})."
+task :test_all => ["udmabuf_test"] do
+  TEST_BUFFER_SIZE_LIST.each do |buffer_size|
+    Rake::Task["test"].execute(Rake::TaskArguments.new([:buffer_size], [buffer_size.to_s]))
+  end 
+end
