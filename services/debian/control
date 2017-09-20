@@ -14,6 +14,5 @@ Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: FPGA+SoC+Linux device services
  FPGA+SoC+Linux device services.
   device-tree-overlay.service : Device Tree Blob Overlay Configuration File System.
-  fpga-manager.service        : FPGA Configuration Interface for Linux FPGA Manager Framework.
   udmabuf.service             : User space mappable DMA Buffer.
   zptty.service               : Pseudo TeleTYpewriter for FPGA Device.

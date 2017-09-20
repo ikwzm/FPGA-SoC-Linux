@@ -9,19 +9,19 @@
 
  * examples/accumulator
    + Rakefile                : rake(make for ruby)'s version of Makefile
-   + zptty0-zynq-zybo.dts    : device tree overlay source for zptty
+   + accumulator_server.bin  : accumulator server for ZYBO
+   + accumulator_server.dts  : device tree overlay source for accumulator server
    + accumulator_server.rb   : accumulator server library
    + test.rb                 : accumulator server test script
-   + design_1_wrapper.bit    : accumulator server for ZYBO
 
 ##### DE0-Nano-SoC
 
  * examples/accumulator
    + Rakefile                : rake(make for ruby)'s version of Makefile
-   + zptty0-de0-nano-soc.dts : device tree overlay source for zptty
+   + accumulator_server.rbf  : accumulator server for DE0-Nano-SoC
+   + accumulator_server.dts  : device tree overlay source for accumulator server
    + accumulator_server.rb   : accumulator server library
    + test.rb                 : accumulator server test script
-   + DE0_NANO_SOC.rbf        : accumulator server for DE0-Nano-SoC
 
 #### Rake Task Description
 
@@ -29,12 +29,9 @@ use rake (make for ruby) script.
 
 ```
 fpga@debian-fpga:~/examples/accumulator$ rake -T
-rake fpga:install     # Install fpga
-rake install          # Install fpga and devicetrees
-rake run              # run
-rake uninstall        # Uninstall fpga and devicetrees
-rake zptty:install    # Install zptty device driver
-rake zptty:uninstall  # Unnstall zptty device driver
+rake install          # Install   accumulator_server
+rake test             # Test      accumulator_server
+rake uninstall        # Uninstall accumulator_server
 ```
 
 #### Install FPGA and Device Tree
@@ -43,44 +40,40 @@ rake zptty:uninstall  # Unnstall zptty device driver
 
 ```
 fpga@debian-fpga:~/examples/accumulator$ sudo rake install
-dd if=design_1_wrapper.bit of=/dev/fpgacfg0 bs=1M
-1+1 records in
-1+1 records out
-2083852 bytes (2.1 MB) copied, 0.0528286 s, 39.4 MB/s
-dtbocfg.rb --install zptty0 --dts zptty0-zynq-zybo.dts
-[ 6032.783171] zptty 43c10000.zptty: ZPTTY Driver probe start
-[ 6032.788851] zptty 43c10000.zptty: driver installed
-[ 6032.793622] zptty 43c10000.zptty: device name    = zptty0
-[ 6032.798945] zptty 43c10000.zptty: private record = ddfffc00 (332bytes)
-[ 6032.805495] zptty 43c10000.zptty: major number   = 246
-[ 6032.810574] zptty 43c10000.zptty: minor number   = 0
-[ 6032.815567] zptty 43c10000.zptty: regs resource  = [mem 0x43c10000-0x43c10fff flags 0x200]
-[ 6032.823806] zptty 43c10000.zptty: regs address   = e15b8000
-[ 6032.829325] zptty 43c10000.zptty: irq resource   = [irq 161 flags 0x404]
-[ 6032.836047] zptty 43c10000.zptty: tx buf size    = 128
-[ 6032.841166] zptty 43c10000.zptty: rx buf size    = 128
+dtbocfg.rb --install accumulator_server --dts accumulator_server.dts
+/config/device-tree/overlays/accumulator_server/dtbo: Warning (un[  102.230909] fpga_manager fpga0: writing accumulator_server.bin to Xilinx Zynq FPGA Manager
+it_address_vs_reg): Node /fragment@1 has a unit name, but no reg property
+[  102.370277] zptty 43c10000.zptty: ZPTTY Driver probe start
+[  102.375955] zptty 43c10000.zptty: driver installed
+[  102.382187] zptty 43c10000.zptty: device name    = zptty0
+[  102.388238] zptty 43c10000.zptty: private record = ddf8fa00 (328bytes)
+[  102.394683] zptty 43c10000.zptty: major number   = 244
+[  102.401136] zptty 43c10000.zptty: minor number   = 0
+[  102.406023] zptty 43c10000.zptty: regs resource  = [mem 0x43c10000-0x43c10fff flags 0x200]
+[  102.415593] zptty 43c10000.zptty: regs address   = e0cfc000
+[  102.421828] zptty 43c10000.zptty: irq resource   = [irq 162 flags 0x404]
+[  102.429171] zptty 43c10000.zptty: tx buf size    = 128
+[  102.434229] zptty 43c10000.zptty: rx buf size    = 128
 ```
 
 ##### DE0-Nano-SoC
 
 ```
 fpga@debian-fpga:~/examples/accumulator$ sudo rake install
-dd if=DE0_NANO_SOC.rbf of=/dev/fpgacfg0 bs=1M
-1+1 records in
-1+1 records out
-1312432 bytes (1.3 MB) copied, 0.185027 s, 7.1 MB/s
-dtbocfg.rb --install zptty0 --dts zptty0-de0-nano-soc.dts
-[  896.483534] zptty ff202000.zptty: ZPTTY Driver probe start
-[  896.489281] zptty ff202000.zptty: driver installed
-[  896.494062] zptty ff202000.zptty: device name    = zptty0
-[  896.499496] zptty ff202000.zptty: private record = eebbc400 (332bytes)
-[  896.506001] zptty ff202000.zptty: major number   = 240
-[  896.511161] zptty ff202000.zptty: minor number   = 0
-[  896.516112] zptty ff202000.zptty: regs resource  = [mem 0xff202000-0xff202fff flags 0x200]
-[  896.524390] zptty ff202000.zptty: regs address   = f203a000
-[  896.529985] zptty ff202000.zptty: irq resource   = [irq 67 flags 0x404]
-[  896.536574] zptty ff202000.zptty: tx buf size    = 128
-[  896.541718] zptty ff202000.zptty: rx buf size    = 128
+dtbocfg.rb --install accumulator_server --dts accumulator_server.dts
+/config/device-tree/overlays/accumulator_server/dtbo: Warning (unit_address_vs_reg): [  106.530451] fpga_manager fpga0: writing accumulator_server.rbf to Altera SOCFPGA FPGA Manager
+Node /fragment@1 has a unit name, but no reg property
+[  106.765546] zptty ff202000.zptty: ZPTTY Driver probe start
+[  106.771333] zptty ff202000.zptty: driver installed
+[  106.776910] zptty ff202000.zptty: device name    = zptty0
+[  106.782299] zptty ff202000.zptty: private record = ef0e3200 (328bytes)
+[  106.789117] zptty ff202000.zptty: major number   = 244
+[  106.794547] zptty ff202000.zptty: minor number   = 0
+[  106.799543] zptty ff202000.zptty: regs resource  = [mem 0xff202000-0xff202fff flags 0x200]
+[  106.808931] zptty ff202000.zptty: regs address   = f0e2b000
+[  106.815118] zptty ff202000.zptty: irq resource   = [irq 129 flags 0x404]
+[  106.821797] zptty ff202000.zptty: tx buf size    = 128
+[  106.827981] zptty ff202000.zptty: rx buf size    = 128
 ```
 
 #### Run sample script
@@ -108,7 +101,7 @@ ArgumentError
 
 ```
 fpga@debian-fpga:~/examples/accumulator$ sudo rake uninstall
-dtbocfg.rb --remove zptty0
-[ 6258.046383] zptty 43c10000.zptty: driver removed
+dtbocfg.rb --remove accumulator_server
+[ 260.160451] zptty 43c10000.zptty: driver removed
 ```
 

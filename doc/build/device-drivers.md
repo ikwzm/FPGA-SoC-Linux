@@ -9,7 +9,6 @@ There are two ways
 
 ```
 shell$ git clone https://github.com/ikwzm/dtbocfg
-shell$ git clone https://github.com/ikwzm/fpgacfg
 shell$ git clone https://github.com/ikwzm/fclkcfg
 shell$ git clone https://github.com/ikwzm/udmabuf
 shell$ git clone https://github.com/ikwzm/PTTY_AXI4
@@ -19,7 +18,6 @@ shell$ git clone https://github.com/ikwzm/PTTY_AXI4
 
 ```
 shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.3 | tar xf - -C drivers
-shell$ git archive --remote fpgacfg   --prefix=fpgacfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v0.0.1 | tar xf - -C drivers
 shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v0.6.0 | tar xf - -C drivers
 shell$ cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd ..
