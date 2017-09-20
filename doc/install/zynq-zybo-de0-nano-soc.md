@@ -57,10 +57,10 @@ cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
      - u-boot-spl.sfp                                              : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
  * debian8-rootfs-vanilla.tgz                                      : Debian8 Root File System (use Git LFS)
- * linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   : Linux Image Package
- * linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb : Linux Headers Package
- * fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb     : Device Drivers Package
- * fpga-soc-linux-services_0.0.7-1_armhf.deb                       : Device Services Package
+ * linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb     : Device Drivers Package   (use Git LFS)
+ * fpga-soc-linux-services_0.0.7-1_armhf.deb                       : Device Services Package  (use Git LFS)
 
 #### Format SD-Card
 
