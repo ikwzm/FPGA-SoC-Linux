@@ -12,12 +12,12 @@ shell$ export distro=jessie
 
 ```
 shell$ mkdir $targetdir
-shell$ sudo debootstrap --arch=armhf --foreign $distro                       $targetdir
-shell$ sudo cp /usr/bin/qemu-arm-static                                      $targetdir/usr/bin
-shell$ sudo cp /etc/resolv.conf                                              $targetdir/etc
-shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                     $targetdir
-shell$ sudo cp linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb   $targetdir
-shell$ sudo cp linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb $targetdir
+shell$ sudo debootstrap --arch=armhf --foreign $distro                         $targetdir
+shell$ sudo cp /usr/bin/qemu-arm-static                                        $targetdir/usr/bin
+shell$ sudo cp /etc/resolv.conf                                                $targetdir/etc
+shell$ sudo cp scripts/build-debian8-rootfs-with-qemu.sh                       $targetdir
+shell$ sudo cp linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   $targetdir
+shell$ sudo cp linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb $targetdir
 ````
 
 #### Build debian8-rootfs with QEMU
@@ -69,6 +69,7 @@ debian8-rootfs# apt-get update
 debian8-rootfs# apt-get install -y locales dialog
 debian8-rootfs# dpkg-reconfigure locales
 debian8-rootfs# apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
+debian8-rootfs# apt-get install -y avahi-daemon
 ```
 
 ##### Setup hostname
@@ -144,14 +145,44 @@ iface eth0 inet dhcp
 EOT
 ````
 
+##### Setup /lib/firmware
+
+debian8-rootfs# mkdir /lib/firmware
+
 ##### Install Development applications
 
 ```
 debian8-rootfs# apt-get install -y build-essential
-debian8-rootfs# apt-get install -y device-tree-compiler
+debian8-rootfs# apt-get install -y git
 debian8-rootfs# apt-get install -y u-boot-tools
+debian8-rootfs# apt-get install -y socat
 debian8-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
 debian8-rootfs# gem install rake
+debian8-rootfs# apt-get install -y python  python-dev  python-pip
+debian8-rootfs# apt-get install -y python3 python3-dev python3-pip
+debian8-rootfs# pip3 install msgpack-rpc-python
+debian8-rootfs# pip3 install jupyter
+```
+
+##### Install Device Tree Compiler (supported symbol version)
+
+```
+debian8-rootfs# apt-get install -y flex bison
+debian8-rootfs# cd root
+debian8-rootfs# mkdir src
+debian8-rootfs# cd src
+debian8-rootfs# git clone https://git.kernel.org/pub/scm/utils/dtc/dtc.git dtc
+debian8-rootfs# cd dtc
+debian8-rootfs# make
+debian8-rootfs# make HOME=/usr/local install-bin
+debian8-rootfs# cd /
+```
+
+##### Install Other applications
+
+```
+debian8-rootfs# apt-get install -y samba
+debian8-rootfs# apt-get install -y avahi-daemon
 ```
 
 ##### Install Linux Header and Modules
@@ -159,8 +190,8 @@ debian8-rootfs# gem install rake
 ```
 debian8-rootfs# mv    boot boot.org
 debian8-rootfs# mkdir boot
-debian8-rootfs# dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
-debian8-rootfs# dpkg -i linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+debian8-rootfs# dpkg -i linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+debian8-rootfs# dpkg -i linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
 debian8-rootfs# rm    boot/*
 debian8-rootfs# rmdir boot
 debian8-rootfs# mv    boot.org boot
@@ -172,8 +203,8 @@ debian8-rootfs# mv    boot.org boot
 debian8-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian8-rootfs-with-qemu.sh
-shell$ sudo rm -f $targetdir/linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
-shell$ sudo rm -f $targetdir/linux-headers-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+shell$ sudo rm -f $targetdir/linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+shell$ sudo rm -f $targetdir/linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
 ```
 
 #### Build debian8-rootfs-vanilla.tgz

@@ -5,7 +5,8 @@
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git lfs pull origin master
+shell$ git checkout v0.4.0
+shell$ git lfs pull
 ```
 
 #### File Description
