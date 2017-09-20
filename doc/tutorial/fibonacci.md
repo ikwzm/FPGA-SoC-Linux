@@ -9,19 +9,19 @@
 
  * examples/fibonacci
    + Rakefile                : rake(make for ruby)'s version of Makefile
-   + zptty0-zynq-zybo.dts    : device tree overlay source for zptty
+   + fibonacci_server.bin    : fibonacci server for ZYBO
+   + fibonacci_server.dts    : device tree overlay source for fibonacci server
    + fibonacci_server.rb     : fibonacci server library
    + test.rb                 : fibonacci server test script
-   + design_1_wrapper.bit    : fibonacci server for ZYBO
 
 ##### DE0-Nano-SoC
 
  * examples/fibonacci
    + Rakefile                : rake(make for ruby)'s version of Makefile
-   + zptty0-de0-nano-soc.dts : device tree overlay source for zptty
+   + fibonacci_server.rbf    : fibonacci server for DE0-Nano-SoC
+   + fibonacci_server.dts    : device tree overlay source for fibonacci server
    + fibonacci_server.rb     : fibonacci server library
    + test.rb                 : fibonacci server test script
-   + DE0_NANO_SOC.rbf        : fibonacci server for DE0-Nano-SoC
 
 #### Rake Task Description
 
@@ -29,12 +29,9 @@ use rake (make for ruby) script.
 
 ```
 fpga@debian-fpga:~/examples/fibonacci$ rake -T
-rake fpga:install     # Install fpga
-rake install          # Install fpga and devicetrees
-rake run              # run
-rake uninstall        # Uninstall fpga and devicetrees
-rake zptty:install    # Install zptty device driver
-rake zptty:uninstall  # Unnstall zptty device driver
+rake install    # Install  fibonacci_server
+rake test       # Test     fibonacci_server
+rake uninstall  # Unnstall fibonacci_server
 ```
 
 #### Install FPGA and Device Tree
@@ -43,44 +40,40 @@ rake zptty:uninstall  # Unnstall zptty device driver
 
 ```
 fpga@debian-fpga:~/examples/fibonacci$ sudo rake install
-dd if=design_1_wrapper.bit of=/dev/fpgacfg0 bs=1M
-1+1 records in
-1+1 records out
-2083852 bytes (2.1 MB) copied, 0.140482 s, 14.8 MB/s
-dtbocfg.rb --install zptty0 --dts zptty0-zynq-zybo.dts
-[ 6688.904316] zptty 43c10000.zptty: ZPTTY Driver probe start
-[ 6688.909991] zptty 43c10000.zptty: driver installed
-[ 6688.914806] zptty 43c10000.zptty: device name    = zptty0
-[ 6688.920124] zptty 43c10000.zptty: private record = ddffac00 (332bytes)
-[ 6688.926729] zptty 43c10000.zptty: major number   = 246
-[ 6688.931787] zptty 43c10000.zptty: minor number   = 0
-[ 6688.936792] zptty 43c10000.zptty: regs resource  = [mem 0x43c10000-0x43c10fff flags 0x200]
-[ 6688.945022] zptty 43c10000.zptty: regs address   = e17bc000
-[ 6688.950538] zptty 43c10000.zptty: irq resource   = [irq 161 flags 0x404]
-[ 6688.957255] zptty 43c10000.zptty: tx buf size    = 128
-[ 6688.962341] zptty 43c10000.zptty: rx buf size    = 128
+dtbocfg.rb --install fibonacci_server --dts fibonacci_server.dts
+/config/device-tree/overlays/fibonacci_server/dtbo: Warning (unit[  348.053645] fpga_manager fpga0: writing fibonacci_server.bin to Xilinx Zynq FPGA Manager
+_address_vs_reg): Node /fragment@1 has a unit name, but no reg property
+[  348.191036] zptty 43c10000.zptty: ZPTTY Driver probe start
+[  348.196815] zptty 43c10000.zptty: driver installed
+[  348.201532] zptty 43c10000.zptty: device name    = zptty0
+[  348.206973] zptty 43c10000.zptty: private record = dde6a200 (328bytes)
+[  348.213424] zptty 43c10000.zptty: major number   = 244
+[  348.218582] zptty 43c10000.zptty: minor number   = 0
+[  348.223495] zptty 43c10000.zptty: regs resource  = [mem 0x43c10000-0x43c10fff flags 0x200]
+[  348.231774] zptty 43c10000.zptty: regs address   = e1100000
+[  348.237325] zptty 43c10000.zptty: irq resource   = [irq 162 flags 0x404]
+[  348.243976] zptty 43c10000.zptty: tx buf size    = 128
+[  348.249132] zptty 43c10000.zptty: rx buf size    = 128
 ```
 
 ##### DE0-Nano-SoC
 
 ```
 fpga@debian-fpga:~/examples/fibonacci$ sudo rake install
-dd if=DE0_NANO_SOC.rbf of=/dev/fpgacfg0 bs=1M
-1+1 records in
-1+1 records out
-1290712 bytes (1.3 MB) copied, 0.186531 s, 6.9 MB/s
-dtbocfg.rb --install zptty0 --dts zptty0-de0-nano-soc.dts
-[ 1124.141145] zptty ff202000.zptty: ZPTTY Driver probe start
-[ 1124.146987] zptty ff202000.zptty: driver installed
-[ 1124.151768] zptty ff202000.zptty: device name    = zptty0
-[ 1124.158807] zptty ff202000.zptty: private record = ee9e3200 (332bytes)
-[ 1124.165893] zptty ff202000.zptty: major number   = 240
-[ 1124.171015] zptty ff202000.zptty: minor number   = 0
-[ 1124.177007] zptty ff202000.zptty: regs resource  = [mem 0xff202000-0xff202fff flags 0x200]
-[ 1124.185780] zptty ff202000.zptty: regs address   = f217e000
-[ 1124.191336] zptty ff202000.zptty: irq resource   = [irq 67 flags 0x404]
-[ 1124.198906] zptty ff202000.zptty: tx buf size    = 128
-[ 1124.204554] zptty ff202000.zptty: rx buf size    = 128
+dtbocfg.rb --install fibonacci_server --dts fibonacci_server.dts
+/config/device-tree/overlays/fibonacci_server/dtbo: Warning (unit_address_vs_reg): [   40.131192] fpga_manager fpga0: writing fibonacci_server.rbf to Altera SOCFPGA FPGA Manager
+Node /fragment@1 has a unit name, but no reg property
+[   40.358668] zptty ff202000.zptty: ZPTTY Driver probe start
+[   40.364460] zptty ff202000.zptty: driver installed
+[   40.370437] zptty ff202000.zptty: device name    = zptty0
+[   40.375821] zptty ff202000.zptty: private record = ee441e00 (328bytes)
+[   40.383370] zptty ff202000.zptty: major number   = 244
+[   40.389099] zptty ff202000.zptty: minor number   = 0
+[   40.394052] zptty ff202000.zptty: regs resource  = [mem 0xff202000-0xff202fff flags 0x200]
+[   40.403333] zptty ff202000.zptty: regs address   = f0ce3000
+[   40.409536] zptty ff202000.zptty: irq resource   = [irq 129 flags 0x404]
+[   40.416237] zptty ff202000.zptty: tx buf size    = 128
+[   40.422507] zptty ff202000.zptty: rx buf size    = 128
 ```
 
 
@@ -185,8 +178,8 @@ fpga@debian-fpga:~/examples/fibonacci$ ruby test.rb
 
 ```
 fpga@debian-fpga:~/examples/accumulator$ sudo rake uninstall
-dtbocfg.rb --remove zptty0
-[ 6813.229984] zptty 43c10000.zptty: driver removed
+dtbocfg.rb --remove fibonacci_server
+[  418.672324] zptty 43c10000.zptty: driver removed
 ```
 
 

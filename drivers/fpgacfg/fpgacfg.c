@@ -1,6 +1,6 @@
 /*********************************************************************************
  *
- *       Copyright (C) 2016 Ichiro Kawazome
+ *       Copyright (C) 2016-2017 Ichiro Kawazome
  *       All rights reserved.
  * 
  *       Redistribution and use in source and binary forms, with or without
@@ -124,6 +124,15 @@ static const char * const fpga_mgr_state_str[] = {
 };
 
 /**
+ *
+ */
+#if (LINUX_VERSION_CODE < 0x040A00)
+struct fpga_image_info {
+	u32 flags;
+};
+#endif
+
+/**
  * struct fpgacfg_driver_data - Device driver structure
  */
 struct fpgacfg_driver_data {
@@ -142,7 +151,7 @@ struct fpgacfg_driver_data {
     size_t                     head_buffer_size;
     size_t                     head_store_size;
     bool                       load_start;
-    u32                        flags;
+    struct fpga_image_info     info;
     bool                       endian_swap;
     bool                       is_open;
     bool                       is_partial_bitstream;
@@ -161,12 +170,15 @@ static int fpgacfg_driver_buf_load(struct fpgacfg_driver_data* this)
         this->buf_state = FPGACFG_BUF_FPGA_LOAD_STATE;
 
         if (this->is_partial_bitstream)
-            this->flags |=  (FPGA_MGR_PARTIAL_RECONFIG);
+            this->info.flags |=  (FPGA_MGR_PARTIAL_RECONFIG);
         else
-            this->flags &= ~(FPGA_MGR_PARTIAL_RECONFIG);
+            this->info.flags &= ~(FPGA_MGR_PARTIAL_RECONFIG);
 
-        status = fpga_mgr_buf_load(this->fpga_mgr, this->flags, this->data_buffer, this->data_store_size);
-
+#if (LINUX_VERSION_CODE < 0x040A00)
+        status = fpga_mgr_buf_load(this->fpga_mgr, this->info.flags, this->data_buffer, this->data_store_size);
+#else
+        status = fpga_mgr_buf_load(this->fpga_mgr, &this->info     , this->data_buffer, this->data_store_size);
+#endif
         this->buf_state = (status == 0) ? FPGACFG_BUF_DONE_STATE : FPGACFG_BUF_ERROR_STATE;
 
         vfree(this->data_buffer);
@@ -224,7 +236,7 @@ DEF_ATTR_SHOW(data_buffer_size    , "%d\n"       , this->data_buffer_size       
 DEF_ATTR_SHOW(data_store_size     , "%d\n"       , this->data_store_size                                   );
 DEF_ATTR_SHOW(head_buffer_size    , "%d\n"       , this->head_buffer_size                                  );
 DEF_ATTR_SHOW(head_store_size     , "%d\n"       , this->head_store_size                                   );
-DEF_ATTR_SHOW(flags               , "0x%08X\n"   , this->flags                                             );
+DEF_ATTR_SHOW(flags               , "0x%08X\n"   , this->info.flags                                        );
 DEF_ATTR_SHOW(buffer_state        , "%s\n"       , fpgacfg_buf_state_str[this->buf_state]                  );
 DEF_ATTR_SHOW(fpga_mgr_state      , "%s\n"       , fpga_mgr_state_str[this->fpga_mgr->state]               );
  

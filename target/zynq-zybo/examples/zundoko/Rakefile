@@ -1,0 +1,45 @@
+
+FPGA_DESIGN_NAME    = "zundoko_server"
+FPGA_BITSTREAM_FILE = "zundoko_server.bin"
+DEVICE_TREE_FILE    = "zundoko_server.dts"
+
+ZPTTY_DEVICE_NAME   = "zptty0"
+
+desc "Install  #{FPGA_DESIGN_NAME}."
+task :install => ["/lib/firmware/#{FPGA_BITSTREAM_FILE}"] do
+  begin
+    sh "dtbocfg.rb --install #{FPGA_DESIGN_NAME} --dts #{DEVICE_TREE_FILE}"
+  rescue => e
+    print "error raised:"
+    p e
+    abort
+  end
+  device_file = "/dev/" + ZPTTY_DEVICE_NAME
+  if (File.exist?(device_file) == false)
+    abort "can not #{device_file} installed."
+  end
+  File::chmod(0666, device_file)
+end
+
+desc "Unnstall #{FPGA_DESIGN_NAME}."
+task :uninstall do
+  device_file = "/dev/" + ZPTTY_DEVICE_NAME
+  if (File.exist?(device_file) == false)
+    abort "can not #{device_file} uninstalled: does not already exists."
+  end
+  sh "dtbocfg.rb --remove #{FPGA_DESIGN_NAME}"
+end
+
+file "/lib/firmware/#{FPGA_BITSTREAM_FILE}" do
+  sh "cp #{FPGA_BITSTREAM_FILE} /lib/firmware/#{FPGA_BITSTREAM_FILE}"
+end
+
+file "/dev/#{ZPTTY_DEVICE_NAME}" do
+  Rake::Task["install"].invoke
+end
+
+desc "Test     #{FPGA_DESIGN_NAME}."
+task :test => ["/dev/#{ZPTTY_DEVICE_NAME}", "zundoko.rb"] do
+  sh "ruby zundoko.rb"
+end
+

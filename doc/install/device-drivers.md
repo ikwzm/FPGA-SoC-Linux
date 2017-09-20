@@ -1,4 +1,4 @@
-### Install Device Drivers 
+### Install Device Drivers and Services
 
 #### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
 
@@ -21,30 +21,29 @@ root@debian-fpga:~#
 #### Install Linux Headers Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb
-fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.8.17-armv7-fpga_4.8.17-armv7-fpga-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
 ```
 
 #### Install Device Drivers and Services Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.5-1_armhf.deb
-Selecting previously unselected package fpga-soc-linux-drivers-4.8.17-armv7-fpga.
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb
+Selecting previously unselected package fpga-soc-linux-drivers-4.12.13-armv7-fpga.
 (Reading database ... 39197 files and directories currently installed.)
-Preparing to unpack fpga-soc-linux-drivers-4.8.17-armv7-fpga_0.0.5-1_armhf.deb ...
-Unpacking fpga-soc-linux-drivers-4.8.17-armv7-fpga (0.0.5-1) ...
-Setting up fpga-soc-linux-drivers-4.8.17-armv7-fpga (0.0.5-1) ...
+Preparing to unpack fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb ...
+Unpacking fpga-soc-linux-drivers-4.12.13-armv7-fpga (0.0.7-1) ...
+Setting up fpga-soc-linux-drivers-4.12.13-armv7-fpga (0.0.7-1) ...
 ```
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-services_0.0.5-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-services_0.0.7-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-services.
 (Reading database ... 39210 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-services_0.0.5-1_armhf.deb ...
-Unpacking fpga-soc-linux-services (0.0.5-1) ...
-Setting up fpga-soc-linux-services (0.0.5-1) ...
+Unpacking fpga-soc-linux-services (0.0.7-1) ...
+Setting up fpga-soc-linux-services (0.0.7-1) ...
 Created symlink from /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service to /etc/systemd/system/device-tree-overlay.service.
-Created symlink from /etc/systemd/system/multi-user.target.wants/fpga-manager.service to /etc/systemd/system/fpga-manager.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/udmabuf.service to /etc/systemd/system/udmabuf.service.
 Created symlink from /etc/systemd/system/multi-user.target.wants/zptty.service to /etc/systemd/system/zptty.service.
 ```
@@ -56,7 +55,6 @@ fpga@debian-fpga:~$ sudo lsmod
 Module                  Size  Used by
 zptty                   8529  0
 udmabuf                10177  0
-fpgacfg                12287  0
 dtbocfg                 3200  2
 ```
 
@@ -70,19 +68,6 @@ fpga@debian-fpga:~$ sudo systemctl status device-tree-overlay.service
    CGroup: /system.slice/device-tree-overlay.service
 
 Feb 21 23:03:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
-```
-
-```
-fpga@debian-fpga:~$ sudo systemctl status fpga-manager.service
-● fpga-manager.service - FPGA Manager Service.
-   Loaded: loaded (/etc/systemd/system/fpga-manager.service; enabled)
-   Active: active (exited) since Tue 2017-02-21 23:03:06 JST; 3min 44s ago
-  Process: 1674 ExecStartPost=/usr/bin/fpgacfg-service.rb --install (code=exited, status=0/SUCCESS)
-  Process: 1671 ExecStart=/sbin/modprobe fpgacfg (code=exited, status=0/SUCCESS)
- Main PID: 1671 (code=exited, status=0/SUCCESS)
-   CGroup: /system.slice/fpga-manager.service
-
-Feb 21 23:03:06 debian-fpga systemd[1]: Started FPGA Manager Service..
 ```
 
 ```

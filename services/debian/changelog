@@ -1,3 +1,17 @@
+fpga-soc-linux-services (0.0.7-1) unstable; urgency=low
+
+  * Remove fpga-manager.service
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Thu, 20 Jul 2017 13:10:00 +0900
+
+
+fpga-soc-linux-services (0.0.6-1) unstable; urgency=low
+
+  * Remove fpga-bridge and altera-hps2fpga
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Thu, 20 Jul 2017 13:10:00 +0900
+
+
 fpga-soc-linux-services (0.0.5-1) unstable; urgency=low
 
   * Initial release

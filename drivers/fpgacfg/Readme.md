@@ -37,7 +37,7 @@ Linux Kernel 4.4.4 では、FPGA ベンダーの Xilinx 社がこのフレーム
 ## 対応プラットフォーム
 
 
-* OS : Linux Kernel Version  4.4.4
+* OS : Linux Kernel Version  4.4.4, 4.8.17, 4.12.2
 
 * CPU: ARM Cortex-A9 (Zynq or Altera-SoC)
 
@@ -58,7 +58,7 @@ Linux Kernel 4.4.4 では、FPGA ベンダーの Xilinx 社がこのフレーム
 ## Linux Kernel のビルド
 
 
-私が FPGA Manager の動作を確認した Linux のバージョンは4.4.4です。通常は FPGA Manager オプションはオフになっているので、このオプションをオンにして Linux Kernel をビルドしておく必要があります。
+私が FPGA Manager の動作を確認した Linux のバージョンは4.4.4、4.8.17、4.12.2 です。通常は FPGA Manager オプションはオフになっているので、このオプションをオンにして Linux Kernel をビルドしておく必要があります。
 
 具体的には make menuconfig で Device Drivers ---> FPGA Configuration Support ---> FPGA Configuration Framework をオンにするか、.config にCONFIG_FPGA=y を追加します。
 
