@@ -70,19 +70,46 @@ allow-hotplug eth0
 iface eth0 inet dhcp
 EOT
 
+#### Setup /lib/firmware
+
+mkdir /lib/firmware
+
 #### Install Development applications
 
 apt-get install -y build-essential
-apt-get install -y device-tree-compiler
+apt-get install -y git
 apt-get install -y u-boot-tools
+apt-get install -y socat
 apt-get install -y ruby ruby-msgpack ruby-serialport
 gem install rake
+
+apt-get install -y python  python-dev  python-pip
+apt-get install -y python3 python3-dev python3-pip
+pip3 install msgpack-rpc-python
+
+#### Install Device Tree Compiler (supported symbol version)
+
+apt-get install -y flex bison
+cd root
+mkdir src
+cd src
+git clone https://git.kernel.org/pub/scm/utils/dtc/dtc.git dtc
+cd dtc
+make
+make HOME=/usr/local install-bin
+cd /
+
+#### Install Other applications
+
+apt-get install -y samba 
+apt-get install -y avahi-daemon
 
 #### Install Linux Modules
 
 mv    boot boot.org
 mkdir boot
-dpkg -i linux-image-4.4.7-armv7-fpga_4.4.7-armv7-fpga-1_armhf.deb
+dpkg -i linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+dpkg -i linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
 rm    boot/*
 rmdir boot
 mv    boot.org boot
