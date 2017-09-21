@@ -24,7 +24,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Enable FPGA Manager
   + Enable FPGA Bridge
   + Enable FPGA Reagion
-* Debian8(jessie) Root File System
+* Debian9(stretch) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
   + Installed ruby ruby-msgpack ruby-serialport
@@ -60,6 +60,6 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build Linux Kernel](doc/build/linux-kernel-4.12.13.md)
-* [Build Debian8 RootFS](doc/build/debian8-rootfs.md)
+* [Build Debian9 RootFS](doc/build/debian9-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
