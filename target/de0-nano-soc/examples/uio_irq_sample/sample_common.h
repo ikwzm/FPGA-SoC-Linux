@@ -2,43 +2,45 @@
 #define SAMPLE_COMMON_H
 
 #include        <stdio.h>
+#include        <stdint.h>
+#include        <unistd.h>
 #include        <fcntl.h>
 #include        <string.h>
 #include        <sys/types.h>
 
-inline unsigned int   regs_read32(unsigned int addr)
+static inline uint32_t regs_read32(void* addr)
 {
-    volatile unsigned int*   regs_addr = (unsigned int   *)(addr);
+    volatile uint32_t* regs_addr = (uint32_t*)(addr);
     return *regs_addr;
 }
 
-inline unsigned short regs_read16(unsigned int addr)
+static inline uint16_t regs_read16(void* addr)
 {
-    volatile unsigned short* regs_addr = (unsigned short *)(addr);
+    volatile uint16_t* regs_addr = (uint16_t*)(addr);
     return *regs_addr;
 }
 
-inline unsigned char  regs_read8(unsigned int addr)
+static inline uint8_t  regs_read8(void* addr)
 {
-    volatile unsigned char*  regs_addr = (unsigned char  *)(addr);
+    volatile uint8_t*  regs_addr = (uint8_t* )(addr);
     return *regs_addr;
 }
 
-inline void regs_write32(unsigned int addr, unsigned int data)
+static inline void regs_write32(void* addr, uint32_t data)
 {
-    volatile unsigned int*   regs_addr = (unsigned int   *)(addr);
+    volatile uint32_t* regs_addr = (uint32_t*)(addr);
     *regs_addr = data;
 }
 
-inline void regs_write16(unsigned int addr, unsigned short data)
+static inline void regs_write16(void* addr, uint16_t data)
 {
-    volatile unsigned short* regs_addr = (unsigned short *)(addr);
+    volatile uint16_t* regs_addr = (uint16_t*)(addr);
     *regs_addr = data;
 }
 
-inline void regs_write8(unsigned int addr, unsigned char data)
+static inline void regs_write8(void* addr, uint8_t data)
 {
-    volatile unsigned char*  regs_addr = (unsigned char  *)(addr);
+    volatile uint8_t*  regs_addr = (uint8_t* )(addr);
     *regs_addr = data;
 }
 
@@ -71,75 +73,55 @@ inline void regs_write8(unsigned int addr, unsigned char data)
 #define  PUMP_CTRL_FIRST       (0x02)
 #define  PUMP_CTRL_LAST        (0x01)
 
-#define  ALTERA_SOC_ACP_OFFSET (0x80000000)
-
-inline void pump_intake_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
+static inline void pump_intake_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
 {
-    regs_write32((unsigned int)(regs) + PUMP_INTAKE_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET);
-    regs_write32((unsigned int)(regs) + PUMP_INTAKE_RESV_REGS, 0x00000000);
-    regs_write32((unsigned int)(regs) + PUMP_INTAKE_SIZE_REGS, xfer_size);
-    regs_write32((unsigned int)(regs) + PUMP_INTAKE_MODE_REGS, (PUMP_MODE_AXI_MODE));
+    regs_write32(regs + PUMP_INTAKE_ADDR_REGS, buf_addr);
+    regs_write32(regs + PUMP_INTAKE_RESV_REGS, 0x00000000);
+    regs_write32(regs + PUMP_INTAKE_SIZE_REGS, xfer_size);
+    regs_write32(regs + PUMP_INTAKE_MODE_REGS, (PUMP_MODE_AXI_MODE));
 }
 
-inline void pump_outlet_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
+static inline void pump_outlet_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
 {
-    regs_write32((unsigned int)(regs) + PUMP_OUTLET_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET);
-    regs_write32((unsigned int)(regs) + PUMP_OUTLET_RESV_REGS, 0x00000000);
-    regs_write32((unsigned int)(regs) + PUMP_OUTLET_SIZE_REGS, xfer_size);
-    regs_write32((unsigned int)(regs) + PUMP_OUTLET_MODE_REGS, (PUMP_MODE_AXI_MODE | PUMP_MODE_IRQ_ENABLE));
+    regs_write32(regs + PUMP_OUTLET_ADDR_REGS, buf_addr);
+    regs_write32(regs + PUMP_OUTLET_RESV_REGS, 0x00000000);
+    regs_write32(regs + PUMP_OUTLET_SIZE_REGS, xfer_size);
+    regs_write32(regs + PUMP_OUTLET_MODE_REGS, (PUMP_MODE_AXI_MODE | PUMP_MODE_IRQ_ENABLE));
 }
 
-inline void pump_intake_start(void* regs)
+static inline void pump_intake_start(void* regs)
 {
-    regs_write8((unsigned int)(regs) + PUMP_INTAKE_CTRL_REGS, (PUMP_CTRL_START | PUMP_CTRL_FIRST | PUMP_CTRL_LAST));
+    regs_write8(regs + PUMP_INTAKE_CTRL_REGS, (PUMP_CTRL_START | PUMP_CTRL_FIRST | PUMP_CTRL_LAST));
 }
 
-inline void pump_outlet_start(void* regs)
+static inline void pump_outlet_start(void* regs)
 {
-    regs_write8((unsigned int)(regs) + PUMP_OUTLET_CTRL_REGS, (PUMP_CTRL_START | PUMP_CTRL_FIRST | PUMP_CTRL_LAST | PUMP_CTRL_IRQ_ENABLE));
+    regs_write8(regs + PUMP_OUTLET_CTRL_REGS, (PUMP_CTRL_START | PUMP_CTRL_FIRST | PUMP_CTRL_LAST | PUMP_CTRL_IRQ_ENABLE));
 }
 
-inline void pump_intake_reset(void* regs)
+static inline void pump_intake_clear_status(void* regs)
 {
-    regs_write8((unsigned int)(regs) + PUMP_INTAKE_CTRL_REGS, (PUMP_CTRL_RESET));
-    regs_write8((unsigned int)(regs) + PUMP_INTAKE_CTRL_REGS, 0);
+    regs_write8(regs + PUMP_INTAKE_STAT_REGS, 0x00);
 }
 
-inline void pump_outlet_reset(void* regs)
+static inline void pump_outlet_clear_status(void* regs)
 {
-    regs_write8((unsigned int)(regs) + PUMP_OUTLET_CTRL_REGS, (PUMP_CTRL_RESET));
-    regs_write8((unsigned int)(regs) + PUMP_OUTLET_CTRL_REGS, 0);
+    regs_write8(regs + PUMP_OUTLET_STAT_REGS, 0x00);
 }
 
-inline void pump_intake_clear_status(void* regs)
-{
-    regs_write8((unsigned int)(regs) + PUMP_INTAKE_STAT_REGS, 0x00);
-}
-
-inline void pump_outlet_clear_status(void* regs)
-{
-    regs_write8((unsigned int)(regs) + PUMP_OUTLET_STAT_REGS, 0x00);
-}
-
-inline void pump_setup(void* regs, unsigned long src_addr, unsigned long dst_addr, unsigned int xfer_size)
+static inline void pump_setup(void* regs, unsigned long src_addr, unsigned long dst_addr, unsigned int xfer_size)
 {
     pump_outlet_setup(regs, dst_addr, xfer_size);
     pump_intake_setup(regs, src_addr, xfer_size);
 }
 
-inline void pump_start(void* regs)
+static inline void pump_start(void* regs)
 {
     pump_outlet_start(regs);
     pump_intake_start(regs);
 }
 
-inline void pump_reset(void* regs)
-{
-    pump_outlet_reset(regs);
-    pump_intake_reset(regs);
-}
-
-inline void pump_clear_status(void* regs)
+static inline void pump_clear_status(void* regs)
 {
     pump_outlet_clear_status(regs);
     pump_intake_clear_status(regs);
@@ -169,7 +151,7 @@ int udmabuf_open(struct udmabuf* udmabuf, const char* name)
         printf("Can not open %s\n", file_name);
         return (-1);
     }
-    read(fd, attr, 1024);
+    read(fd, (void*)attr, 1024);
     sscanf(attr, "%x", &udmabuf->phys_addr);
     close(fd);
 
@@ -178,7 +160,7 @@ int udmabuf_open(struct udmabuf* udmabuf, const char* name)
         printf("Can not open %s\n", file_name);
         return (-1);
     }
-    read(fd, attr, 1024);
+    read(fd, (void*)attr, 1024);
     sscanf(attr, "%d", &udmabuf->buf_size);
     close(fd);
 

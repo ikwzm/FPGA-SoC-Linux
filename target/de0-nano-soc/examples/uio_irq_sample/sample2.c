@@ -1,7 +1,9 @@
 #include        <stdio.h>
+#include        <stdlib.h>
 #include        <fcntl.h>
 #include        <string.h>
 #include        <time.h>
+#include        <sys/time.h>
 #include        <poll.h>
 #include        <sys/types.h>
 #include        <sys/mman.h>
@@ -94,7 +96,6 @@ void main()
         }
     }
 
-    pump_reset(regs);
     udmabuf_close(&outlet_buf);
     udmabuf_close(&intake_buf);
     close(uio_fd);
