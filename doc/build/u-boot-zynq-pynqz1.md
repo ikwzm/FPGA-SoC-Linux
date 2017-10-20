@@ -25,13 +25,16 @@ shell$ git checkout -b u-boot-2016.03-zynq-pynqz1 refs/tags/v2016.03
 ```
 shell$ patch -p0 < ../files/u-boot-2016.03-zynq-pynqz1.diff
 shell$ git add --update
+shell$ git add arch/arm/dts/zynq-pynqz1.dts
+shell$ git add board/xilinx/zynq/pynqz1_hw_platform/*
+shell$ git add configs/zynq_pynqz1_defconfig
+shell$ git add include/configs/zynq_pynqz1.h
 shell$ git commit -m "patch for zynq-pynqz1"
 ```
 
 #### Setup for Build 
 
 ```
-shell$ cd u-boot-zynq-pynqz1
 shell$ export ARCH=arm
 shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
 shell$ make zynq_pynqz1_defconfig
