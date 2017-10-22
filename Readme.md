@@ -18,13 +18,14 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Build for ZYBO, PYNQ-Z1 and DE0-Nano-SoC
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
-* Linux Kernel Version v4.12.13
+* Linux Kernel Version v4.12.14
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
   + Enable FPGA Bridge
   + Enable FPGA Reagion
-* Debian8(jessie) Root File System
+  + Patch for issue #3(USB-HOST does not work with PYNQ-Z1)
+* Debian9(stretch) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
   + Installed ruby ruby-msgpack ruby-serialport
@@ -59,7 +60,7 @@ Build
 * [Build U-boot for ZYBO](doc/build/u-boot-zynq-zybo.md)
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
-* [Build Linux Kernel](doc/build/linux-kernel-4.12.13.md)
+* [Build Linux Kernel](doc/build/linux-kernel-4.12.14.md)
 * [Build Debian8 RootFS](doc/build/debian8-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 

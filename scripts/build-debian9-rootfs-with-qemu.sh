@@ -1,18 +1,18 @@
 
 #### Setup APT
 
-distro=jessie
+distro=stretch
 export LANG=C
 
 /debootstrap/debootstrap --second-stage
 
 cat <<EOT > /etc/apt/sources.list
-deb     http://ftp.jp.debian.org/debian            jessie         main contrib non-free
-deb-src http://ftp.jp.debian.org/debian            jessie         main contrib non-free
-deb     http://ftp.jp.debian.org/debian            jessie-updates main contrib non-free
-deb-src http://ftp.jp.debian.org/debian            jessie-updates main contrib non-free
-deb     http://security.debian.org/debian-security jessie/updates main contrib non-free
-deb-src http://security.debian.org/debian-security jessie/updates main contrib non-free
+deb     http://ftp.jp.debian.org/debian            stretch         main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            stretch         main contrib non-free
+deb     http://ftp.jp.debian.org/debian            stretch-updates main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            stretch-updates main contrib non-free
+deb     http://security.debian.org/debian-security stretch/updates main contrib non-free
+deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
 EOT
 
 cat <<EOT > /etc/apt/apt.conf.d/71-no-recommends
@@ -101,15 +101,20 @@ cd /
 
 #### Install Other applications
 
-apt-get install -y samba 
 apt-get install -y avahi-daemon
+apt-get install -y samba
 
 #### Install Linux Modules
 
 mv    boot boot.org
 mkdir boot
-dpkg -i linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
-dpkg -i linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
+dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
 rm    boot/*
 rmdir boot
 mv    boot.org boot
+
+#### Clean Cache
+
+apt-get clean
+

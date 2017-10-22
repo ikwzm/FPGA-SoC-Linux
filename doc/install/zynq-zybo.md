@@ -5,7 +5,7 @@
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.4.0
+shell$ git checkout v0.5.0
 shell$ git lfs pull
 ```
 
@@ -21,7 +21,7 @@ shell$ git lfs pull
      - devicetree-4.12.13-zynq-zybo.dtb                            : Linux Device Tree Blob   
      - devicetree-4.12.13-zynq-zybo.dts                            : Linux Device Tree Source
    + examples/                                                     : Example Programs
- * debian8-rootfs-vanilla.tgz                                      : Debian8 Root File System (use Git LFS)
+ * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
  * linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
  * fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb     : Device Drivers Package   (use Git LFS)
@@ -44,7 +44,7 @@ shell# mkfs.ext3 /dev/sdc2
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-zybo/boot/*                                         /mnt/usb1
-shell# tar xfz debian8-rootfs-vanilla.tgz -C                              /mnt/usb2
+shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
 shell# cp linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
 shell# cp linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
 shell# cp fpga-soc-linux-drivers-4.12.13-armv7-fpga_0.0.7-1_armhf.deb     /mnt/usb2/home/fpga

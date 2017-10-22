@@ -1,7 +1,9 @@
 #include        <stdio.h>
+#include        <stdlib.h>
 #include        <fcntl.h>
 #include        <string.h>
 #include        <time.h>
+#include        <sys/time.h>
 #include        <poll.h>
 #include        <sys/types.h>
 #include        <sys/mman.h>
@@ -71,8 +73,8 @@ void main()
                 if (error_count < 0x10) {
                     printf("check buffer error addr=%08x, i=%02X, o=%02X\n",
                            i,
-                           ((unsigned char*)(intake_buf.buf)[i]),
-                           ((unsigned char*)(outlet_buf.buf)[i])
+                           (((unsigned char*)(intake_buf.buf))[i]),
+                           (((unsigned char*)(outlet_buf.buf))[i])
                     );
                 }
                 error_count++;
