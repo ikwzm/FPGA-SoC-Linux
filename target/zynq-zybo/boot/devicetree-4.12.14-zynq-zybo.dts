@@ -18,8 +18,8 @@
 			clock-latency = <0x3e8>;
 			cpu0-supply = <0x2>;
 			operating-points = <0xa2c2b 0xf4240 0x51616 0xf4240>;
-			linux,phandle = <0x8>;
-			phandle = <0x8>;
+			linux,phandle = <0x9>;
+			phandle = <0x9>;
 		};
 
 		cpu@1 {
@@ -27,8 +27,8 @@
 			device_type = "cpu";
 			reg = <0x1>;
 			clocks = <0x1 0x3>;
-			linux,phandle = <0x9>;
-			phandle = <0x9>;
+			linux,phandle = <0xa>;
+			phandle = <0xa>;
 		};
 	};
 
@@ -56,8 +56,8 @@
 		#size-cells = <0x1>;
 		interrupt-parent = <0x3>;
 		ranges;
-		linux,phandle = <0xa>;
-		phandle = <0xa>;
+		linux,phandle = <0xb>;
+		phandle = <0xb>;
 
 		adc@f8007100 {
 			compatible = "xlnx,zynq-xadc-1.00.a";
@@ -65,8 +65,8 @@
 			interrupts = <0x0 0x7 0x4>;
 			interrupt-parent = <0x3>;
 			clocks = <0x1 0xc>;
-			linux,phandle = <0xb>;
-			phandle = <0xb>;
+			linux,phandle = <0xc>;
+			phandle = <0xc>;
 		};
 
 		can@e0008000 {
@@ -79,8 +79,8 @@
 			interrupt-parent = <0x3>;
 			tx-fifo-depth = <0x40>;
 			rx-fifo-depth = <0x40>;
-			linux,phandle = <0xc>;
-			phandle = <0xc>;
+			linux,phandle = <0xd>;
+			phandle = <0xd>;
 		};
 
 		can@e0009000 {
@@ -93,8 +93,8 @@
 			interrupt-parent = <0x3>;
 			tx-fifo-depth = <0x40>;
 			rx-fifo-depth = <0x40>;
-			linux,phandle = <0xd>;
-			phandle = <0xd>;
+			linux,phandle = <0xe>;
+			phandle = <0xe>;
 		};
 
 		gpio@e000a000 {
@@ -107,8 +107,8 @@
 			interrupt-parent = <0x3>;
 			interrupts = <0x0 0x14 0x4>;
 			reg = <0xe000a000 0x1000>;
-			linux,phandle = <0xe>;
-			phandle = <0xe>;
+			linux,phandle = <0x8>;
+			phandle = <0x8>;
 		};
 
 		i2c@e0004000 {
@@ -452,11 +452,9 @@
 	};
 
 	phy0 {
-		compatible = "ulpi-phy";
 		#phy-cells = <0x0>;
-		reg = <0xe0002000 0x1000>;
-		view-port = <0x170>;
-		drv-vbus;
+		compatible = "usb-nop-xceiv";
+		reset-gpios = <0x8 0x2e 0x1>;
 		linux,phandle = <0x7>;
 		phandle = <0x7>;
 	};
