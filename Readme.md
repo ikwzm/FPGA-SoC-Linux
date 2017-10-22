@@ -24,6 +24,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Enable FPGA Manager
   + Enable FPGA Bridge
   + Enable FPGA Reagion
+  + Patch for issue #3(USB-HOST does not work with PYNQ-Z1)
 * Debian8(jessie) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
