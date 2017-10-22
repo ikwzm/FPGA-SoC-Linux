@@ -22,6 +22,8 @@ shell$ git checkout -b linux-4.12.14-armv7-fpga refs/tags/v4.12.14
 
 #### Patch for armv7-fpga
 
+##### Patch for armv7-fpga
+
 ```
 shell$ patch -p0 < ../files/linux-4.12.14-armv7-fpga.diff
 shell$ git add --update
@@ -30,7 +32,7 @@ shell$ git add arch/arm/boot/dts/zynq-pynqz1.dts
 shell$ git commit -m "patch for armv7-fpga"
 ```
 
-### Patch for usb chipidea driver
+##### Patch for usb chipidea driver
 
 ```
 patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-usb-chipidea.diff
@@ -38,7 +40,7 @@ git add --update
 git commit -m "patch for usb chipidea driver for issue #3"
 ```
 
-### Create tag
+##### Create tag
 
 ```
 shell$ git tag -a v4.12.14-armv7-fpga -m "relase v4.12.14-armv7-fpga"

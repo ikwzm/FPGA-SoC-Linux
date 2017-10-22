@@ -16,8 +16,8 @@ shell$ sudo debootstrap --arch=armhf --foreign $distro                         $
 shell$ sudo cp /usr/bin/qemu-arm-static                                        $targetdir/usr/bin
 shell$ sudo cp /etc/resolv.conf                                                $targetdir/etc
 shell$ sudo cp scripts/build-debian9-rootfs-with-qemu.sh                       $targetdir
-shell$ sudo cp linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb   $targetdir
-shell$ sudo cp linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb $targetdir
+shell$ sudo cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb   $targetdir
+shell$ sudo cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb $targetdir
 ````
 
 #### Build debian9-rootfs with QEMU
@@ -189,8 +189,8 @@ debian9-rootfs# apt-get install -y avahi-daemon
 ```
 debian9-rootfs# mv    boot boot.org
 debian9-rootfs# mkdir boot
-debian9-rootfs# dpkg -i linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
-debian9-rootfs# dpkg -i linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+debian9-rootfs# dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
+debian9-rootfs# dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
 debian9-rootfs# rm    boot/*
 debian9-rootfs# rmdir boot
 debian9-rootfs# mv    boot.org boot
@@ -206,8 +206,8 @@ debian9-rootfs# apt-get clean
 debian9-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian9-rootfs-with-qemu.sh
-shell$ sudo rm -f $targetdir/linux-image-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
-shell$ sudo rm -f $targetdir/linux-headers-4.12.13-armv7-fpga_4.12.13-armv7-fpga-1_armhf.deb
+shell$ sudo rm -f $targetdir/linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
+shell$ sudo rm -f $targetdir/linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
 ```
 
 #### Build debian9-rootfs-vanilla.tgz
