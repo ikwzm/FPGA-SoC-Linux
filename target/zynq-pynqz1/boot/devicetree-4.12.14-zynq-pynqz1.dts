@@ -18,8 +18,8 @@
 			clock-latency = <0x3e8>;
 			cpu0-supply = <0x2>;
 			operating-points = <0xa2c2b 0xf4240 0x51616 0xf4240>;
-			linux,phandle = <0x8>;
-			phandle = <0x8>;
+			linux,phandle = <0x9>;
+			phandle = <0x9>;
 		};
 
 		cpu@1 {
@@ -27,8 +27,8 @@
 			device_type = "cpu";
 			reg = <0x1>;
 			clocks = <0x1 0x3>;
-			linux,phandle = <0x9>;
-			phandle = <0x9>;
+			linux,phandle = <0xa>;
+			phandle = <0xa>;
 		};
 	};
 
@@ -56,8 +56,8 @@
 		#size-cells = <0x1>;
 		interrupt-parent = <0x3>;
 		ranges;
-		linux,phandle = <0xa>;
-		phandle = <0xa>;
+		linux,phandle = <0xb>;
+		phandle = <0xb>;
 
 		adc@f8007100 {
 			compatible = "xlnx,zynq-xadc-1.00.a";
@@ -65,8 +65,8 @@
 			interrupts = <0x0 0x7 0x4>;
 			interrupt-parent = <0x3>;
 			clocks = <0x1 0xc>;
-			linux,phandle = <0xb>;
-			phandle = <0xb>;
+			linux,phandle = <0xc>;
+			phandle = <0xc>;
 		};
 
 		can@e0008000 {
@@ -79,8 +79,8 @@
 			interrupt-parent = <0x3>;
 			tx-fifo-depth = <0x40>;
 			rx-fifo-depth = <0x40>;
-			linux,phandle = <0xc>;
-			phandle = <0xc>;
+			linux,phandle = <0xd>;
+			phandle = <0xd>;
 		};
 
 		can@e0009000 {
@@ -93,8 +93,8 @@
 			interrupt-parent = <0x3>;
 			tx-fifo-depth = <0x40>;
 			rx-fifo-depth = <0x40>;
-			linux,phandle = <0xd>;
-			phandle = <0xd>;
+			linux,phandle = <0xe>;
+			phandle = <0xe>;
 		};
 
 		gpio@e000a000 {
@@ -120,8 +120,8 @@
 			reg = <0xe0004000 0x1000>;
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			linux,phandle = <0xe>;
-			phandle = <0xe>;
+			linux,phandle = <0xf>;
+			phandle = <0xf>;
 		};
 
 		i2c@e0005000 {
@@ -133,8 +133,8 @@
 			reg = <0xe0005000 0x1000>;
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			linux,phandle = <0xf>;
-			phandle = <0xf>;
+			linux,phandle = <0x10>;
+			phandle = <0x10>;
 		};
 
 		interrupt-controller@f8f01000 {
@@ -154,15 +154,15 @@
 			arm,tag-latency = <0x2 0x2 0x2>;
 			cache-unified;
 			cache-level = <0x2>;
-			linux,phandle = <0x10>;
-			phandle = <0x10>;
+			linux,phandle = <0x11>;
+			phandle = <0x11>;
 		};
 
 		memory-controller@f8006000 {
 			compatible = "xlnx,zynq-ddrc-a05";
 			reg = <0xf8006000 0x1000>;
-			linux,phandle = <0x11>;
-			phandle = <0x11>;
+			linux,phandle = <0x12>;
+			phandle = <0x12>;
 		};
 
 		serial@e0000000 {
@@ -172,8 +172,8 @@
 			clock-names = "uart_clk", "pclk";
 			reg = <0xe0000000 0x1000>;
 			interrupts = <0x0 0x1b 0x4>;
-			linux,phandle = <0x12>;
-			phandle = <0x12>;
+			linux,phandle = <0x13>;
+			phandle = <0x13>;
 		};
 
 		serial@e0001000 {
@@ -183,8 +183,8 @@
 			clock-names = "uart_clk", "pclk";
 			reg = <0xe0001000 0x1000>;
 			interrupts = <0x0 0x32 0x4>;
-			linux,phandle = <0x13>;
-			phandle = <0x13>;
+			linux,phandle = <0x14>;
+			phandle = <0x14>;
 		};
 
 		spi@e0006000 {
@@ -197,8 +197,8 @@
 			clock-names = "ref_clk", "pclk";
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			linux,phandle = <0x14>;
-			phandle = <0x14>;
+			linux,phandle = <0x15>;
+			phandle = <0x15>;
 		};
 
 		spi@e0007000 {
@@ -211,8 +211,8 @@
 			clock-names = "ref_clk", "pclk";
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			linux,phandle = <0x15>;
-			phandle = <0x15>;
+			linux,phandle = <0x16>;
+			phandle = <0x16>;
 		};
 
 		ethernet@e000b000 {
@@ -226,8 +226,8 @@
 			#size-cells = <0x0>;
 			phy-mode = "rgmii-id";
 			phy-handle = <0x4>;
-			linux,phandle = <0x16>;
-			phandle = <0x16>;
+			linux,phandle = <0x17>;
+			phandle = <0x17>;
 
 			ethernet-phy@0 {
 				reg = <0x1>;
@@ -245,8 +245,8 @@
 			clock-names = "pclk", "hclk", "tx_clk";
 			#address-cells = <0x1>;
 			#size-cells = <0x0>;
-			linux,phandle = <0x17>;
-			phandle = <0x17>;
+			linux,phandle = <0x18>;
+			phandle = <0x18>;
 		};
 
 		sdhci@e0100000 {
@@ -257,8 +257,8 @@
 			interrupt-parent = <0x3>;
 			interrupts = <0x0 0x18 0x4>;
 			reg = <0xe0100000 0x1000>;
-			linux,phandle = <0x18>;
-			phandle = <0x18>;
+			linux,phandle = <0x19>;
+			phandle = <0x19>;
 		};
 
 		sdhci@e0101000 {
@@ -269,8 +269,8 @@
 			interrupt-parent = <0x3>;
 			interrupts = <0x0 0x2f 0x4>;
 			reg = <0xe0101000 0x1000>;
-			linux,phandle = <0x19>;
-			phandle = <0x19>;
+			linux,phandle = <0x1a>;
+			phandle = <0x1a>;
 		};
 
 		slcr@f8000000 {
@@ -298,16 +298,16 @@
 				reg = <0x200 0x48>;
 				#reset-cells = <0x1>;
 				syscon = <0x5>;
-				linux,phandle = <0x1a>;
-				phandle = <0x1a>;
+				linux,phandle = <0x1b>;
+				phandle = <0x1b>;
 			};
 
 			pinctrl@700 {
 				compatible = "xlnx,pinctrl-zynq";
 				reg = <0x700 0x200>;
 				syscon = <0x5>;
-				linux,phandle = <0x1b>;
-				phandle = <0x1b>;
+				linux,phandle = <0x1c>;
+				phandle = <0x1c>;
 			};
 		};
 
@@ -322,8 +322,8 @@
 			#dma-requests = <0x4>;
 			clocks = <0x1 0x1b>;
 			clock-names = "apb_pclk";
-			linux,phandle = <0x1c>;
-			phandle = <0x1c>;
+			linux,phandle = <0x1d>;
+			phandle = <0x1d>;
 		};
 
 		devcfg@f8007000 {
@@ -344,8 +344,8 @@
 			#address-cells = <0x1>;
 			#size-cells = <0x1>;
 			ranges;
-			linux,phandle = <0x1d>;
-			phandle = <0x1d>;
+			linux,phandle = <0x1e>;
+			phandle = <0x1e>;
 		};
 
 		timer@f8f00200 {
@@ -354,8 +354,8 @@
 			interrupts = <0x1 0xb 0x301>;
 			interrupt-parent = <0x3>;
 			clocks = <0x1 0x4>;
-			linux,phandle = <0x1e>;
-			phandle = <0x1e>;
+			linux,phandle = <0x1f>;
+			phandle = <0x1f>;
 		};
 
 		timer@f8001000 {
@@ -364,8 +364,8 @@
 			compatible = "cdns,ttc";
 			clocks = <0x1 0x6>;
 			reg = <0xf8001000 0x1000>;
-			linux,phandle = <0x1f>;
-			phandle = <0x1f>;
+			linux,phandle = <0x20>;
+			phandle = <0x20>;
 		};
 
 		timer@f8002000 {
@@ -374,8 +374,8 @@
 			compatible = "cdns,ttc";
 			clocks = <0x1 0x6>;
 			reg = <0xf8002000 0x1000>;
-			linux,phandle = <0x20>;
-			phandle = <0x20>;
+			linux,phandle = <0x21>;
+			phandle = <0x21>;
 		};
 
 		timer@f8f00600 {
@@ -384,8 +384,8 @@
 			compatible = "arm,cortex-a9-twd-timer";
 			reg = <0xf8f00600 0x20>;
 			clocks = <0x1 0x4>;
-			linux,phandle = <0x21>;
-			phandle = <0x21>;
+			linux,phandle = <0x22>;
+			phandle = <0x22>;
 		};
 
 		usb@e0002000 {
@@ -398,8 +398,9 @@
 			phy_type = "ulpi";
 			dr_mode = "host";
 			usb-reset = <0x7 0x2e 0x0>;
-			linux,phandle = <0x22>;
-			phandle = <0x22>;
+			usb-phy = <0x8>;
+			linux,phandle = <0x23>;
+			phandle = <0x23>;
 		};
 
 		usb@e0003000 {
@@ -410,8 +411,8 @@
 			interrupts = <0x0 0x2c 0x4>;
 			reg = <0xe0003000 0x1000>;
 			phy_type = "ulpi";
-			linux,phandle = <0x23>;
-			phandle = <0x23>;
+			linux,phandle = <0x24>;
+			phandle = <0x24>;
 		};
 
 		watchdog@f8005000 {
@@ -421,8 +422,8 @@
 			interrupts = <0x0 0x9 0x1>;
 			reg = <0xf8005000 0x1000>;
 			timeout-sec = <0xa>;
-			linux,phandle = <0x24>;
-			phandle = <0x24>;
+			linux,phandle = <0x25>;
+			phandle = <0x25>;
 		};
 	};
 
@@ -452,11 +453,13 @@
 	};
 
 	phy0 {
+		compatible = "ulpi-phy";
 		#phy-cells = <0x0>;
-		compatible = "usb-nop-xceiv";
-		reset-gpios = <0x7 0x2e 0x1>;
-		linux,phandle = <0x25>;
-		phandle = <0x25>;
+		reg = <0xe0002000 0x1000>;
+		view-port = <0x170>;
+		drv-vbus;
+		linux,phandle = <0x8>;
+		phandle = <0x8>;
 	};
 
 	__symbols__ {
