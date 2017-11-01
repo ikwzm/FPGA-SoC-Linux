@@ -11,11 +11,12 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
 ### Features
 
 * Hardware
-  + ZYBO : Xilinx Zynq-7000 ARM/FPGA SoC Trainer Board by Digilent
+  + ZYBO    : Xilinx Zynq-7000 ARM/FPGA SoC Trainer Board by Digilent
+  + ZYBO-Z7 : Xilinx Zynq-7020 Development Board by Digilent
   + PYNQ-Z1 : Python Productive for Zynq by Digilent
   + DE0-Nano-SoC : Altera SoC FPGA Development Kit by terasic
 * U-Boot v2016.03 (customized)
-  + Build for ZYBO, PYNQ-Z1 and DE0-Nano-SoC
+  + Build for ZYBO, ZYBO-Z7, PYNQ-Z1 and DE0-Nano-SoC
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
 * Linux Kernel Version v4.12.14
@@ -42,6 +43,7 @@ Install
 
 * Install U-Boot and Linux to SD-Card
   + [ZYBO](doc/install/zynq-zybo.md)
+  + [ZYBO-Z7](doc/install/zynq-zybo-z7.md)
   + [PYNQ-Z1](doc/install/zynq-pynqz1.md)
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
@@ -58,6 +60,7 @@ Build
 ------------------------------------------------------------------------------------
 
 * [Build U-boot for ZYBO](doc/build/u-boot-zynq-zybo.md)
+* [Build U-boot for ZYBO-Z7](doc/build/u-boot-zynq-zybo-z7.md)
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build Linux Kernel](doc/build/linux-kernel-4.12.14.md)
