@@ -35,9 +35,18 @@ shell$ git commit -m "patch for armv7-fpga"
 ##### Patch for usb chipidea driver
 
 ```
-patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-usb-chipidea.diff
-git add --update
-git commit -m "patch for usb chipidea driver for issue #3"
+shell$ patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-usb-chipidea.diff
+shell$ git add --update
+shell$ git commit -m "patch for usb chipidea driver for issue #3"
+```
+
+##### Patch for zynq zybo z7
+
+````
+shell$ patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-zybo-z7.diff
+shell$ git add --update
+shell$ git add arch/arm/boot/dts/zynq-zybo-z7.dts
+shell$ git commit -m "add zynq-zybo-z7.dts"
 ```
 
 ##### Create tag
@@ -61,6 +70,7 @@ shell$ make armv7_fpga_defconfig
 shell$ export DTC_FLAGS=--symbols
 shell$ make deb-pkg
 shell$ make zynq-zybo.dtb
+shell$ make zynq-zybo-z7.dtb
 shell$ make zynq-pynqz1.dtb
 shell$ make socfpga_cyclone5_de0_sockit.dtb
 ````
@@ -72,6 +82,15 @@ shell$ cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/zImage-4.12.1
 shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-4.12.14-zynq-zybo.dtb
 shell$ dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-4.12.14-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
 ```
+
+#### Copy zImage and devicetree to tareget/zybo-zynq-z7/boot/
+
+```
+shell$ cp arch/arm/boot/zImage               ../target/zynq-zybo-z7/boot/zImage-4.12.14-armv7-fpga
+shell$ cp arch/arm/boot/dts/zynq-zybo-z7.dtb ../target/zynq-zybo-z7/boot/devicetree-4.12.14-zynq-zybo-z7.dtb
+shell$ dtc -I dtb -O dts --symbols -o ../target/zynq-zybo-z7/boot/devicetree-4.12.14-zynq-zybo-z7.dts arch/arm/boot/dts/zynq-zybo-z7.dtb
+```
+
 
 #### Copy zImage and devicetree to target/zybo-pynqz1/boot/
 
