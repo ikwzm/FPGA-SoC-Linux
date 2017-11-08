@@ -5,7 +5,7 @@
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.5.1
+shell$ git checkout v0.5.2
 shell$ git lfs pull
 ```
 
@@ -16,7 +16,7 @@ shell$ git lfs pull
      - boot.bin                                                    : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - zImage-4.12.13-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
+     - vmlinuz-4.12.13-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
      - devicetree-4.12.13-zynq-zybo-z7.dtb                         : Linux Device Tree Blob   
      - devicetree-4.12.13-zynq-zybo-z7.dts                         : Linux Device Tree Source
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)

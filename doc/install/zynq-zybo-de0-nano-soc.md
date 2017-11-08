@@ -7,7 +7,7 @@ It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.5.1
+shell$ git checkout v0.5.2
 shell$ git lfs pull
 ```
 #### Build boot files
@@ -24,7 +24,7 @@ Load Address: 00000000
 Entry Point:  00000000
 Contents:
    Image 0: 1316 Bytes = 1.29 kB = 0.00 MB
-cp ../zynq-zybo/boot/zImage-4.12.14-armv7-fpga boot/zImage-4.12.14-armv7-fpga
+cp ../zynq-zybo/boot/vmlinuz-4.12.14-armv7-fpga boot/vmlinuz-4.12.14-armv7-fpga
 cp ../zynq-zybo/boot/boot.bin boot/boot.bin
 cp ../zynq-zybo/boot/design_1_wrapper.bit boot/design_1_wrapper.bit
 cp ../zynq-zybo/boot/devicetree-4.12.14-zynq-zybo.dtb boot/devicetree-4.12.14-zynq-zybo.dtb
@@ -48,7 +48,7 @@ cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
      - boot.scr                                                    : U-Boot boot script       (binary)
      - design_1_wrapper.bit                                        : FPGA configuration file  (for ZYBO)
      - DE0_NANO_SOC.rbf                                            : FPGA configuration file  (for DE0-Nano-SoC)
-     - zImage-4.12.14-armv7-fpga                                   : Linux Kernel Image
+     - vmlinuz-4.12.14-armv7-fpga                                  : Linux Kernel Image
      - devicetree-4.12.14-zynq-zybo.dtb                            : Linux Device Tree Blob   (for ZYBO)
      - devicetree-4.12.14-zynq-zybo.dts                            : Linux Device Tree Source (for ZYBO)
      - devicetree-4.12.14-socfpga.dtb                              : Linux Device Tree Blob   (for DE0-Nano-SoC)
