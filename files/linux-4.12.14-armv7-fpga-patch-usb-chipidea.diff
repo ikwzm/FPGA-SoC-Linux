@@ -17,6 +17,25 @@ index 1c94b7a..f659ff7 100644
  	};
  };
  
+diff --git arch/arm/boot/dts/zynq-zybo-z7.dts arch/arm/boot/dts/zynq-zybo-z7.dts
+index dd3d244..6022a62 100644
+--- arch/arm/boot/dts/zynq-zybo-z7.dts
++++ arch/arm/boot/dts/zynq-zybo-z7.dts
+@@ -34,9 +34,11 @@
+ 	};
+ 
+ 	usb_phy0: phy0 {
+-		#phy-cells = <0>;
+-		compatible = "usb-nop-xceiv";
+-		reset-gpios = <&gpio0 46 1>;
++		compatible = "ulpi-phy";
++		#phy-cells = <0x0>;
++		reg = <0xe0002000 0x1000>;
++		view-port = <0x170>;
++		drv-vbus;
+ 	};
+ };
+ 
 diff --git drivers/usb/chipidea/ci_hdrc_usb2.c drivers/usb/chipidea/ci_hdrc_usb2.c
 index d162cc0..325fc35 100644
 --- drivers/usb/chipidea/ci_hdrc_usb2.c

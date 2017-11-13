@@ -13,6 +13,7 @@ patch -p0 < ../files/linux-4.12.14-armv7-fpga.diff
 git add --update
 git add arch/arm/configs/armv7_fpga_defconfig
 git add arch/arm/boot/dts/zynq-pynqz1.dts
+git add arch/arm/boot/dts/zynq-zybo-z7.dts
 git commit -m "patch for armv7-fpga"
 
 ### Patch for usb chipidea driver
@@ -20,14 +21,9 @@ patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-usb-chipidea.diff
 git add --update
 git commit -m "patch for usb chipidea driver for issue #3"
 
-### Patch for zynq zybo z7
-patch -p0 < ../files/linux-4.12.14-armv7-fpga-patch-zybo-z7.diff
-git add --update
-git add arch/arm/boot/dts/zynq-zybo-z7.dts
-git commit -m "add zynq-zybo-z7.dts"
-
-### Create tag
-git tag -a v4.12.14-armv7-fpga -m "relase v4.12.14-armv7-fpga"
+### Create tag and .version
+git tag -a v4.12.14-armv7-fpga -m "release v4.12.14-armv7-fpga"
+echo 2 > .version
 
 ### Setup for Build 
 export ARCH=arm
