@@ -21,8 +21,8 @@ root@debian-fpga:~#
 #### Install Linux Headers Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
-fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
 ```
 
 #### Install Device Drivers and Services Package
