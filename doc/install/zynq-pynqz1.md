@@ -44,16 +44,17 @@ shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-pynqz1/boot/*                                       /mnt/usb1
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
-shell# cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   /mnt/usb2/home/fpga
-shell# cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb     /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-services_0.0.7-1_armhf.deb                       /mnt/usb2/home/fpga
+shell# mkdir                                                              /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb     /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-services_0.0.7-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell$ cp -r target/zynq-pynqz1/examples                                  /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
-#### Install Device Drivers
+### Install Device Drivers and Services
 
-[Install Device Drivers](device-drivers.md)
+[./doc/install/device-drivers.md](device-drivers.md)
 

@@ -47,7 +47,7 @@ Install
   + [PYNQ-Z1](doc/install/zynq-pynqz1.md)
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
-* [Install Device Drivers](doc/install/device-drivers.md)
+* [Install Device Drivers and Services](doc/install/device-drivers.md)
 
 Tutorial
 ------------------------------------------------------------------------------------
@@ -64,6 +64,6 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build Linux Kernel](doc/build/linux-kernel-4.12.14.md)
-* [Build Debian8 RootFS](doc/build/debian8-rootfs.md)
+* [Build Debian9 RootFS](doc/build/debian9-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
