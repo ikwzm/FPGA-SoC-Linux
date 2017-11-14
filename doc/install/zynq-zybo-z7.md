@@ -51,3 +51,7 @@ shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
 
+#### Install Device Drivers
+
+[Install Device Drivers](device-drivers.md)
+

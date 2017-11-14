@@ -25,6 +25,27 @@ fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fp
 fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
 ```
 
+If the following error occurs
+
+```
+fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+(Reading database ... 42900 files and directories currently installed.)
+Preparing to unpack linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb ...
+Unpacking linux-image-4.12.14-armv7-fpga (4.12.14-armv7-fpga-3) over (4.12.14-armv7-fpga-3) ...
+dpkg: error processing archive linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb (--install):
+ unable to make backup link of './boot/vmlinuz-4.12.14-armv7-fpga' before installing new version: Operation not permitted
+dpkg-deb: error: subprocess paste was killed by signal (Broken pipe)
+Errors were encountered while processing:
+ linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+```
+
+Delete the conflicting file as below and try again.
+
+```
+fpga@debian-fpga:~$ sudo rm /boot/vmlinuz-4.12.14-armv7-fpga
+fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+```
+
 #### Install Device Drivers and Services Package
 
 ```
