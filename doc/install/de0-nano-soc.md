@@ -5,7 +5,7 @@
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.5.2
+shell$ git checkout v0.5.3
 shell$ git lfs pull
 ```
 
@@ -23,9 +23,9 @@ shell$ git lfs pull
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
    + examples/                                                     : Example Programs
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
- * linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
- * linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.7-1_armhf.deb     : Device Drivers Package   (use Git LFS)
+ * linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb     : Device Drivers Package   (use Git LFS)
  * fpga-soc-linux-services_0.0.7-1_armhf.deb                       : Device Services Package  (use Git LFS)
 
 #### Format SD-Card
@@ -48,12 +48,17 @@ shell# cp target/de0-nano-soc/boot/* /mnt/usb1
 shell# dd if=target/de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
 shell# dd if=target/de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
-shell# cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga
-shell# cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.7-1_armhf.deb     /mnt/usb2/home/fpga
-shell# cp fpga-soc-linux-services_0.0.7-1_armhf.deb                       /mnt/usb2/home/fpga
+shell# mkdir                                                              /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb     /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-services_0.0.7-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell$ cp -r target/de0-nano-soc/examples                                 /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
+
+### Install Device Drivers and Services
+
+[./doc/install/device-drivers.md](device-drivers.md)
 

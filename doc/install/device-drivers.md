@@ -18,25 +18,20 @@ Password:
 root@debian-fpga:~#
 ```
 
-#### Install Linux Headers Package
-
-```
-fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
-fpga@debian-fpga:~$ sudo dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
-```
-
 #### Install Device Drivers and Services Package
 
 ```
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.7-1_armhf.deb
+fpga@debian-fpga:~$ cd /home/fpga/debian
+fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers-4.12.14-armv7-fpga.
 (Reading database ... 39197 files and directories currently installed.)
-Preparing to unpack fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.7-1_armhf.deb ...
-Unpacking fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.7-1) ...
-Setting up fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.7-1) ...
+Preparing to unpack fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.8-1_armhf.deb ...
+Unpacking fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.8-1) ...
+Setting up fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.8-1) ...
 ```
 
 ```
+fpga@debian-fpga:~$ cd /home/fpga/debian
 fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-services_0.0.7-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-services.
 (Reading database ... 39210 files and directories currently installed.)
