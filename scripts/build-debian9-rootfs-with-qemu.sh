@@ -26,7 +26,7 @@ apt-get update  -y
 
 apt-get install -y locales dialog
 dpkg-reconfigure locales
-apt-get install -y openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
+apt-get install -y net-tools openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
 
 #### Setup hostname
 
@@ -74,6 +74,13 @@ EOT
 
 mkdir /lib/firmware
 
+#### Install Wireless tools and firmware
+
+apt-get install -y wireless-tools
+apt-get install -y wpasupplicant
+apt-get install -y firmware-realtek
+apt-get install -y firmware-ralink
+
 #### Install Development applications
 
 apt-get install -y build-essential
@@ -83,8 +90,8 @@ apt-get install -y socat
 apt-get install -y ruby ruby-msgpack ruby-serialport
 gem install rake
 
-apt-get install -y python  python-dev  python-pip
-apt-get install -y python3 python3-dev python3-pip
+apt-get install -y python  python-dev  python-setuptools  python-wheel  python-pip
+apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip
 pip3 install msgpack-rpc-python
 
 #### Install Device Tree Compiler (supported symbol version)
@@ -108,8 +115,8 @@ apt-get install -y samba
 
 mv    boot boot.org
 mkdir boot
-dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
-dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-1_armhf.deb
+dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
 rm    boot/*
 rmdir boot
 mv    boot.org boot
