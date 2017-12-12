@@ -1,3 +1,10 @@
+fpga-soc-linux-services (0.0.9-1) unstable; urgency=low
+
+  * add fpga-clock.service
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Thu, 12 Dec 2017 13:10:00 +0900
+
+
 fpga-soc-linux-services (0.0.7-1) unstable; urgency=low
 
   * Remove fpga-manager.service

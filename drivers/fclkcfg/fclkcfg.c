@@ -1,6 +1,6 @@
 /*********************************************************************************
  *
- *       Copyright (C) 2016 Ichiro Kawazome
+ *       Copyright (C) 2016-2017 Ichiro Kawazome
  *       All rights reserved.
  * 
  *       Redistribution and use in source and binary forms, with or without
@@ -65,7 +65,56 @@ struct fclk_driver_data {
     struct clk*          clk;
     dev_t                device_number;
     unsigned long        round_rate;
+    unsigned long        insert_rate;
+    unsigned long        remove_rate;
+    bool                 insert_enable;
+    bool                 remove_enable;
+    bool                 remove_rate_valid;
+    bool                 remove_enable_valid;
 };
+
+/**
+ * __fclk_set_enable()
+ */
+static int __fclk_set_enable(struct fclk_driver_data* this, bool enable)
+{
+    int status = 0;
+
+    if (enable == true) {
+        if (__clk_is_enabled(this->clk) == false) {
+            status = clk_prepare_enable(this->clk);
+            if (status) 
+                dev_err(this->device, "enable failed.");
+            else 
+                dev_dbg(this->device, "enable success.");
+        }
+    } else {
+        if (__clk_is_enabled(this->clk) == true) {
+            clk_disable_unprepare(this->clk);
+            dev_dbg(this->device, "disable done.");
+        }
+    }
+    return status;
+}
+
+/**
+ * __fclk_set_rate()
+ */
+static int __fclk_set_rate(struct fclk_driver_data* this, unsigned long rate)
+{
+    int           status;
+    unsigned long round_rate;
+
+    round_rate = clk_round_rate(this->clk, rate);
+    status     = clk_set_rate(this->clk, round_rate);
+
+    if (status)
+        dev_err(this->device, "set_rate(%lu=>%lu) failed." , rate, round_rate);
+    else
+        dev_dbg(this->device, "set_rate(%lu=>%lu) success.", rate, round_rate);
+
+    return status;
+}
 
 
 /**
@@ -82,34 +131,18 @@ static ssize_t fclk_show_enable(struct device *dev, struct device_attribute *att
  */
 static ssize_t fclk_set_enable(struct device *dev, struct device_attribute *attr, const char *buf, size_t size)
 {
-    ssize_t       status = 0;
+    ssize_t       get_status = 0;
+    int           set_status = 0;
     unsigned long enable;
     struct fclk_driver_data* this = dev_get_drvdata(dev);
 
-    if (0 != (status = kstrtoul(buf, 0, &enable)))
-        return status;
+    if (0 != (get_status = kstrtoul(buf, 0, &enable)))
+        return get_status;
 
-    if (enable) {
-        if (__clk_is_enabled(this->clk) == false) {
-            status = clk_prepare_enable(this->clk);
-            if (status) {
-                dev_err(this->device, "enable failed.");
-                return status;
-            }
-            else {
-                dev_dbg(this->device, "enable success.");
-                return size;
-            }
-        } else {
-                return size;
-        }
-    } else {
-        if (__clk_is_enabled(this->clk) == true) {
-            clk_disable_unprepare(this->clk);
-            dev_dbg(this->device, "disable done.");
-        }
-        return size;
-    }
+    if (0 != (set_status = __fclk_set_enable(this, (enable != 0))))
+        return (ssize_t)set_status;
+
+    return size;
 }
 
 /**
@@ -126,24 +159,18 @@ static ssize_t fclk_show_rate(struct device *dev, struct device_attribute *attr,
  */
 static ssize_t fclk_set_rate(struct device *dev, struct device_attribute *attr, const char *buf, size_t size)
 {
-    ssize_t       status;
+    ssize_t       get_status;
+    int           set_status;
     unsigned long rate;
-    unsigned long round_rate;
     struct fclk_driver_data* this = dev_get_drvdata(dev);
 
-    if (0 != (status = kstrtoul(buf, 0, &rate)))
-        return status;
+    if (0 != (get_status = kstrtoul(buf, 0, &rate)))
+        return get_status;
 
-    round_rate = clk_round_rate(this->clk, rate);
-    status     = clk_set_rate(this->clk, round_rate);
+    if (0 != (set_status = __fclk_set_rate(this, rate)))
+        return (ssize_t)set_status;
 
-    if (status) {
-        dev_err(this->device, "set_rate(%lu=>%lu) failed." , rate, round_rate);
-        return status;
-    } else {
-        dev_dbg(this->device, "set_rate(%lu=>%lu) success.", rate, round_rate);
-        return size;
-    }
+    return size;
 }
 
 /**
@@ -294,12 +321,100 @@ static int fclkcfg_platform_driver_probe(struct platform_device *pdev)
     }
     dev_dbg(&pdev->dev, "device_create done\n");
 
+    /*
+     * insert_rate
+     */
+    dev_dbg(&pdev->dev, "get insert-rate start.\n");
+    {
+        const char* prop;
+
+        prop = of_get_property(pdev->dev.of_node, "insert-rate", NULL);
+        
+        if (!IS_ERR_OR_NULL(prop)) {
+            ssize_t       prop_status;
+            unsigned long rate;
+            if (0 != (prop_status = kstrtoul(prop, 0, &rate)))
+                dev_err(&pdev->dev, "invalid insert-rate.\n");
+            else
+                __fclk_set_rate(this, rate);
+        }
+        this->insert_rate = clk_get_rate(this->clk);
+    }
+    dev_dbg(&pdev->dev, "get insert-rate done.\n");
+    
+    /*
+     * insert_enable
+     */
+    dev_dbg(&pdev->dev, "get insert-enable start.\n");
+    {
+        int          status;
+        unsigned int enable;
+
+        status = of_property_read_u32(pdev->dev.of_node, "insert-enable", &enable);
+
+        if (status == 0)
+            __fclk_set_enable(this, (enable != 0));
+        
+        this->insert_enable = __clk_is_enabled(this->clk);
+    }
+    dev_dbg(&pdev->dev, "get insert-rate done.\n");
+    
+    /*
+     * remove_rate
+     */
+    dev_dbg(&pdev->dev, "get remove-rate start.\n");
+    {
+        const char* prop;
+
+        this->remove_rate       = 0;
+        this->remove_rate_valid = false;
+        prop = of_get_property(pdev->dev.of_node, "remove-rate", NULL);
+        
+        if (!IS_ERR_OR_NULL(prop)) {
+            ssize_t       prop_status;
+            unsigned long rate;
+            if (0 != (prop_status = kstrtoul(prop, 0, &rate)))
+                dev_err(&pdev->dev, "invalid remove-rate.\n");
+            else {
+                this->remove_rate       = clk_round_rate(this->clk, rate);
+                this->remove_rate_valid = true;
+            }
+        }
+    }
+    dev_dbg(&pdev->dev, "get remove-rate done.\n");
+    
+    /*
+     * remove_enable
+     */
+    dev_dbg(&pdev->dev, "get remove-enable start.\n");
+    {
+        int          status;
+        unsigned int enable;
+
+        status = of_property_read_u32(pdev->dev.of_node, "remove-enable", &enable);
+
+        if (status == 0) {
+            this->remove_enable_valid = true;
+            this->remove_enable       = (enable != 0);
+        } else {
+            this->remove_enable_valid = false;
+            this->remove_enable       = 0;
+        }            
+    }
+    dev_dbg(&pdev->dev, "get remove-rate done.\n");
+
     dev_set_drvdata(&pdev->dev, this);
 
     dev_info(&pdev->dev, "driver installed.\n");
-    dev_info(&pdev->dev, "device name : %s\n" , device_name);
-    dev_info(&pdev->dev, "clock  name : %s\n" , __clk_get_name(this->clk));
-    dev_info(&pdev->dev, "clock  rate : %lu\n", clk_get_rate(this->clk));
+    dev_info(&pdev->dev, "device name    : %s\n" , device_name);
+    dev_info(&pdev->dev, "clock  name    : %s\n" , __clk_get_name(this->clk));
+    dev_info(&pdev->dev, "clock  rate    : %lu\n", clk_get_rate(this->clk));
+    dev_info(&pdev->dev, "clock  enabled : %d\n" , __clk_is_enabled(this->clk));
+    if (this->remove_rate_valid == true)
+        dev_info(&pdev->dev, "remove rate    : %lu\n", this->remove_rate);
+    if (this->remove_enable_valid == true)
+        dev_info(&pdev->dev, "remove enable  : %d\n" , this->remove_enable);
+           
     return 0;
 
  failed:
@@ -337,6 +452,14 @@ static int fclkcfg_platform_driver_remove(struct platform_device *pdev)
     if (!this)
         return -ENODEV;
     if (this->clk          ) {
+        if (this->remove_rate_valid == true) {
+            __fclk_set_rate(this, this->remove_rate);
+            dev_info(&pdev->dev, "change rate    : %lu\n", clk_get_rate(this->clk));
+        }
+        if (this->remove_enable_valid == true) {
+            __fclk_set_enable(this, this->remove_enable);
+            dev_info(&pdev->dev, "change enable  : %d\n" , __clk_is_enabled(this->clk));
+        }
         clk_put(this->clk);
         this->clk = NULL;
     }

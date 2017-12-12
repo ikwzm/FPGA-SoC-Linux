@@ -37,9 +37,10 @@ insmod で fclkcfg のカーネルドライバをロードします。その際 
 ````shell
 zynq# insmod fclkcfg.ko
 [  102.044387] fclkcfg amba:fclk0: driver installed.
-[  102.049016] fclkcfg amba:fclk0: device name : fclk0
-[  102.053949] fclkcfg amba:fclk0: clock  name : fclk0
-[  102.058748] fclkcfg amba:fclk0: clock  rate : 100000000
+[  102.049016] fclkcfg amba:fclk0: device name   : fclk0
+[  102.053949] fclkcfg amba:fclk0: clock  name   : fclk0
+[  102.058748] fclkcfg amba:fclk0: clock  rate   : 100000000
+[  102.058748] fclkcfg amba:fclk0: clock  enable : 1
 ````
 
 アンインストールするには rmmod を使います。
@@ -51,7 +52,71 @@ zynq# rmmod fclkcfg
 
 ## デバイスツリー
 
-### ZYBO での例1
+### プロパティ
+
+#### clocks
+
+clocks プロパティで制御するクロックを指定します。clocks の詳細は後述の例を参照してください。
+
+````devicetree:devicetree.dts
+		fclk0 {
+			compatible  = "ikwzm,fclkcfg-0.10.a";
+			clocks      = <&clkc 15>;
+		};
+````
+
+#### insert-rate
+
+insert-rate は、このデバイスがインストールされた時に設定する周波数を指定します。設定する周波数は、10進数の文字列で指定します。insert-rate が指定されていない時は、インストール時に周波数は変更されません。例えば次のようにデバイスツリーに記述することで、インストール時に周波数を 100MHz に設定します。
+
+````devicetree:devicetree.dts
+		fclk0 {
+			compatible    = "ikwzm,fclkcfg-0.10.a";
+			clocks        = <&clkc 15>;
+			insert-rate   = "100000000";
+		};
+````
+
+#### insert-enable
+
+insert-enable は、このデバイスがインストールされた時にクロックを出力するかしないかを指定します。設定する値は、出力する時は```<1>```を、出力しない時は```<0>```を指定します。insert-enable が指定されていない時は、インストール時に出力の制御をしません。例えば次のようにデバイスツリーに記述することで、インストール時にクロックを出力するようにします。
+
+````devicetree:devicetree.dts
+		fclk0 {
+			compatible    = "ikwzm,fclkcfg-0.10.a";
+			clocks        = <&clkc 15>;
+			insert-enable = <1>;
+		};
+````
+
+#### remove-rate
+
+remove-rate は、このデバイスがリムーブされた時に設定する周波数を指定します。設定する周波数は、10進数の文字列で指定します。
+remove-rate が指定されていない時は、リムーブされた時に周波数は変更されません。例えば次のようにデバイスツリーに記述することで、リムーブ時に周波数を 1MHz に設定します。
+
+````devicetree:devicetree.dts
+		fclk0 {
+			compatible    = "ikwzm,fclkcfg-0.10.a";
+			clocks        = <&clkc 15>;
+			remove-rate   = "1000000";
+		};
+````
+
+#### remove-enable
+
+remove-enable は、このデバイスがリムーブされた時にクロックを出力するかしないかを指定します。設定する値は、出力する時は```<1>```を、出力しない時は```<0>```を指定します。insert-enable が指定されていない時は、リムーブ時に出力の制御をしません。例えば次のようにデバイスツリーに記述することで、リムーブ時にクロックの出力を停止します。
+
+````devicetree:devicetree.dts
+		fclk0 {
+			compatible    = "ikwzm,fclkcfg-0.10.a";
+			clocks        = <&clkc 15>;
+			remove-enable = <0>;
+		};
+````
+
+### 例
+
+#### ZYBO での例1
 
 ZYBO+linux(v4.4.4) で、デバイスツリーに次のような項目を追加します。
 
@@ -100,7 +165,7 @@ clocks で PL のクロックを指定します。
 
 clocks = \<\&clkc 15\> と記述することにより、fclk0 は clkc が管理しているクロックの15番目のクロック(これが PL Clock 0を指す)を制御することを指定します。
 
-### ZYBO での例2
+#### ZYBO での例2
 
 \&clkc の代わりに phandle を使って指定することもできます。
 
@@ -139,7 +204,7 @@ clocks = \<\&clkc 15\> と記述することにより、fclk0 は clkc が管理
 
 この例では clkc は phandle = \<0x1\> に設定されています。したがって fclk0 の clocks の第一引数は 0x1 を指定します。
 
-### ZYBO での例3
+#### ZYBO での例3
 
 [「FPGA+SoC+LinuxでDevice Tree Overlayを試してみた」](http://qiita.com/ikwzm/items/ec514e955c16076327ce)で説明したように、Device Tree Overlay を使うこともできます。この場合は次のようなデバイスツリーを用意します。
 
@@ -168,9 +233,10 @@ zynq# mkdir /config/device-tree/overlay/fclk0
 zynq# dtc -I dts -O dtb -o /config/device-tree/overlay/fclk0/dtbo fclk0-zynq-zybo.dts
 zynq# echo 1 >/config/device-tree/overlays/fclk0/status
 [ 3361.788836] fclkcfg amba:fclk0: driver installed.
-[ 3361.794680] fclkcfg amba:fclk0: device name : fclk0
-[ 3361.799542] fclkcfg amba:fclk0: clock  name : fclk0
-[ 3361.804344] fclkcfg amba:fclk0: clock  rate : 100000000
+[ 3361.794680] fclkcfg amba:fclk0: device name   : fclk0
+[ 3361.799542] fclkcfg amba:fclk0: clock  name   : fclk0
+[ 3361.804344] fclkcfg amba:fclk0: clock  rate   : 100000000
+[ 3361.804344] fclkcfg amba:fclk0: clock  enable : 1
 ````
 
 ## デバイスファイル

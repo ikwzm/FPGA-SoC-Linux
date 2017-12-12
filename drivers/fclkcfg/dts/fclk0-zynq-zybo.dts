@@ -4,8 +4,12 @@
 		target-path = "/amba";
 		__overlay__ {
 			fclk0 {
-				compatible  = "ikwzm,fclkcfg-0.10.a";
-				clocks      = <1 15>;
+				compatible    = "ikwzm,fclkcfg-0.10.a";
+				clocks        = <1 15>;
+				insert-rate   = "100000000";
+				insert-enable = <1>;
+				remove-rate   = "1000000";
+				remove-enable = <0>;
 			};
 		};
 	};
