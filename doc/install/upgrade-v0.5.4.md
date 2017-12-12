@@ -1,4 +1,4 @@
-### Install Device Drivers and Services
+### Upgrade to v0.5.4 from v0.5.3
 
 #### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
 
@@ -18,7 +18,32 @@ Password:
 root@debian-fpga:~#
 ```
 
-#### Install Device Drivers and Services Package
+#### Remove Old Services Package
+
+```
+fpga@debian-fpga:~$ sudo dpkg --remove fpga-soc-linux-services
+(Reading database ... 42754 files and directories currently installed.)
+Removing fpga-soc-linux-services (0.0.7-1) ...
+Removed /etc/systemd/system/multi-user.target.wants/zptty.service.
+[   53.753171] systemd[1]: apt-daily-upgrade.timer: Adding 11min 43.270095s random time.
+[   53.765507] systemd[1]: apt-daily.timer: Adding 36min 25.436252s random time.
+Removed /etc/systemd/system/multi-user.target.wants/udmabuf.service.
+[   54.235643] systemd[1]: apt-daily-upgrade.timer: Adding 55.242551s random time.
+[   54.247159] systemd[1]: apt-daily.timer: Adding 9h 13min 49.218879s random time.
+Removed /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service.
+[   54.676455] systemd[1]: apt-daily-upgrade.timer: Adding 52min 48.054844s random time.
+[   54.688334] systemd[1]: apt-daily.timer: Adding 6h 36min 45.912649s random time.
+```
+
+#### Remove Old Device Drivers
+
+```
+fpga@debian-fpga:~$ sudo dpkg --remove fpga-soc-linux-drivers-4.12.14-armv7-fpga
+(Reading database ... 42746 files and directories currently installed.)
+Removing fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.8-1) ...
+```
+
+#### Install New Device Drivers
 
 ```
 fpga@debian-fpga:~$ cd /home/fpga/debian
@@ -30,9 +55,11 @@ Unpacking fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.9-1) ...
 Setting up fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.9-1) ...
 ```
 
+#### Install New Services Package
+
+
 ```
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-services_0.0.9-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-services.
 (Reading database ... 42746 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-services_0.0.9-1_armhf.deb ...
@@ -52,53 +79,5 @@ Created symlink /etc/systemd/system/multi-user.target.wants/zptty.service → /e
 [  405.188405] systemd[1]: apt-daily.timer: Adding 20min 1.691993s random time.
 [  405.279856] dtbocfg_module_init
 [  405.283061] dtbocfg_module_init: OK
-```
-
-#### Check Installed Device Drivers and Services Package
-
-```
-fpga@debian-fpga:~$ sudo lsmod
-Module                  Size  Used by
-zptty                  16384  0
-fclkcfg                16384  0
-udmabuf                20480  0
-dtbocfg                16384  0
-```
-
-```
-fpga@debian-fpga:~$ sudo systemctl status device-tree-overlay.service
-● device-tree-overlay.service - Device Tree Overlay Service.
-   Loaded: loaded (/etc/systemd/system/device-tree-overlay.service; enabled)
-   Active: active (exited) since Tue 2017-02-21 23:03:05 JST; 1min 19s ago
-  Process: 1665 ExecStart=/sbin/modprobe dtbocfg (code=exited, status=0/SUCCESS)
- Main PID: 1665 (code=exited, status=0/SUCCESS)
-   CGroup: /system.slice/device-tree-overlay.service
-
-Feb 21 23:03:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
-```
-
-```
-fpga@debian-fpga:~$ sudo systemctl status udmabuf.service
-● udmabuf.service - User space mappable DMA Buffer Service.
-   Loaded: loaded (/etc/systemd/system/udmabuf.service; enabled)
-   Active: active (exited) since Tue 2017-02-21 23:03:06 JST; 4min 26s ago
-  Process: 1687 ExecStart=/sbin/modprobe udmabuf (code=exited, status=0/SUCCESS)
- Main PID: 1687 (code=exited, status=0/SUCCESS)
-   CGroup: /system.slice/udmabuf.service
-
-Feb 21 23:03:06 debian-fpga systemd[1]: Started User space mappable DMA Buff....
-Hint: Some lines were ellipsized, use -l to show in full.
-```
-
-```
-fpga@debian-fpga:~$ sudo systemctl status zptty.service
-● zptty.service - Pseudo TTY Driver for communication with FPGA.
-   Loaded: loaded (/etc/systemd/system/zptty.service; enabled)
-   Active: active (exited) since Tue 2017-02-21 23:03:06 JST; 5min ago
-  Process: 1694 ExecStart=/sbin/modprobe zptty (code=exited, status=0/SUCCESS)
- Main PID: 1694 (code=exited, status=0/SUCCESS)
-
-Feb 21 23:03:06 debian-fpga systemd[1]: Started Pseudo TTY Driver for commun....
-Hint: Some lines were ellipsized, use -l to show in full.
 ```
 

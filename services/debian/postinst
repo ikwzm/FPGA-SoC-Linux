@@ -2,10 +2,12 @@
 
 systemctl enable  device-tree-overlay.service
 systemctl enable  udmabuf.service
+systemctl enable  fpga-clock.service
 systemctl enable  zptty.service
 
 systemctl start   device-tree-overlay.service
 systemctl start   udmabuf.service
+systemctl start   fpga-clock.service
 systemctl start   zptty.service
 
 

@@ -48,6 +48,7 @@ Install
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
+* [Upgrade to v0.5.4 from v0.5.3](doc/install/upgrade-v0.5.4.md)
 
 Tutorial
 ------------------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Tutorial
 * [uio_irq_sample](doc/tutorial/uio_irq_sample.md)
 * [accumulator](doc/tutorial/accumulator.md)
 * [fibonacci](doc/tutorial/fibonacci.md)
+* FPGA-SoC-Linux-Example-1
+  - [FPGA-SoC-Linux-Example-1-ZYBO](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-ZYBO)
+  - [FPGA-SoC-Linux-Example-1-ZYBO-Z7](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-ZYBO-Z7)
+  - [FPGA-SoC-Linux-Example-1-PYNQ-Z1](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-PYNQ-Z1)
 
 Build 
 ------------------------------------------------------------------------------------
