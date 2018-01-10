@@ -7,7 +7,7 @@ It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.5.4
+shell$ git checkout v0.6.0
 shell$ git lfs pull
 ```
 #### Build boot files

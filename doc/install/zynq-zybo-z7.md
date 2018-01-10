@@ -5,7 +5,7 @@
 ```
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.5.4
+shell$ git checkout v0.6.0
 shell$ git lfs pull
 ```
 
