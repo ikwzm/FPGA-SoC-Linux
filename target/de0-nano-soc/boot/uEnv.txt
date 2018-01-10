@@ -1,7 +1,7 @@
 fpga_load_cmd=fatload mmc 0 $fpgadata DE0_NANO_SOC.rbf && fpga load 0 $fpgadata $filesize
 fpga_set_cmd=bridge enable
-boot_image=vmlinuz-4.12.14-armv7-fpga
-fdt_image=devicetree-4.12.14-socfpga.dtb
+boot_image=zImage-4.14.13-armv7-fpga
+fdt_image=devicetree-4.14.13-socfpga.dtb
 linux_load_cmd=fatload mmc 0 $loadaddr $boot_image && fatload mmc 0 $fdt_addr $fdt_image
 linux_boot_cmd=setenv bootargs console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait && bootz $loadaddr - $fdt_addr
 uenvcmd=run fpga_load_cmd && run fpga_set_cmd && run linux_load_cmd && run linux_boot_cmd

@@ -1,6 +1,6 @@
 if test $config = "zynq-zybo"; then
     echo "Configuration for " $config
-    boot_image=vmlinuz-$kernel_version-armv7-fpga
+    boot_image=zImage-$kernel_version-armv7-fpga
     fdt_image=devicetree-$kernel_version-zynq-zybo.dtb
     fpga_image=design_1_wrapper.bit
     if  fatload mmc 0 0x03000000 $fpga_image; then
@@ -16,7 +16,7 @@ if test $config = "zynq-zybo"; then
 fi
 if test $config = "socfpga_cyclone5_de0_nano_soc"; then
     echo "Configuration for " $config
-    boot_image=vmlinuz-$kernel_version-armv7-fpga
+    boot_image=zImage-$kernel_version-armv7-fpga
     fdt_image=devicetree-$kernel_version-socfpga.dtb
     fpga_image=DE0_NANO_SOC.rbf
     if  fatload mmc 0 $fpgadata $fpga_image; then

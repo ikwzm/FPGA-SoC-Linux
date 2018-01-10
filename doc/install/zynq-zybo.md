@@ -17,14 +17,14 @@ shell$ git lfs pull
      - design_1_wrapper.bit                                        : FPGA configuration file (Xilinx Bitstream Format)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - vmlinuz-4.12.14-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
-     - devicetree-4.12.14-zynq-zybo.dtb                            : Linux Device Tree Blob   
-     - devicetree-4.12.14-zynq-zybo.dts                            : Linux Device Tree Source
+     - vmlinuz-4.14.13-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
+     - devicetree-4.14.13-zynq-zybo.dtb                            : Linux Device Tree Blob   
+     - devicetree-4.14.13-zynq-zybo.dts                            : Linux Device Tree Source
    + examples/                                                     : Example Programs
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
- * linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   : Linux Image Package      (use Git LFS)
- * linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.9-1_armhf.deb     : Device Drivers Package   (use Git LFS)
+ * linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb     : Device Drivers Package   (use Git LFS)
  * fpga-soc-linux-services_0.0.9-1_armhf.deb                       : Device Services Package  (use Git LFS)
 
 #### Format SD-Card
@@ -46,9 +46,9 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-zybo/boot/*                                         /mnt/usb1
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
 shell# mkdir                                                              /mnt/usb2/home/fpga/debian
-shell# cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   /mnt/usb2/home/fpga/debian
-shell# cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb /mnt/usb2/home/fpga/debian
-shell# cp fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.9-1_armhf.deb     /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp fpga-soc-linux-services_0.0.9-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell# cp -r target/zynq-zybo/examples                                    /mnt/usb2/home/fpga
 shell# umount mnt/usb1

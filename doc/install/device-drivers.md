@@ -18,21 +18,32 @@ Password:
 root@debian-fpga:~#
 ```
 
+#### Install Kernel Image Package
+
+```
+fpga@debian-fpga:~$ cd /home/fpga/debian
+fpga@debian-fpga:~/debian$ sudo dpkg -i linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb
+(Reading database ... 61992 files and directories currently installed.)
+Preparing to unpack linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb ...
+Unpacking linux-image-4.14.13-armv7-fpga (4.14.13-armv7-fpga-1) ...
+Setting up linux-image-4.14.13-armv7-fpga (4.14.13-armv7-fpga-1) ...
+```
+
 #### Install Device Drivers and Services Package
 
 ```
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.9-1_armhf.deb
-Selecting previously unselected package fpga-soc-linux-drivers-4.12.14-armv7-fpga.
-(Reading database ... 39197 files and directories currently installed.)
-Preparing to unpack fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.9-1_armhf.deb ...
-Unpacking fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.9-1) ...
-Setting up fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.9-1) ...
+fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb
+Selecting previously unselected package fpga-soc-linux-drivers-4.14.13-armv7-fpga.
+(Reading database ... 62097 files and directories currently installed.)
+Preparing to unpack fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb ...
+Unpacking fpga-soc-linux-drivers-4.14.13-armv7-fpga (0.1.0-1) ...
+Setting up fpga-soc-linux-drivers-4.14.13-armv7-fpga (0.1.0-1) ...
 ```
 
 ```
-fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-services_0.0.9-1_armhf.deb
+fpga@debian-fpga:~/debian$ cd /home/fpga/debian
+fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-services_0.0.9-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-services.
 (Reading database ... 42746 files and directories currently installed.)
 Preparing to unpack fpga-soc-linux-services_0.0.9-1_armhf.deb ...
@@ -66,7 +77,7 @@ dtbocfg                16384  0
 ```
 
 ```
-fpga@debian-fpga:~$ sudo systemctl status device-tree-overlay.service
+fpga@debian-fpga:~/debian$ sudo systemctl status device-tree-overlay.service
 ● device-tree-overlay.service - Device Tree Overlay Service.
    Loaded: loaded (/etc/systemd/system/device-tree-overlay.service; enabled)
    Active: active (exited) since Tue 2017-02-21 23:03:05 JST; 1min 19s ago
@@ -78,7 +89,7 @@ Feb 21 23:03:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
 ```
 
 ```
-fpga@debian-fpga:~$ sudo systemctl status udmabuf.service
+fpga@debian-fpga:~/debian$ sudo systemctl status udmabuf.service
 ● udmabuf.service - User space mappable DMA Buffer Service.
    Loaded: loaded (/etc/systemd/system/udmabuf.service; enabled)
    Active: active (exited) since Tue 2017-02-21 23:03:06 JST; 4min 26s ago
@@ -91,7 +102,7 @@ Hint: Some lines were ellipsized, use -l to show in full.
 ```
 
 ```
-fpga@debian-fpga:~$ sudo systemctl status zptty.service
+fpga@debian-fpga:~/debian$ sudo systemctl status zptty.service
 ● zptty.service - Pseudo TTY Driver for communication with FPGA.
    Loaded: loaded (/etc/systemd/system/zptty.service; enabled)
    Active: active (exited) since Tue 2017-02-21 23:03:06 JST; 5min ago
