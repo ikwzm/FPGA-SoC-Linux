@@ -73,9 +73,11 @@ static inline void regs_write8(void* addr, uint8_t data)
 #define  PUMP_CTRL_FIRST       (0x02)
 #define  PUMP_CTRL_LAST        (0x01)
 
+#define  ALTERA_SOC_ACP_OFFSET (0x80000000)
+
 static inline void pump_intake_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
 {
-    regs_write32(regs + PUMP_INTAKE_ADDR_REGS, buf_addr);
+    regs_write32(regs + PUMP_INTAKE_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET);
     regs_write32(regs + PUMP_INTAKE_RESV_REGS, 0x00000000);
     regs_write32(regs + PUMP_INTAKE_SIZE_REGS, xfer_size);
     regs_write32(regs + PUMP_INTAKE_MODE_REGS, (PUMP_MODE_AXI_MODE));
@@ -83,7 +85,7 @@ static inline void pump_intake_setup(void* regs, unsigned long buf_addr, unsigne
 
 static inline void pump_outlet_setup(void* regs, unsigned long buf_addr, unsigned int xfer_size)
 {
-    regs_write32(regs + PUMP_OUTLET_ADDR_REGS, buf_addr);
+    regs_write32(regs + PUMP_OUTLET_ADDR_REGS, buf_addr + ALTERA_SOC_ACP_OFFSET);
     regs_write32(regs + PUMP_OUTLET_RESV_REGS, 0x00000000);
     regs_write32(regs + PUMP_OUTLET_SIZE_REGS, xfer_size);
     regs_write32(regs + PUMP_OUTLET_MODE_REGS, (PUMP_MODE_AXI_MODE | PUMP_MODE_IRQ_ENABLE));
