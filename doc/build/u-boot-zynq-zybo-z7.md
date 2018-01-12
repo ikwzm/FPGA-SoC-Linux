@@ -9,20 +9,20 @@ There are two ways
 
 ##### Clone from git.denx.de/u-boot.git
 
-```
+```console
 shell$ git clone git://git.denx.de/u-boot.git u-boot-zynq-zybo-z7
-````
+```
 
 ##### Checkout v2016.03
 
-```
+```console
 shell$ cd u-boot-zynq-zybo-z7
 shell$ git checkout -b u-boot-2016.03-zynq-zybo refs/tags/v2016.03
 ```
 
 #### Patch for zynq-zybo
 
-```
+```console
 shell$ patch -p0 < ../files/u-boot-2016.03-zynq-zybo-z7.diff
 shell$ git add --update
 shell$ git add arch/arm/dts/zynq-zybo-z7.dts
@@ -34,7 +34,7 @@ shell$ git commit -m "patch for zynq-zybo-z7"
 
 #### Setup for Build 
 
-```
+```console
 shell$ cd u-boot-zynq-zybo-z7
 shell$ export ARCH=arm
 shell$ export CROSS_COMPILE=arm-linux-gnueabihf-
@@ -43,13 +43,13 @@ shell$ make zynq_zybo_z7_defconfig
 
 #### Build u-boot
 
-```
+```console
 shell$ make
 ```
 
 #### Copy boot.bin and u-boot.img to target/zybo-zynq/boot/
 
-```
+```console
 shell$ cp spl/boot.bin  ../target/zynq-zybo-z7/boot/
 shell$ cp u-boot.img    ../target/zynq-zybo-z7/boot/
 ```

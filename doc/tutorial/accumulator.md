@@ -27,7 +27,7 @@
 
 use rake (make for ruby) script.
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ rake -T
 rake install          # Install   accumulator_server
 rake test             # Test      accumulator_server
@@ -38,7 +38,7 @@ rake uninstall        # Uninstall accumulator_server
 
 ##### ZYBO
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ sudo rake install
 dtbocfg.rb --install accumulator_server --dts accumulator_server.dts
 /config/device-tree/overlays/accumulator_server/dtbo: Warning (un[  102.230909] fpga_manager fpga0: writing accumulator_server.bin to Xilinx Zynq FPGA Manager
@@ -58,7 +58,7 @@ it_address_vs_reg): Node /fragment@1 has a unit name, but no reg property
 
 ##### DE0-Nano-SoC
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ sudo rake install
 dtbocfg.rb --install accumulator_server --dts accumulator_server.dts
 /config/device-tree/overlays/accumulator_server/dtbo: Warning (unit_address_vs_reg): [  106.530451] fpga_manager fpga0: writing accumulator_server.rbf to Altera SOCFPGA FPGA Manager
@@ -78,7 +78,7 @@ Node /fragment@1 has a unit name, but no reg property
 
 #### Run sample script
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ ruby test.rb
 OK : reg = 1; add(6625) => 6626; reg = 6626
 OK : reg = 6626; add(9833) => 16459; reg = 16459
@@ -99,7 +99,7 @@ ArgumentError
 
 #### Uninstall Device Tree
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ sudo rake uninstall
 dtbocfg.rb --remove accumulator_server
 [ 260.160451] zptty 43c10000.zptty: driver removed
