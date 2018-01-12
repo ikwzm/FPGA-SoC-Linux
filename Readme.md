@@ -60,6 +60,7 @@ Tutorial
   - [FPGA-SoC-Linux-Example-1-ZYBO](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-ZYBO)
   - [FPGA-SoC-Linux-Example-1-ZYBO-Z7](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-ZYBO-Z7)
   - [FPGA-SoC-Linux-Example-1-PYNQ-Z1](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-PYNQ-Z1)
+  - [FPGA-SoC-Linux-Example-1-DE0-Nano-SoC](https://github.com/ikwzm/FPGA-SoC-Linux-Example-1-DE0-Nano-SoC)
 
 Build 
 ------------------------------------------------------------------------------------
