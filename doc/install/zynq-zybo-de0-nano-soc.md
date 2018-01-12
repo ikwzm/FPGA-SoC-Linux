@@ -4,7 +4,7 @@ It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
 
 #### Downlowd from github
 
-```
+```console
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git checkout v0.6.0
@@ -12,7 +12,7 @@ shell$ git lfs pull
 ```
 #### Build boot files
 
-```
+```console
 shell$ cd target/zynq-zybo-de0-nano-soc/
 shell$ make
 mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "linux boot script" -d boot/boot.script boot/boot.scr
@@ -64,7 +64,7 @@ cp ../de0-nano-soc//u-boot/u-boot.img u-boot/u-boot.img
 
 #### Format SD-Card
 
-````
+````console
 shell# fdisk /dev/sdc
    :
    :
@@ -75,7 +75,7 @@ shell# mkfs.ext3 /dev/sdc2
 
 #### Write to SD-Card
 
-````
+````console
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-zybo-de0-nano-soc/boot/*                            /mnt/usb1

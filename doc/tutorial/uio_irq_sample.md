@@ -40,7 +40,7 @@
 
 use rake (make for ruby) script.
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ rake -T
 rake install    # Install fpga and devicetrees
 rake uninstall  # Uninstall fpga and devicetrees
@@ -50,7 +50,7 @@ rake uninstall  # Uninstall fpga and devicetrees
 
 ##### ZYBO
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ sudo rake install
 dtbocfg.rb --install uio_irq_sample --dts devicetree.dts
 /config/device-tree/overlays/uio_irq_sample/dtbo: Warning (unit_a[  547.564512] fpga_manager fpga0: writing pump_axi4.bin to Xilinx Zynq FPGA Manager
@@ -73,7 +73,7 @@ ddress_vs_reg): Node /fragment@0 has a unit name, but no reg property
 
 ##### PYNQ-Z1
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ sudo rake install
 dtbocfg.rb --install uio_irq_sample --dts devicetree.dts
 /config/device-tree/overlays/uio_irq_sample/dtbo: Warning (unit_a[  547.564512] fpga_manager fpga0: writing pump_axi4.bin to Xilinx Zynq FPGA Manager
@@ -96,7 +96,7 @@ ddress_vs_reg): Node /fragment@0 has a unit name, but no reg property
 
 ##### DE0-Nano-SoC
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ sudo rake install
 dtbocfg.rb --install uio_irq_sample --dts devicetree.dts
 /config/device-tree/overlays/uio_irq_sample/dtbo: Warning (unit_a[  567.830702] fpga_manager fpga0: writing pump_axi4.bin to Xilinx Zynq FPGA Manager
@@ -119,7 +119,7 @@ ddress_vs_reg): Node /fragment@0 has a unit name, but no reg property
 
 #### Compile sample programs
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ rake
 gcc  -o sample1 sample1.c
 gcc  -o sample2 sample2.c
@@ -127,7 +127,7 @@ gcc  -o sample2 sample2.c
 
 #### Run sample programs
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ ./sample1
 time = 0.022111 sec
 time = 0.022158 sec
@@ -141,7 +141,7 @@ time = 0.022078 sec
 time = 0.022076 sec
 ```
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ ./sample2
 time = 0.022132 sec
 time = 0.022015 sec
@@ -157,7 +157,7 @@ time = 0.022095 sec
 
 #### Uninstall Device Tree
 
-```
+```console
 fpga@debian-fpga:~/examples/uio_irq_sample$ sudo rake uninstall
 dtbocfg.rb --remove uio_irq_sample
 [  611.940358] udmabuf udmabuf5: driver uninstalled

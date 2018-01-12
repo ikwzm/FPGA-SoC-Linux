@@ -2,7 +2,7 @@
 
 #### Downlowd from github
 
-```
+```console
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git checkout v0.6.0
@@ -30,7 +30,7 @@ shell$ git lfs pull
 
 #### Format SD-Card
 
-````
+````console
 shell# fdisk /dev/sdc
    :
    :
@@ -41,7 +41,7 @@ shell# mkfs.ext3 /dev/sdc2
 
 #### Write to SD-Card
 
-````
+````console
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/de0-nano-soc/boot/* /mnt/usb1

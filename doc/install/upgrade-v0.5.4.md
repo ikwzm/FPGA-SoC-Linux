@@ -4,7 +4,7 @@
 
 fpga'password is "fpga".
 
-```
+```console
 debian-fpga login: fpga
 Password:
 fpga@debian-fpga:~$
@@ -12,7 +12,7 @@ fpga@debian-fpga:~$
 
 root'password is "admin".
 
-```
+```console
 debian-fpga login: root
 Password:
 root@debian-fpga:~#
@@ -20,7 +20,7 @@ root@debian-fpga:~#
 
 #### Remove Old Services Package
 
-```
+```console
 fpga@debian-fpga:~$ sudo dpkg --remove fpga-soc-linux-services
 (Reading database ... 42754 files and directories currently installed.)
 Removing fpga-soc-linux-services (0.0.7-1) ...
@@ -37,7 +37,7 @@ Removed /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service.
 
 #### Remove Old Device Drivers
 
-```
+```console
 fpga@debian-fpga:~$ sudo dpkg --remove fpga-soc-linux-drivers-4.12.14-armv7-fpga
 (Reading database ... 42746 files and directories currently installed.)
 Removing fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.8-1) ...
@@ -45,7 +45,7 @@ Removing fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.8-1) ...
 
 #### Install New Device Drivers
 
-```
+```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
 fpga@debian-fpga:~$ sudo dpkg -i fpga-soc-linux-drivers-4.12.14-armv7-fpga_0.0.9-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers-4.12.14-armv7-fpga.
@@ -58,7 +58,7 @@ Setting up fpga-soc-linux-drivers-4.12.14-armv7-fpga (0.0.9-1) ...
 #### Install New Services Package
 
 
-```
+```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
 Selecting previously unselected package fpga-soc-linux-services.
 (Reading database ... 42746 files and directories currently installed.)

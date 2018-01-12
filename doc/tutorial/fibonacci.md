@@ -27,7 +27,7 @@
 
 use rake (make for ruby) script.
 
-```
+```console
 fpga@debian-fpga:~/examples/fibonacci$ rake -T
 rake install    # Install  fibonacci_server
 rake test       # Test     fibonacci_server
@@ -38,7 +38,7 @@ rake uninstall  # Unnstall fibonacci_server
 
 ##### ZYBO
 
-```
+```console
 fpga@debian-fpga:~/examples/fibonacci$ sudo rake install
 dtbocfg.rb --install fibonacci_server --dts fibonacci_server.dts
 /config/device-tree/overlays/fibonacci_server/dtbo: Warning (unit[  348.053645] fpga_manager fpga0: writing fibonacci_server.bin to Xilinx Zynq FPGA Manager
@@ -58,7 +58,7 @@ _address_vs_reg): Node /fragment@1 has a unit name, but no reg property
 
 ##### DE0-Nano-SoC
 
-```
+```console
 fpga@debian-fpga:~/examples/fibonacci$ sudo rake install
 dtbocfg.rb --install fibonacci_server --dts fibonacci_server.dts
 /config/device-tree/overlays/fibonacci_server/dtbo: Warning (unit_address_vs_reg): [   40.131192] fpga_manager fpga0: writing fibonacci_server.rbf to Altera SOCFPGA FPGA Manager
@@ -79,7 +79,7 @@ Node /fragment@1 has a unit name, but no reg property
 
 #### Run sample script
 
-```
+```console
 fpga@debian-fpga:~/examples/fibonacci$ ruby test.rb
 0 => 0
 1 => 1
@@ -176,7 +176,7 @@ fpga@debian-fpga:~/examples/fibonacci$ ruby test.rb
 
 #### Uninstall Device Tree
 
-```
+```console
 fpga@debian-fpga:~/examples/accumulator$ sudo rake uninstall
 dtbocfg.rb --remove fibonacci_server
 [  418.672324] zptty 43c10000.zptty: driver removed
