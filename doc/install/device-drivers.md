@@ -4,7 +4,7 @@
 
 fpga'password is "fpga".
 
-```
+```console
 debian-fpga login: fpga
 Password:
 fpga@debian-fpga:~$
@@ -12,7 +12,7 @@ fpga@debian-fpga:~$
 
 root'password is "admin".
 
-```
+```console
 debian-fpga login: root
 Password:
 root@debian-fpga:~#
@@ -20,7 +20,7 @@ root@debian-fpga:~#
 
 #### Install Kernel Image Package
 
-```
+```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
 fpga@debian-fpga:~/debian$ sudo dpkg -i linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb
 (Reading database ... 61992 files and directories currently installed.)
@@ -31,7 +31,7 @@ Setting up linux-image-4.14.13-armv7-fpga (4.14.13-armv7-fpga-1) ...
 
 #### Install Device Drivers and Services Package
 
-```
+```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
 fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers-4.14.13-armv7-fpga.
@@ -41,7 +41,7 @@ Unpacking fpga-soc-linux-drivers-4.14.13-armv7-fpga (0.1.0-1) ...
 Setting up fpga-soc-linux-drivers-4.14.13-armv7-fpga (0.1.0-1) ...
 ```
 
-```
+```console
 fpga@debian-fpga:~/debian$ cd /home/fpga/debian
 fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-services_0.0.9-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-services.
@@ -67,7 +67,7 @@ Created symlink /etc/systemd/system/multi-user.target.wants/zptty.service → /e
 
 #### Check Installed Device Drivers and Services Package
 
-```
+```console
 fpga@debian-fpga:~$ sudo lsmod
 Module                  Size  Used by
 zptty                  16384  0
@@ -76,7 +76,7 @@ udmabuf                20480  0
 dtbocfg                16384  0
 ```
 
-```
+```console
 fpga@debian-fpga:~/debian$ sudo systemctl status device-tree-overlay.service
 ● device-tree-overlay.service - Device Tree Overlay Service.
    Loaded: loaded (/etc/systemd/system/device-tree-overlay.service; enabled)
@@ -88,7 +88,7 @@ fpga@debian-fpga:~/debian$ sudo systemctl status device-tree-overlay.service
 Feb 21 23:03:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
 ```
 
-```
+```console
 fpga@debian-fpga:~/debian$ sudo systemctl status udmabuf.service
 ● udmabuf.service - User space mappable DMA Buffer Service.
    Loaded: loaded (/etc/systemd/system/udmabuf.service; enabled)
@@ -101,7 +101,7 @@ Feb 21 23:03:06 debian-fpga systemd[1]: Started User space mappable DMA Buff....
 Hint: Some lines were ellipsized, use -l to show in full.
 ```
 
-```
+```console
 fpga@debian-fpga:~/debian$ sudo systemctl status zptty.service
 ● zptty.service - Pseudo TTY Driver for communication with FPGA.
    Loaded: loaded (/etc/systemd/system/zptty.service; enabled)
