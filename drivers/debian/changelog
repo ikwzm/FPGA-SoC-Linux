@@ -1,3 +1,10 @@
+fpga-soc-linux-drivers (0.1.1-1) unstable; urgency=low
+
+  * Update udmabuf v0.10.0
+
+ -- ichiro <ichiro_k@ca2.so-net.ne.jp>  Sat, 20 Jan 2018 13:10:00 +0900
+
+
 fpga-soc-linux-drivers (0.1.0-1) unstable; urgency=low
 
   * Update Linux-Kernel 
