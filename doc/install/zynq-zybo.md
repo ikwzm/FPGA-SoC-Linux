@@ -5,7 +5,7 @@
 ```console
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.6.0
+shell$ git checkout v0.6.1
 shell$ git lfs pull
 ```
 
@@ -24,7 +24,7 @@ shell$ git lfs pull
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
  * linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
- * fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb     : Device Drivers Package   (use Git LFS)
+ * fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.1-1_armhf.deb     : Device Drivers Package   (use Git LFS)
  * fpga-soc-linux-services_0.0.9-1_armhf.deb                       : Device Services Package  (use Git LFS)
 
 #### Format SD-Card
@@ -48,7 +48,7 @@ shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/u
 shell# mkdir                                                              /mnt/usb2/home/fpga/debian
 shell# cp linux-image-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-4.14.13-armv7-fpga_4.14.13-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
-shell# cp fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.0-1_armhf.deb     /mnt/usb2/home/fpga/debian
+shell# cp fpga-soc-linux-drivers-4.14.13-armv7-fpga_0.1.1-1_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp fpga-soc-linux-services_0.0.9-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell# cp -r target/zynq-zybo/examples                                    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
