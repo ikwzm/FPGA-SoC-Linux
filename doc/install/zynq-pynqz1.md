@@ -16,7 +16,7 @@ shell$ git lfs pull
      - boot.bin                                                    : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - vmlinuz-4.14.21-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
+     - zImage-4.14.21-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.21-zynq-pynqz1.dtb                          : Linux Device Tree Blob   
      - devicetree-4.14.21-zynq-pynqz1.dts                          : Linux Device Tree Source
    + examples/                                                     : Example Programs

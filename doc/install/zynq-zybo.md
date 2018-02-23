@@ -17,7 +17,7 @@ shell$ git lfs pull
      - design_1_wrapper.bit                                        : FPGA configuration file (Xilinx Bitstream Format)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - vmlinuz-4.14.21-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
+     - zImage-4.14.21-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.21-zynq-zybo.dtb                            : Linux Device Tree Blob   
      - devicetree-4.14.21-zynq-zybo.dts                            : Linux Device Tree Source
    + examples/                                                     : Example Programs
