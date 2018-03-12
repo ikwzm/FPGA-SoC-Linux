@@ -7,7 +7,7 @@ It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
 ```console
 shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.7.0
+shell$ git checkout v0.7.1
 shell$ git lfs pull
 ```
 #### Build boot files
@@ -57,8 +57,8 @@ cp ../de0-nano-soc/u-boot/u-boot.img u-boot/u-boot.img
      - u-boot-spl.sfp                                              : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
- * linux-image-4.14.21-armv7-fpga_4.14.21-armv7-fpga-3_armhf.deb   : Linux Image Package      (use Git LFS)
- * linux-headers-4.14.21-armv7-fpga_4.14.21-armv7-fpga-3_armhf.deb : Linux Headers Package    (use Git LFS)
+ * linux-image-4.14.21-armv7-fpga_4.14.21-armv7-fpga-2_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.14.21-armv7-fpga_4.14.21-armv7-fpga-2_armhf.deb : Linux Headers Package    (use Git LFS)
  * fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.1-1_armhf.deb     : Device Drivers Package   (use Git LFS)
  * fpga-soc-linux-services_0.0.9-1_armhf.deb                       : Device Services Package  (use Git LFS)
 
@@ -83,8 +83,8 @@ shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs
 shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
 shell# mkdir                                                              /mnt/usb2/home/fpga/debian
-shell# cp linux-image-4.14.21-armv7-fpga_4.14.21-armv7-fpga-3_armhf.deb   /mnt/usb2/home/fpga/debian
-shell# cp linux-headers-4.14.21-armv7-fpga_4.14.21-armv7-fpga-3_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.14.21-armv7-fpga_4.14.21-armv7-fpga-2_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.14.21-armv7-fpga_4.14.21-armv7-fpga-2_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.1-1_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp fpga-soc-linux-services_0.0.9-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell# umount mnt/usb1
