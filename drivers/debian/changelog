@@ -1,3 +1,8 @@
+fpga-soc-linux-drivers (0.1.2-1) unstable; urgency=low
+
+  * Update udmabuf v1.1.0
+  * Update fclkcfg v1.0.0
+
 fpga-soc-linux-drivers (0.1.1-1) unstable; urgency=low
 
   * Update udmabuf v0.10.0

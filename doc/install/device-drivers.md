@@ -33,12 +33,12 @@ Setting up linux-image-4.14.21-armv7-fpga (4.14.21-armv7-fpga-2) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.1-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.2-1_armhf.deb
 Selecting previously unselected package fpga-soc-linux-drivers-4.14.21-armv7-fpga.
-(Reading database ... 62106 files and directories currently installed.)
-Preparing to unpack fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.1-1_armhf.deb ...
-Unpacking fpga-soc-linux-drivers-4.14.21-armv7-fpga (0.1.1-1) ...
-Setting up fpga-soc-linux-drivers-4.14.21-armv7-fpga (0.1.1-1) ...
+(Reading database ... 81599 files and directories currently installed.)
+Preparing to unpack fpga-soc-linux-drivers-4.14.21-armv7-fpga_0.1.2-1_armhf.deb ...
+Unpacking fpga-soc-linux-drivers-4.14.21-armv7-fpga (0.1.2-1) ...
+Setting up fpga-soc-linux-drivers-4.14.21-armv7-fpga (0.1.2-1) ...
 ```
 
 ```console
@@ -70,10 +70,10 @@ Created symlink /etc/systemd/system/multi-user.target.wants/zptty.service → /e
 ```console
 fpga@debian-fpga:~$ sudo lsmod
 Module                  Size  Used by
-zptty                  16384  0
 fclkcfg                16384  0
 udmabuf                20480  0
 dtbocfg                16384  0
+zptty                  16384  0
 ```
 
 ```console
@@ -85,7 +85,8 @@ fpga@debian-fpga:~/debian$ sudo systemctl status device-tree-overlay.service
  Main PID: 1665 (code=exited, status=0/SUCCESS)
    CGroup: /system.slice/device-tree-overlay.service
 
-Feb 21 23:03:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
+Mar 14 06:41:05 debian-fpga systemd[1]: Starting Device Tree Overlay Service..
+Mar 14 06:41:05 debian-fpga systemd[1]: Started Device Tree Overlay Service..
 ```
 
 ```console
@@ -97,8 +98,8 @@ fpga@debian-fpga:~/debian$ sudo systemctl status udmabuf.service
  Main PID: 1687 (code=exited, status=0/SUCCESS)
    CGroup: /system.slice/udmabuf.service
 
-Feb 21 23:03:06 debian-fpga systemd[1]: Started User space mappable DMA Buff....
-Hint: Some lines were ellipsized, use -l to show in full.
+Mar 14 06:41:06 debian-fpga systemd[1]: Starting User space mappable DMA Buff....
+Mar 14 06:41:06 debian-fpga systemd[1]: Started User space mappable DMA Buff....
 ```
 
 ```console
@@ -109,7 +110,20 @@ fpga@debian-fpga:~/debian$ sudo systemctl status zptty.service
   Process: 1694 ExecStart=/sbin/modprobe zptty (code=exited, status=0/SUCCESS)
  Main PID: 1694 (code=exited, status=0/SUCCESS)
 
-Feb 21 23:03:06 debian-fpga systemd[1]: Started Pseudo TTY Driver for commun....
-Hint: Some lines were ellipsized, use -l to show in full.
+Mar 14 06:42:06 debian-fpga systemd[1]: Starting Pseudo TTY Driver for commun....
+Mar 14 06:42:06 debian-fpga systemd[1]: Started Pseudo TTY Driver for commun....
+```
+
+```console
+fpga@debian-fpga:~/debian$ sudo systemctl status fpga-clock.service
+● fpga-clock.service - FPGA Clock Service.
+   Loaded: loaded (/etc/systemd/system/fpga-clock.service; enabled; vendor prese
+   Active: active (exited) since Fri 2016-11-04 02:16:45 JST; 1 years 4 months a
+  Process: 1365 ExecStart=/sbin/modprobe fclkcfg (code=exited, status=0/SUCCESS)
+ Main PID: 1365 (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/fpga-clock.service
+
+Mar 14 06:42:06 debian-fpga systemd[1]: Starting FPGA Clock Service....
+Mar 14 06:42:06 debian-fpga systemd[1]: Started FPGA Clock Service....
 ```
 
