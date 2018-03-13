@@ -1,6 +1,6 @@
 /*********************************************************************************
  *
- *       Copyright (C) 2016-2017 Ichiro Kawazome
+ *       Copyright (C) 2016-2018 Ichiro Kawazome
  *       All rights reserved.
  * 
  *       Redistribution and use in source and binary forms, with or without
@@ -44,9 +44,9 @@
 #include <linux/firmware.h>
 #include <linux/fs.h>
 #include <linux/version.h>
-#include "minor_number_allocator.h"
 
 #define DRIVER_NAME        "fclkcfg"
+#define DEVICE_MAX_NUM      32
 
 #if     (LINUX_VERSION_CODE >= 0x030B00)
 #define USE_DEV_GROUPS      1
@@ -56,6 +56,7 @@
 
 static struct class*  fclkcfg_sys_class     = NULL;
 static dev_t          fclkcfg_device_number = 0;
+static DEFINE_IDA(    fclkcfg_device_ida );
 
 /**
  * struct fclk_driver_data - Device driver structure
@@ -227,11 +228,6 @@ static const struct attribute_group* fclkcfg_attr_groups[] = {
 #endif
 
 /**
- * fclkcfg_device_minor_number_bitmap
- */
-DECLARE_MINOR_NUMBER_ALLOCATOR(fclkcfg_device, 64);
-
-/**
  * fclkcfg_platform_driver_probe() -  Probe call for the device.
  *
  * @pdev:	handle to the platform device structure.
@@ -265,7 +261,7 @@ static int fclkcfg_platform_driver_probe(struct platform_device *pdev)
      */
     dev_dbg(&pdev->dev, "get device_number start.\n");
     {
-        int minor_number = fclkcfg_device_minor_number_new();
+        int minor_number = ida_simple_get(&fclkcfg_device_ida, 0, DEVICE_MAX_NUM, GFP_KERNEL);
         if (minor_number < 0) {
             dev_err(&pdev->dev, "invalid or conflict minor number %d.\n", minor_number);
             retval = -ENODEV;
@@ -282,7 +278,7 @@ static int fclkcfg_platform_driver_probe(struct platform_device *pdev)
     {
         this->clk = of_clk_get(pdev->dev.of_node, 0);
         if (IS_ERR_OR_NULL(this->clk)) {
-            dev_err(&pdev->dev, "clk_get failed for fclk0.\n");
+            dev_err(&pdev->dev, "of_clk_get() failed.\n");
             retval = PTR_ERR(this->clk);
             this->clk = NULL;
             goto failed;
@@ -428,7 +424,7 @@ static int fclkcfg_platform_driver_probe(struct platform_device *pdev)
             this->device = NULL;
         }
         if (this->device_number){
-            fclkcfg_device_minor_number_free(MINOR(this->device_number));
+            ida_simple_remove(&fclkcfg_device_ida, MINOR(this->device_number));
             this->device_number = 0;
         }
         kfree(this);
@@ -468,7 +464,7 @@ static int fclkcfg_platform_driver_remove(struct platform_device *pdev)
         this->device = NULL;
     }
     if (this->device_number){
-        fclkcfg_device_minor_number_free(MINOR(this->device_number));
+        ida_simple_remove(&fclkcfg_device_ida, MINOR(this->device_number));
         this->device_number = 0;
     }
     kfree(this);
@@ -508,6 +504,7 @@ static void __exit fclkcfg_module_exit(void)
     if (fclkcfg_platform_driver_done ){platform_driver_unregister(&fclkcfg_platform_driver);}
     if (fclkcfg_sys_class     != NULL){class_destroy(fclkcfg_sys_class);}
     if (fclkcfg_device_number != 0   ){unregister_chrdev_region(fclkcfg_device_number, 0);}
+    ida_destroy(&fclkcfg_device_ida);
 }
 
 /**
@@ -517,7 +514,7 @@ static int __init fclkcfg_module_init(void)
 {
     int retval = 0;
 
-    fclkcfg_device_minor_number_allocator_initilize();
+    ida_init(&fclkcfg_device_ida);
 
     retval = alloc_chrdev_region(&fclkcfg_device_number, 0, 0, DRIVER_NAME);
     if (retval != 0) {
