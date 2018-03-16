@@ -27,14 +27,7 @@ shell$ git lfs pull
 
 #### Format SD-Card
 
-````console
-shell# fdisk /dev/sdc
-   :
-   :
-   :
-shell# mkfs-vfat /dev/sdc1
-shell# mkfs.ext3 /dev/sdc2
-````
+[./doc/install/format-disk-zynq.md](format-disk-zynq.md)
 
 #### Write to SD-Card
 
