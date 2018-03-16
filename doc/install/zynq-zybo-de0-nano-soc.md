@@ -64,14 +64,7 @@ cp ../de0-nano-soc/u-boot/u-boot.img u-boot/u-boot.img
 
 #### Format SD-Card
 
-````console
-shell# fdisk /dev/sdc
-   :
-   :
-   :
-shell# mkfs-vfat /dev/sdc1
-shell# mkfs.ext3 /dev/sdc2
-````
+[./doc/install/format-disk-de0-nano-soc.md](format-disk-de0-nano-soc.md)
 
 #### Write to SD-Card
 
