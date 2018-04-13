@@ -48,11 +48,11 @@ shell# mkdir                                                              /mnt/u
 shell# cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb   /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                    /mnt/usb2/home/fpga/debian
-shell$ cp dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell$ cp fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell$ cp udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell$ cp zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
-shell$ cp -r target/de0-nano-soc/examples                                 /mnt/usb2/home/fpga
+shell# cp dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
+shell# cp -r target/de0-nano-soc/examples                                 /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````

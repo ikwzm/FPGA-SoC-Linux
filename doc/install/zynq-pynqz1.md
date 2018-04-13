@@ -21,8 +21,8 @@ shell$ git lfs pull
      - devicetree-4.14.34-zynq-pynqz1.dts                          : Linux Device Tree Source
    + examples/                                                     : Example Programs
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
- * linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb   : Linux Image Package      (use Git LFS)
- * linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb : Linux Headers Package    (use Git LFS)
+ * linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
  * dtbocfg-ctrl_0.0.5-1_all.deb                                    : dtbocfg Control Pakcage  (use Git LFS)
  * dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    : dtbocfg Kernel Module    (use Git LFS)
  * fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    : fclkcfg Kernel Module    (use Git LFS)
@@ -41,8 +41,8 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-pynqz1/boot/*                                       /mnt/usb1
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
 shell# mkdir                                                              /mnt/usb2/home/fpga/debian
-shell# cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb   /mnt/usb2/home/fpga/debian
-shell# cp linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-2_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                    /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    /mnt/usb2/home/fpga/debian
 shell# cp fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
