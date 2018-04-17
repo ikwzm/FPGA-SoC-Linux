@@ -21,6 +21,12 @@ patch -p1 < ../files/linux-4.14.34-armv7-fpga-patch-usb-chipidea.diff
 git add --update
 git commit -m "patch for usb chipidea driver for issue #3"
 
+### Patch for build debian package script
+
+patch -p1 < ../files/linux-4.14.34-armv7-fpga-patch-builddeb.diff
+git add --update
+git commit -m "patch for scripts/package/builddeb to add tools/include and postinst script to header package"
+
 ### Create tag and .version
 git tag -a v4.14.34-armv7-fpga -m "release v4.14.34-armv7-fpga"
 echo 0 > .version
