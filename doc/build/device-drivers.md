@@ -1,38 +1,101 @@
 ### Build Device Drivers and Services Package
 
-There are two ways
+#### dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb
 
-1. run build-fpga-linux-driver-package.sh (easy)
-2. run this chapter step-by-step (annoying)
-
-#### Donwload Sources from github
+##### Download repository
 
 ```console
-shell$ git clone https://github.com/ikwzm/dtbocfg
-shell$ git clone https://github.com/ikwzm/fclkcfg
-shell$ git clone https://github.com/ikwzm/udmabuf
-shell$ git clone https://github.com/ikwzm/PTTY_AXI4
+shell$ git clone --recursive --depth=1 -b v0.0.5 git://github.com/ikwzm/dtbocfg-kmod-dpkg
+shell$ cd dtbocfg-kmod-dpkg
+```
+##### Cross Compile for linux-4.14.34-armv7-fpga
+
+```console
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.14.34-armv7-fpga kernel_src_dir=../../linux-4.14.34-armv7-fpga binary
+    :
+    :
+    :
+shell$ file ../dtbocfg-4.14.21-armv7-fpga_1.1.0-1_armhf.deb
+../dtbocfg-4.14.21-armv7-fpga_1.1.0-1_armhf.deb: Debian binary package (format 2.0)
 ```
 
-#### Copy Source Files to drivers/
+#### udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb
+
+##### Download repository
 
 ```console
-shell$ git archive --remote dtbocfg   --prefix=dtbocfg/  --format=tar v0.0.3  | tar xf - -C drivers
-shell$ git archive --remote fclkcfg   --prefix=fclkcfg/  --format=tar v1.0.0  | tar xf - -C drivers
-shell$ git archive --remote udmabuf   --prefix=udmabuf/  --format=tar v1.1.0  | tar xf - -C drivers
-shell$ cd PTTY_AXI4; git checkout v1.0.0; cp -r src/drivers/zptty ../drivers; cd ..
+shell$ git clone --recursive --depth=1 -b v1.1.0 git://github.com/ikwzm/udmabuf-kmod-dpkg
+shell$ cd udmabuf-kmod-dpkg
 ```
 
-#### Build Device Driver debian package
+##### Cross Compile for linux-4.14.34-armv7-fpga
 
 ```console
-shell$ cd drivers
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.14.21-armv7-fpga kernel_src_dir=../../linux-4.14.21-armv7-fpga binary
+    :
+    :
+    :
+shell$ file ../udmabuf-4.14.21-armv7-fpga_1.1.0-1_armhf.deb
+../udmabuf-4.14.21-armv7-fpga_1.1.0-1_armhf.deb: Debian binary package (format 2.0)
+```
+
+#### fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
+
+##### Download repository
+
+```console
+shell$ git clone --recursive --depth=1 -b v1.0.0 git://github.com/ikwzm/fclkcfg-kmod-dpkg
+shell$ cd fclkcfg-kmod-dpkg
+```
+
+##### Cross Compile for linux-4.14.34-armv7-fpga
+
+```console
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.14.21-armv7-fpga kernel_src_dir=../../linux-4.14.21-armv7-fpga binary
+    :
+    :
+    :
+shell$ file ../fclkcfg-4.14.21-armv7-fpga_1.0.0-1_armhf.deb
+../fclkcfg-4.14.21-armv7-fpga_1.0.0-1_armhf.deb: Debian binary package (format 2.0)
+```
+
+#### zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
+
+##### Download repository
+
+```console
+shell$ git clone --recursive --depth=1 -b v1.0.0 git://github.com/ikwzm/zptty-kmod-dpkg
+shell$ cd zptty-kmod-dpkg
+```
+
+##### Cross Compile for linux-4.14.34-armv7-fpga
+
+```console
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.14.21-armv7-fpga kernel_src_dir=../../linux-4.14.21-armv7-fpga binary
+    :
+    :
+    :
+shell$ file ../zptty-4.14.21-armv7-fpga_1.0.0-1_armhf.deb
+../zptty-4.14.21-armv7-fpga_1.0.0-1_armhf.deb: Debian binary package (format 2.0)
+```
+
+#### dtbocfg-ctrl_0.0.5-1_all.deb
+
+##### Download repository
+
+```console
+shell$ git clone --recursive --depth=1 -b v0.0.5 git://github.com/ikwzm/dtbocfg-ctrl-dpkg
+shell$ cd dtbocfg-ctrl-dpkg
+```
+
+##### Build
+
+```console
 shell$ sudo debian/rules binary
+    :
+    :
+    :
+shell$ file ../dtbocfg-ctrl_0.0.5-1_all.deb 
+../dtbocfg-ctrl_0.0.5-1_all.deb: Debian binary package (format 2.0)
 ```
 
-#### Build Device Services debian package
-
-```console
-shell$ cd services
-shell$ sudo debian/rules binary
-```
