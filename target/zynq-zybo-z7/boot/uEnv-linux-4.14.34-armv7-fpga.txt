@@ -1,3 +1,9 @@
+########################################################################
+#uenv: config_name   = zynq_zybo_z7
+#uenv: menu_title    = Boot linux-4.14.34-armv7-fpga
+#uenv: menu_priority = -1
+########################################################################
+
 linux_kernel_image=zImage-4.14.34-armv7-fpga
 linux_fdt_image=devicetree-4.14.34-zynq-zybo-z7.dtb
 linux_boot_args=console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
@@ -6,6 +12,4 @@ linux_load_cmd=fatload mmc 0 ${kernel_addr_r} ${linux_kernel_image} && fatload m
 linux_boot_cmd=setenv bootargs ${linux_boot_args} && bootz ${kernel_addr_r} - ${fdt_addr_r}
 
 uenvcmd=run linux_load_cmd && run linux_boot_cmd
-
-bootmenu_0=Boot linux-4.14.34-armv7-fpga=boot
 
