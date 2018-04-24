@@ -22,7 +22,7 @@ root@debian-fpga:~#
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
 Selecting previously unselected package linux-image-4.14.34-armv7-fpga.
 (Reading database ... 94098 files and directories currently installed.)
 Preparing to unpack linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb ...
@@ -34,7 +34,7 @@ Setting up linux-image-4.14.34-armv7-fpga (4.14.34-armv7-fpga-1) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb
 Selecting previously unselected package dtbocfg-4.14.34-armv7-fpga.
 (Reading database ... 94204 files and directories currently installed.)
 Preparing to unpack dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb ...
@@ -46,7 +46,7 @@ Setting up dtbocfg-4.14.34-armv7-fpga (0.0.5-1) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
 Selecting previously unselected package fclkcfg-4.14.34-armv7-fpga.
 (Reading database ... 94210 files and directories currently installed.)
 Preparing to unpack fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb ...
@@ -58,7 +58,7 @@ Setting up fclkcfg-4.14.34-armv7-fpga (1.0.0-1) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb
 Selecting previously unselected package udmabuf-4.14.34-armv7-fpga.
 (Reading database ... 94215 files and directories currently installed.)
 Preparing to unpack udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb ...
@@ -70,7 +70,7 @@ Setting up udmabuf-4.14.34-armv7-fpga (1.1.0-1) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~$ sudo dpkg -i zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb
 Selecting previously unselected package zptty-4.14.34-armv7-fpga.
 (Reading database ... 94220 files and directories currently installed.)
 Preparing to unpack zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb ...
@@ -81,7 +81,8 @@ Setting up zptty-4.14.34-armv7-fpga (1.0.0-1) ...
 #### Install dtbocfg control package
 
 ```console
-dpkg -i dtbocfg-ctrl_0.0.5-1_all.deb
+fpga@debian-fpga:~$ cd /home/fpga/debian
+fpga@debian-fpga:~/debian$ sudo dpkg -i dtbocfg-ctrl_0.0.5-1_all.deb
 (Reading database ... 94225 files and directories currently installed.)
 Preparing to unpack dtbocfg-ctrl_0.0.5-1_all.deb ...
 Removed /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service.
