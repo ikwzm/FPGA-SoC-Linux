@@ -1,30 +1,33 @@
-if test $config = "zynq-zybo"; then
-    echo "Configuration for " $config
-    boot_image=zImage-$kernel_version-armv7-fpga
-    fdt_image=devicetree-$kernel_version-zynq-zybo.dtb
-    fpga_image=design_1_wrapper.bit
+if test $config_name = "zynq_zybo"; then
+    echo "Configuration for " $config_name
+    env set linux_kernel_image     zImage-$kernel_version-armv7-fpga
+    env set linux_fdt_image        devicetree-$kernel_version-zynq-zybo.dtb
+    env set linux_boot_args        console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
+    env set linux_kernel_load_cmd  fatload mmc 0 $kernel_addr_r $linux_kernel_image
+    env set linux_fdt_load_cmd     fatload mmc 0 $fdt_addr_r    $linux_fdt_image
+    env set linux_boot_cmd         bootz $kernel_addr_r - $fdt_addr_r
+    env set fpga_image             design_1_wrapper.bit
     if  fatload mmc 0 0x03000000 $fpga_image; then
         fpga loadb  0 0x03000000 $filesize
         mw.l 0xF8000008 0xDF0D
         mw.l 0xF8000170 0x00100A00
         mw.l 0xF8000004 0x767B
     fi
-    fatload mmc 0 0x03000000 $boot_image
-    fatload mmc 0 0x02A00000 $fdt_image
-    setenv bootargs console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
-    bootz 0x03000000 - 0x02A00000
+    env run linux_kernel_load_cmd && env run linux_fdt_load_cmd && env set bootargs $linux_boot_args && env run linux_boot_cmd
 fi
-if test $config = "socfpga_cyclone5_de0_nano_soc"; then
-    echo "Configuration for " $config
-    boot_image=zImage-$kernel_version-armv7-fpga
-    fdt_image=devicetree-$kernel_version-socfpga.dtb
-    fpga_image=DE0_NANO_SOC.rbf
+if test $config_name = "socfpga_de0_nano_soc"; then
+    echo "Configuration for " $config_name
+    env set linux_kernel_image     zImage-$kernel_version-armv7-fpga
+    env set linux_fdt_image        devicetree-$kernel_version-socfpga.dtb
+    env set linux_boot_args        console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
+    env set linux_kernel_load_cmd  fatload mmc 0 $kernel_addr_r $linux_kernel_image
+    env set linux_fdt_load_cmd     fatload mmc 0 $fdt_addr_r    $linux_fdt_image
+    env set linux_boot_cmd         bootz $kernel_addr_r - $fdt_addr_r
+    env set fpga_image             DE0_NANO_SOC.rbf
     if  fatload mmc 0 $fpgadata $fpga_image; then
         fpga load 0   $fpgadata $filesize
         bridge enable
     fi
-    fatload mmc 0 $loadaddr $boot_image
-    fatload mmc 0 $fdt_addr $fdt_image
-    setenv bootargs console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
-    bootz $loadaddr - $fdt_addr
+    env run linux_kernel_load_cmd && env run linux_fdt_load_cmd && env set bootargs $linux_boot_args && env run linux_boot_cmd
 fi
+
