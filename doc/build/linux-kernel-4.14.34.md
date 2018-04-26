@@ -109,3 +109,13 @@ shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-s
 shell$ ./scripts/dtc/dtc -I dtb -O dts -o ../target/de0-nano-soc/boot/devicetree-4.14.34-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
 ```
 
+#### Copy zImage and devicetree to tareget/de10-nano/boot/
+
+```console
+shell$ cp arch/arm/boot/zImage                              ../target/de10-nano/boot/zImage-4.14.34-armv7-fpga
+shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de10-nano/boot/devicetree-4.14.34-socfpga.dtb
+shell$ ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-4.14.34-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
+```
+
+
+
