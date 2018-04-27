@@ -3,9 +3,8 @@
 #### Downlowd from github
 
 ```console
-shell$ git clone git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v0.8.0 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
-shell$ git checkout v0.8.0
 shell$ git lfs pull
 ```
 
