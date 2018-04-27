@@ -59,8 +59,8 @@ dpkg-reconfigure tzdata
 #### Setup fstab
 
 cat <<EOT > /etc/fstab
-/dev/mmcblk0p1	/boot	auto		defaults	0	0
-none		/config	configfs	defaults	0	0
+/dev/mmcblk0p1	/mnt/boot	auto		defaults	0	0
+none		/config		configfs	defaults	0	0
 EOT
 
 #### Setup Network Interface
@@ -91,7 +91,7 @@ apt-get install -y ruby ruby-msgpack ruby-serialport
 gem install rake
 
 apt-get install -y python  python-dev  python-setuptools  python-wheel  python-pip
-apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip
+apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip python3-numpy
 pip3 install msgpack-rpc-python
 
 #### Install Device Tree Compiler (supported symbol version)
@@ -113,13 +113,8 @@ apt-get install -y samba
 
 #### Install Linux Modules
 
-mv    boot boot.org
-mkdir boot
-dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
-dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
-rm    boot/*
-rmdir boot
-mv    boot.org boot
+mkdir /mnt/boot
+dpkg -i linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
 
 #### Clean Cache
 
