@@ -16,8 +16,7 @@ shell$ sudo debootstrap --arch=armhf --foreign $distro                         $
 shell$ sudo cp /usr/bin/qemu-arm-static                                        $targetdir/usr/bin
 shell$ sudo cp /etc/resolv.conf                                                $targetdir/etc
 shell$ sudo cp scripts/build-debian9-rootfs-with-qemu.sh                       $targetdir
-shell$ sudo cp linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb   $targetdir
-shell$ sudo cp linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb $targetdir
+shell$ sudo cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   $targetdir
 ````
 
 #### Build debian9-rootfs with QEMU
@@ -130,8 +129,8 @@ debian9-rootfs# dpkg-reconfigure -f noninteractive tzdata
 
 ```console
 debian9-rootfs# cat <<EOT > /etc/fstab
-/dev/mmcblk0p1	/boot	auto		defaults	0	0
-none		/config	configfs	defaults	0	0
+/dev/mmcblk0p1	/mnt/boot	auto		defaults	0	0
+none		/config		configfs	defaults	0	0
 EOT
 ````
 
@@ -169,7 +168,7 @@ debian9-rootfs# apt-get install -y socat
 debian9-rootfs# apt-get install -y ruby ruby-msgpack ruby-serialport
 debian9-rootfs# gem install rake
 debian9-rootfs# apt-get install -y python  python-dev  python-setuptools  python-wheel  python-pip
-debian9-rootfs# apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip
+debian9-rootfs# apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip python3-numpy
 debian9-rootfs# pip3 install msgpack-rpc-python
 ```
 
@@ -194,16 +193,11 @@ debian9-rootfs# apt-get install -y samba
 debian9-rootfs# apt-get install -y avahi-daemon
 ```
 
-##### Install Linux Header and Modules
+##### Install Linux Modules
 
 ```console
-debian9-rootfs# mv    boot boot.org
-debian9-rootfs# mkdir boot
-debian9-rootfs# dpkg -i linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
-debian9-rootfs# dpkg -i linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
-debian9-rootfs# rm    boot/*
-debian9-rootfs# rmdir boot
-debian9-rootfs# mv    boot.org boot
+debian9-rootfs# mkdir /mnt/boot
+debian9-rootfs# dpkg -i linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
 ```
 
 ##### Clean Cache
@@ -224,8 +218,7 @@ debian9-rootfs# dpkg -l > dpkg-list.txt
 debian9-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian9-rootfs-with-qemu.sh
-shell$ sudo rm -f $targetdir/linux-image-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
-shell$ sudo rm -f $targetdir/linux-headers-4.12.14-armv7-fpga_4.12.14-armv7-fpga-3_armhf.deb
+shell$ sudo rm -f $targetdir/linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
 shell$ sudo mv    $targetdir/dpkg-list.txt files/dpkg-list.txt
 ```
 
