@@ -1,6 +1,7 @@
-### Upgrade to v0.8.0 from previous version
+Upgrade to v0.8.0 from previous version
+------------------------------------------------------------------------------------
 
-#### Boot and login root user
+### Boot and login root user
 
 root'password is "admin"
 
@@ -10,7 +11,9 @@ Password:
 root@debian-fpga:~#
 ```
 
-#### Move Boot Partition mount point from /boot to /mnt/boot
+### Move Boot Partition mount point from /boot to /mnt/boot
+
+#### Move Boot Partition mount point
 
 ```console
 root@debian-fpga:~# sudo unmount /boot
@@ -31,7 +34,7 @@ root@debian-fpga:~# sudo cp /mnt/boot/* /boot
 none		/config		configfs	defaults	0	0
 ```
 
-#### Remove Old Services Package
+### Remove Old Services Package
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-services
@@ -48,39 +51,39 @@ Removed /etc/systemd/system/multi-user.target.wants/device-tree-overlay.service.
 [   54.688334] systemd[1]: apt-daily.timer: Adding 6h 36min 45.912649s random time.
 ```
 
-#### Remove Old Device Drivers
+### Remove Old Device Drivers
 
-##### Remove Old Device Drivers from Release 0.7.x
+#### Remove Old Device Drivers from Release 0.7.x
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-drivers-4.14.21-armv7-fpga
 ```
 
-##### Remove Old Device Drivers from Release 0.6.x
+#### Remove Old Device Drivers from Release 0.6.x
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-drivers-4.14.13-armv7-fpga
 ```
 
-##### Remove Old Device Drivers from Release 0.5.x
+#### Remove Old Device Drivers from Release 0.5.x
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-drivers-4.12.14-armv7-fpga
 ```
 
-##### Remove Old Device Drivers from Release 0.4.x
+#### Remove Old Device Drivers from Release 0.4.x
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-drivers-4.12.13-armv7-fpga
 ```
 
-##### Remove Old Device Drivers from Release 0.3.x
+#### Remove Old Device Drivers from Release 0.3.x
 
 ```console
 root@debian-fpga:~# dpkg --remove fpga-soc-linux-drivers-4.8.17-armv7-fpga
 ```
 
-#### Download FPGA-SoC-Linux v0.8.0
+### Download FPGA-SoC-Linux v0.8.0
 
 ```console
 root@debian-fpga:~# git clone --depth=1 --branch v0.8.0 git://github.com/ikwzm/FPGA-SoC-Linux
@@ -88,33 +91,33 @@ root@debian-fpga:~# cd FPGA-SoC-Linux
 root@debian-fpga:~/FPGA-SoC-Linux# git lfs pull
 ```
 
-#### Copy Debian Packages to /home/fpga/debian
+### Copy Debian Packages to /home/fpga/debian
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp *.deb /home/fpga/debian
 ```
 
-#### Install files for Booting
+### Install files for Booting
 
-##### ZYBO
+#### ZYBO
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp target/zynq-zybo/boot/*    /mnt/boot
 ```
 
-##### PYNQ
+#### PYNQ
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp target/zynq-pynqzq/boot/*  /mnt/boot
 ```
 
-##### ZYBO-Z7
+#### ZYBO-Z7
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp target/zynq-zybo-z7/boot/* /mnt/boot
 ```
 
-##### DE0-Nano-SoC
+#### DE0-Nano-SoC
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp target/de0-nano-soc/boot/* /mnt/boot
@@ -122,7 +125,7 @@ root@debian-fpga:~/FPGA-SoC-Linux# dd if=target/de0-nano-soc/u-boot/u-boot-spl.s
 root@debian-fpga:~/FPGA-SoC-Linux# dd if=target/de0-nano-soc/u-boot/u-boot.img     of=/dev/mmcblk0p3 bs=64k seek=4
 ```
 
-##### DE10-Nano
+#### DE10-Nano
 
 ```console
 root@debian-fpga:~/FPGA-SoC-Linux# cp target/de10-nano/boot/* /mnt/boot
@@ -130,7 +133,7 @@ root@debian-fpga:~/FPGA-SoC-Linux# dd if=target/de10-nano/u-boot/u-boot-spl.sfp 
 root@debian-fpga:~/FPGA-SoC-Linux# dd if=target/de10-nano/u-boot/u-boot.img     of=/dev/mmcblk0p3 bs=64k seek=4
 ```
 
-#### Install Kernel Image and Device Drivers
+### Install Kernel Image and Device Drivers
 
-./doc/install/device-drivers.md
+[doc/install/device-drivers.md](device-drivers.md)
 
