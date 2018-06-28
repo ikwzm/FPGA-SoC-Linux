@@ -286,10 +286,10 @@ index e40cafc..6e39e57 100644
  &gem0 {
 diff --git a/arch/arm/configs/armv7_fpga_defconfig b/arch/arm/configs/armv7_fpga_defconfig
 new file mode 100644
-index 0000000..3fcbdd3
+index 0000000..04f10fa
 --- /dev/null
 +++ b/arch/arm/configs/armv7_fpga_defconfig
-@@ -0,0 +1,4706 @@
+@@ -0,0 +1,4707 @@
 +#
 +# Automatically generated file; DO NOT EDIT.
 +# Linux/arm 4.12.14 Kernel Configuration
@@ -4375,6 +4375,7 @@ index 0000000..3fcbdd3
 +#
 +CONFIG_FPGA=y
 +CONFIG_FPGA_REGION=y
++CONFIG_OF_FPGA_REGION=y
 +# CONFIG_FPGA_MGR_ICE40_SPI is not set
 +CONFIG_FPGA_MGR_SOCFPGA=y
 +# CONFIG_FPGA_MGR_SOCFPGA_A10 is not set
