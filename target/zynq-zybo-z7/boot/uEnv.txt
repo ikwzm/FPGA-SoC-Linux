@@ -1,4 +1,4 @@
-linux_kernel_image=zImage-4.16.18-armv7-fpga
+linux_kernel_image=vmlinuz-4.16.18-armv7-fpga
 linux_fdt_image=devicetree-4.16.18-zynq-zybo-z7.dtb
 linux_boot_args=console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
 
