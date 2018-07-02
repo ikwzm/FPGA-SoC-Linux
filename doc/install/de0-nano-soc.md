@@ -3,7 +3,7 @@
 #### Downlowd from github
 
 ```console
-shell$ git clone --depth=1 --branch v0.8.0 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v0.8.1 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
@@ -14,7 +14,7 @@ shell$ git lfs pull
    + boot/
      - DE0_NANO_SOC.rbf                                            : FPGA configuration file  (Raw Binary Format)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - zImage-4.14.34-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
+     - vmlinuz-4.14.34-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.34-socfpga.dtb                              : Linux Device Tree Blob   
      - devicetree-4.14.34-socfpga.dts                              : Linux Device Tree Source
    + u-boot/

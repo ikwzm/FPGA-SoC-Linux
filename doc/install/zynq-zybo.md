@@ -3,7 +3,7 @@
 #### Downlowd from github
 
 ```console
-shell$ git clone --depth=1 --branch v0.8.0 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v0.8.1 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
@@ -16,7 +16,7 @@ shell$ git lfs pull
      - design_1_wrapper.bit                                        : FPGA configuration file (Xilinx Bitstream Format)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - zImage-4.14.34-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
+     - vmlinuz-4.14.34-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.34-zynq-zybo.dtb                            : Linux Device Tree Blob   
      - devicetree-4.14.34-zynq-zybo.dts                            : Linux Device Tree Source
    + examples/                                                     : Example Programs

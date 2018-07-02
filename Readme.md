@@ -54,7 +54,7 @@ Install
   + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
 * [Upgrade to v0.5.4 from v0.5.3](doc/install/upgrade-v0.5.4.md)
-* [Upgrade to v0.8.0 from previous version](doc/install/upgrade-v0.8.0.md)
+* [Upgrade to v0.8.1 from previous version](doc/install/upgrade-v0.8.1.md)
 
 Tutorial
 ------------------------------------------------------------------------------------
