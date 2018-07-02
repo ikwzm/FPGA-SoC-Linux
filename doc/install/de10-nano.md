@@ -13,7 +13,7 @@ shell$ git lfs pull
  * target/de10-nano/
    + boot/
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - zImage-4.14.34-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
+     - vmlinuz-4.14.34-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.34-socfpga.dtb                              : Linux Device Tree Blob   
      - devicetree-4.14.34-socfpga.dts                              : Linux Device Tree Source
    + u-boot/

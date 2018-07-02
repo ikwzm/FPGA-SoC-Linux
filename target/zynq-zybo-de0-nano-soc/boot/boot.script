@@ -1,6 +1,6 @@
 if test $config_name = "zynq_zybo"; then
     echo "Configuration for " $config_name
-    env set linux_kernel_image     zImage-$kernel_version-armv7-fpga
+    env set linux_kernel_image     vmlinuz-$kernel_version-armv7-fpga
     env set linux_fdt_image        devicetree-$kernel_version-zynq-zybo.dtb
     env set linux_boot_args        console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
     env set linux_kernel_load_cmd  fatload mmc 0 $kernel_addr_r $linux_kernel_image
@@ -17,7 +17,7 @@ if test $config_name = "zynq_zybo"; then
 fi
 if test $config_name = "socfpga_de0_nano_soc"; then
     echo "Configuration for " $config_name
-    env set linux_kernel_image     zImage-$kernel_version-armv7-fpga
+    env set linux_kernel_image     vmlinuz-$kernel_version-armv7-fpga
     env set linux_fdt_image        devicetree-$kernel_version-socfpga.dtb
     env set linux_boot_args        console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
     env set linux_kernel_load_cmd  fatload mmc 0 $kernel_addr_r $linux_kernel_image

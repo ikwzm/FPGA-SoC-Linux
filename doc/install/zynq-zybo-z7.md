@@ -15,7 +15,7 @@ shell$ git lfs pull
      - boot.bin                                                    : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                    : U-Boot environment variables for linux boot
-     - zImage-4.14.34-armv7-fpga                                   : Linux Kernel Image       (use Git LFS)
+     - vmlinuz-4.14.34-armv7-fpga                                  : Linux Kernel Image       (use Git LFS)
      - devicetree-4.14.34-zynq-zybo-z7.dtb                         : Linux Device Tree Blob   
      - devicetree-4.14.34-zynq-zybo-z7.dts                         : Linux Device Tree Source
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
