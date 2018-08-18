@@ -3,7 +3,7 @@
 #### Downlowd from github
 
 ```console
-shell$ git clone --depth=1 --branch v0.8.1 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v0.8.2 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
@@ -24,9 +24,9 @@ shell$ git lfs pull
  * linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
  * linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
  * dtbocfg-ctrl_0.0.5-1_all.deb                                    : dtbocfg Control Pakcage  (use Git LFS)
- * dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    : dtbocfg Kernel Module    (use Git LFS)
- * fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    : fclkcfg Kernel Module    (use Git LFS)
- * udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    : udmabuf Kernel Module    (use Git LFS)
+ * dtbocfg-4.14.34-armv7-fpga_0.0.6-1_armhf.deb                    : dtbocfg Kernel Module    (use Git LFS)
+ * fclkcfg-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    : fclkcfg Kernel Module    (use Git LFS)
+ * udmabuf-4.14.34-armv7-fpga_1.2.3-1_armhf.deb                    : udmabuf Kernel Module    (use Git LFS)
  * zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      : zptty   Kernel Module    (use Git LFS)
 
 #### Format SD-Card
@@ -44,9 +44,9 @@ shell# mkdir                                                              /mnt/u
 shell# cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                    /mnt/usb2/home/fpga/debian
-shell# cp dtbocfg-4.14.34-armv7-fpga_0.0.5-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell# cp fclkcfg-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell# cp udmabuf-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp dtbocfg-4.14.34-armv7-fpga_0.0.6-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp fclkcfg-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp udmabuf-4.14.34-armv7-fpga_1.2.3-1_armhf.deb                    /mnt/usb2/home/fpga/debian
 shell# cp zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
 shell# cp -r target/zynq-zybo/examples                                    /mnt/usb2/home/fpga
 shell# umount mnt/usb1
