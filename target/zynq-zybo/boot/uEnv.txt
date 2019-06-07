@@ -1,5 +1,5 @@
-linux_kernel_image=vmlinuz-4.14.34-armv7-fpga
-linux_fdt_image=devicetree-4.14.34-zynq-zybo.dtb
+linux_kernel_image=vmlinuz-4.14.123-armv7-fpga
+linux_fdt_image=devicetree-4.14.123-zynq-zybo.dtb
 linux_boot_args=console=ttyPS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
 
 fpga_load_cmd=fatload mmc 0 0x03000000 design_1_wrapper.bit && fpga loadb 0 0x03000000 $filesize
@@ -12,5 +12,5 @@ linux_boot_cmd=setenv bootargs ${linux_boot_args} && bootz ${kernel_addr_r} - ${
 
 uenvcmd=run fpga_load_cmd && run fpga_set_cmd && run linux_load_cmd && run linux_boot_cmd
 
-bootmenu_0=Boot linux-4.14.34-armv7-fpga with FPGA program=boot
+bootmenu_0=Boot linux-4.14.123-armv7-fpga with FPGA program=boot
 

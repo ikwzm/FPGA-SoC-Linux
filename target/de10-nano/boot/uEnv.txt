@@ -1,5 +1,5 @@
-linux_kernel_image=vmlinuz-4.14.34-armv7-fpga
-linux_fdt_image=devicetree-4.14.34-socfpga.dtb
+linux_kernel_image=vmlinuz-4.14.123-armv7-fpga
+linux_fdt_image=devicetree-4.14.123-socfpga.dtb
 linux_boot_args=console=ttyS0,115200 root=/dev/mmcblk0p2 rw rootwait uio_pdrv_genirq.of_id=generic-uio
 
 linux_load_cmd=fatload mmc 0 ${loadaddr} ${linux_kernel_image} && fatload mmc 0 ${fdt_addr} ${linux_fdt_image}
@@ -7,5 +7,5 @@ linux_boot_cmd=setenv bootargs ${linux_boot_args} && bootz ${loadaddr} - ${fdt_a
 
 uenvcmd=run linux_load_cmd && run linux_boot_cmd
 
-bootmenu_0=Boot linux-4.14.34-armv7-fpga=boot
+bootmenu_0=Boot linux-4.14.123-armv7-fpga=boot
 

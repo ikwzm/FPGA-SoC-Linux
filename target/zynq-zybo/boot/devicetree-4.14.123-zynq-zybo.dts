@@ -193,6 +193,7 @@
 			clock-names = "uart_clk", "pclk";
 			reg = <0xe0001000 0x1000>;
 			interrupts = <0x0 0x32 0x4>;
+			clock-frequency = <0x1c2000>;
 			linux,phandle = <0x15>;
 			phandle = <0x15>;
 		};

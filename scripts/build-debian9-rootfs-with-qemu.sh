@@ -86,6 +86,7 @@ apt-get install -y firmware-ralink
 apt-get install -y build-essential
 apt-get install -y git
 apt-get install -y u-boot-tools
+apt-get install -y libssl-dev
 apt-get install -y socat
 apt-get install -y ruby ruby-msgpack ruby-serialport
 gem install rake
@@ -96,7 +97,7 @@ pip3 install msgpack-rpc-python
 
 #### Install Device Tree Compiler (supported symbol version)
 
-apt-get install -y flex bison
+apt-get install -y flex bison pkg-config
 cd root
 mkdir src
 cd src
@@ -114,9 +115,12 @@ apt-get install -y samba
 #### Install Linux Modules
 
 mkdir /mnt/boot
-dpkg -i linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb
+dpkg -i linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb
 
 #### Clean Cache
 
 apt-get clean
 
+#### Create Debian Package List
+
+dpkg -l > dpkg-list.txt

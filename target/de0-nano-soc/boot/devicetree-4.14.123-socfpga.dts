@@ -560,8 +560,8 @@
 					compatible = "altr,socfpga-gate-clk";
 					clocks = <0xb 0x19 0x1a>;
 					clk-gate = <0xa0 0x9>;
-					linux,phandle = <0x46>;
-					phandle = <0x46>;
+					linux,phandle = <0x30>;
+					phandle = <0x30>;
 				};
 
 				nand_clk {
@@ -570,8 +570,8 @@
 					clocks = <0xb 0x19 0x1a>;
 					clk-gate = <0xa0 0xa>;
 					fixed-divider = <0x4>;
-					linux,phandle = <0x30>;
-					phandle = <0x30>;
+					linux,phandle = <0x46>;
+					phandle = <0x46>;
 				};
 
 				qspi_clk {
@@ -924,7 +924,7 @@
 		nand@ff900000 {
 			#address-cells = <0x1>;
 			#size-cells = <0x1>;
-			compatible = "denali,denali-nand-dt";
+			compatible = "altr,socfpga-denali-nand";
 			reg = <0xff900000 0x100000 0xffb80000 0x10000>;
 			reg-names = "nand_data", "denali_reg";
 			interrupts = <0x0 0x90 0x4>;
@@ -1023,7 +1023,7 @@
 		timer@fffec600 {
 			compatible = "arm,cortex-a9-twd-timer";
 			reg = <0xfffec600 0x100>;
-			interrupts = <0x1 0xd 0xf04>;
+			interrupts = <0x1 0xd 0xf01>;
 			clocks = <0x34>;
 		};
 
@@ -1077,6 +1077,7 @@
 			dmas = <0x35 0x1c 0x35 0x1d>;
 			dma-names = "tx", "rx";
 			status = "okay";
+			clock-frequency = <0x1c2000>;
 			linux,phandle = <0x62>;
 			phandle = <0x62>;
 		};
