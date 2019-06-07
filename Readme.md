@@ -22,7 +22,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
   + Enable bootmenu
-* Linux Kernel Version v4.14.34
+* Linux Kernel Version v4.14.123
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
@@ -77,7 +77,7 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build U-boot for DE10-Nano](doc/build/u-boot-de10-nano.md)
-* [Build Linux Kernel](doc/build/linux-kernel-4.14.34.md)
+* [Build Linux Kernel](doc/build/linux-kernel-4.14.123.md)
 * [Build Debian9 RootFS](doc/build/debian9-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
