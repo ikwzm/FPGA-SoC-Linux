@@ -19,12 +19,12 @@ shell$ file ../dtbocfg-4.19.57-armv7-fpga_0.0.7-1_armhf.deb
 ../dtbocfg-4.19.57-armv7-fpga_0.0.7-1_armhf.deb: Debian binary package (format 2.0)
 ```
 
-#### udmabuf-4.19.57-armv7-fpga_1.4.1-1_armhf.deb 
+#### udmabuf-4.19.57-armv7-fpga_1.4.2-0_armhf.deb 
 
 ##### Download repository
 
 ```console
-shell$ git clone --recursive --depth=1 -b v1.4.1 git://github.com/ikwzm/udmabuf-kmod-dpkg
+shell$ git clone --recursive --depth=1 -b v1.4.2 git://github.com/ikwzm/udmabuf-kmod-dpkg
 shell$ cd udmabuf-kmod-dpkg
 ```
 
@@ -35,8 +35,8 @@ shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.19.57-armv7-fp
     :
     :
     :
-shell$ file ../udmabuf-4.19.57-armv7-fpga_1.4.1-1_armhf.deb 
-../udmabuf-4.19.57-armv7-fpga_1.4.1-1_armhf.deb: Debian binary package (format 2.0)
+shell$ file ../udmabuf-4.19.57-armv7-fpga_1.4.2-0_armhf.deb 
+../udmabuf-4.19.57-armv7-fpga_1.4.2-0_armhf.deb: Debian binary package (format 2.0)
 ```
 
 #### fclkcfg-4.19.57-armv7-fpga_1.1.0-1_armhf.deb
