@@ -5,7 +5,7 @@ It corresponds to boot of both ZYBO and DE0-Nano-SoC in one SD-Card.
 #### Downlowd from github
 
 ```console
-shell$ git clone --depth=1 --branch v0.8.2 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v1.0.0 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
@@ -23,14 +23,14 @@ Load Address: 00000000
 Entry Point:  00000000
 Contents:
    Image 0: 1870 Bytes = 1.83 kB = 0.00 MB
-cp ../zynq-zybo/boot/vmlinuz-4.14.34-armv7-fpga boot/vmlinuz-4.14.34-armv7-fpga
+cp ../zynq-zybo/boot/vmlinuz-4.19.57-armv7-fpga boot/vmlinuz-4.19.57-armv7-fpga
 cp ../zynq-zybo/boot/boot.bin boot/boot.bin
 cp ../zynq-zybo/boot/design_1_wrapper.bit boot/design_1_wrapper.bit
-cp ../zynq-zybo/boot/devicetree-4.14.34-zynq-zybo.dtb boot/devicetree-4.14.34-zynq-zybo.dtb
-cp ../zynq-zybo/boot/devicetree-4.14.34-zynq-zybo.dts boot/devicetree-4.14.34-zynq-zybo.dts
+cp ../zynq-zybo/boot/devicetree-4.19.57-zynq-zybo.dtb boot/devicetree-4.19.57-zynq-zybo.dtb
+cp ../zynq-zybo/boot/devicetree-4.19.57-zynq-zybo.dts boot/devicetree-4.19.57-zynq-zybo.dts
 cp ../zynq-zybo/boot/u-boot.img boot/u-boot.img
-cp ../de0-nano-soc/boot/devicetree-4.14.34-socfpga.dtb boot/devicetree-4.14.34-socfpga.dtb
-cp ../de0-nano-soc/boot/devicetree-4.14.34-socfpga.dts boot/devicetree-4.14.34-socfpga.dts
+cp ../de0-nano-soc/boot/devicetree-4.19.57-socfpga.dtb boot/devicetree-4.19.57-socfpga.dtb
+cp ../de0-nano-soc/boot/devicetree-4.19.57-socfpga.dts boot/devicetree-4.19.57-socfpga.dts
 cp ../de0-nano-soc/boot/DE0_NANO_SOC.rbf boot/DE0_NANO_SOC.rbf
 cp ../de0-nano-soc/u-boot/u-boot-spl.sfp u-boot/u-boot-spl.sfp
 cp ../de0-nano-soc/u-boot/u-boot.img u-boot/u-boot.img
@@ -56,13 +56,13 @@ cp ../de0-nano-soc/u-boot/u-boot.img u-boot/u-boot.img
      - u-boot-spl.sfp                                              : Stage 1 Boot Loader      (for DE0-Nano-SoC U-boot-spl)
      - u-boot.img                                                  : Stage 2 Boot Loader      (for DE0-Nano-SoC U-boot image)
  * debian9-rootfs-vanilla.tgz                                      : Debian9 Root File System (use Git LFS)
- * linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   : Linux Image Package      (use Git LFS)
- * linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb : Linux Headers Package    (use Git LFS)
+ * linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   : Linux Image Package      (use Git LFS)
+ * linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb : Linux Headers Package    (use Git LFS)
  * dtbocfg-ctrl_0.0.5-1_all.deb                                    : dtbocfg Control Pakcage  (use Git LFS)
- * dtbocfg-4.14.34-armv7-fpga_0.0.6-1_armhf.deb                    : dtbocfg Kernel Module    (use Git LFS)
- * fclkcfg-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    : fclkcfg Kernel Module    (use Git LFS)
- * udmabuf-4.14.34-armv7-fpga_1.2.3-1_armhf.deb                    : udmabuf Kernel Module    (use Git LFS)
- * zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      : zptty   Kernel Module    (use Git LFS)
+ * dtbocfg-4.19.57-armv7-fpga_0.0.6-1_armhf.deb                    : dtbocfg Kernel Module    (use Git LFS)
+ * fclkcfg-4.19.57-armv7-fpga_1.1.0-1_armhf.deb                    : fclkcfg Kernel Module    (use Git LFS)
+ * udmabuf-4.19.57-armv7-fpga_1.2.3-1_armhf.deb                    : udmabuf Kernel Module    (use Git LFS)
+ * zptty-4.19.57-armv7-fpga_1.0.0-1_armhf.deb                      : zptty   Kernel Module    (use Git LFS)
 
 #### Format SD-Card
 
@@ -78,13 +78,13 @@ shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs
 shell# dd if=target/zynq-zybo-de0-nano-soc/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
 shell# tar xfz debian9-rootfs-vanilla.tgz -C                              /mnt/usb2
 shell# mkdir                                                              /mnt/usb2/home/fpga/debian
-shell# cp linux-image-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
-shell# cp linux-headers-4.14.34-armv7-fpga_4.14.34-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
+shell# cp linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                    /mnt/usb2/home/fpga/debian
-shell# cp dtbocfg-4.14.34-armv7-fpga_0.0.6-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell# cp fclkcfg-4.14.34-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell# cp udmabuf-4.14.34-armv7-fpga_1.2.3-1_armhf.deb                    /mnt/usb2/home/fpga/debian
-shell# cp zptty-4.14.34-armv7-fpga_1.0.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
+shell# cp dtbocfg-4.19.57-armv7-fpga_0.0.6-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp fclkcfg-4.19.57-armv7-fpga_1.1.0-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp udmabuf-4.19.57-armv7-fpga_1.2.3-1_armhf.deb                    /mnt/usb2/home/fpga/debian
+shell# cp zptty-4.19.57-armv7-fpga_1.0.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
