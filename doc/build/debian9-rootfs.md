@@ -16,7 +16,7 @@ shell$ sudo debootstrap --arch=armhf --foreign $distro                         $
 shell$ sudo cp /usr/bin/qemu-arm-static                                        $targetdir/usr/bin
 shell$ sudo cp /etc/resolv.conf                                                $targetdir/etc
 shell$ sudo cp scripts/build-debian9-rootfs-with-qemu.sh                       $targetdir
-shell$ sudo cp linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb $targetdir
+shell$ sudo cp linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   $targetdir
 ````
 
 #### Build debian9-rootfs with QEMU
@@ -26,6 +26,10 @@ shell$ sudo cp linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb $
 ```console
 shell$ sudo chroot $targetdir
 ```
+If you are using Ubuntu on WSL(Windows Subsystem for Linux) and you have a chroot failure,
+please see the folowing page.
+
+[./doc/build/debian9-rootfs-on-wsl.md](debian9-rootfs-on-wsl.md)
 
 There are two ways
 
@@ -194,11 +198,17 @@ debian9-rootfs# apt-get install -y samba
 debian9-rootfs# apt-get install -y avahi-daemon
 ```
 
+##### Install haveged for Linux Kernel 4.19
+
+```console
+debian9-rootfs# apt-get install -y haveged
+```
+
 ##### Install Linux Modules
 
 ```console
 debian9-rootfs# mkdir /mnt/boot
-debian9-rootfs# dpkg -i linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb
+debian9-rootfs# dpkg -i linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb
 ```
 
 ##### Clean Cache
@@ -219,8 +229,8 @@ debian9-rootfs# dpkg -l > dpkg-list.txt
 debian9-rootfs# exit
 shell$ sudo rm -f $targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f $targetdir/build-debian9-rootfs-with-qemu.sh
-shell$ sudo rm -f $targetdir/linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb
-shell$ sudo mv    $targetdir/dpkg-list.txt files/dpkg-list.txt
+shell$ sudo rm -f $targetdir/linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb
+shell$ sudo mv    $targetdir/dpkg-list.txt files/debian9-dpkg-list.txt
 ```
 
 #### Build debian9-rootfs-vanilla.tgz
