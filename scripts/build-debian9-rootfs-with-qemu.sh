@@ -112,10 +112,14 @@ cd /
 apt-get install -y avahi-daemon
 apt-get install -y samba
 
+#### Install haveged for Linux Kernel 4.19
+
+apt-get install -y haveged
+
 #### Install Linux Modules
 
 mkdir /mnt/boot
-dpkg -i linux-image-4.14.123-armv7-fpga_4.14.123-armv7-fpga-1_armhf.deb
+dpkg -i linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb
 
 #### Clean Cache
 
