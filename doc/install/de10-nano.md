@@ -19,7 +19,7 @@ shell$ git lfs pull
    + u-boot/
      - u-boot-spl.sfp                                                : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                                    : Stage 2 Boot Loader(U-boot)
- * debian9-rootfs-vanilla.tgz                                        : Debian9 Root File System (use Git LFS)
+ * debian10-rootfs-vanilla.tgz                                       : Debian10 Root File System (use Git LFS)
  * linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb     : Linux Image Package      (use Git LFS)
  * linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   : Linux Headers Package    (use Git LFS)
  * dtbocfg-ctrl_0.0.5-1_all.deb                                      : dtbocfg Control Pakcage  (use Git LFS)
@@ -40,7 +40,7 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/de10-nano/boot/* /mnt/usb1
 shell# dd if=target/de10-nano/u-boot/u-boot-spl.sfp of=/dev/sdc3 bs=64k seek=0
 shell# dd if=target/de10-nano/u-boot/u-boot.img     of=/dev/sdc3 bs=64k seek=4
-shell# tar xfz debian9-rootfs-vanilla.tgz -C                                /mnt/usb2
+shell# tar xfz debian10-rootfs-vanilla.tgz -C                               /mnt/usb2
 shell# mkdir                                                                /mnt/usb2/home/fpga/debian
 shell# cp linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   /mnt/usb2/home/fpga/debian
