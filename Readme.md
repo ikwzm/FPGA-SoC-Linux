@@ -35,7 +35,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Installed ruby ruby-msgpack ruby-serialport
   + Installed python python3 python3-numpy msgpack-rpc-python
   + Installed u-boot-tools
-  + Installed Other package list -> [files/dpkg-list.txt](files/dpkg-list.txt)
+  + Installed Other package list -> [files/debian9-dpkg-list.txt](files/debian9-dpkg-list.txt)
 * FPGA Device Drivers and Services
   + [dtbocfg    (Device Tree Blob Overlay Configuration File System)](https://github.com/ikwzm/dtbocfg)
   + [fclkcfg    (FPGA Clock Configuration Device Driver)](https://github.com/ikwzm/fclkcfg)
