@@ -1,18 +1,18 @@
 
 #### Setup APT
 
-distro=stretch
+distro=buster
 export LANG=C
 
 /debootstrap/debootstrap --second-stage
 
 cat <<EOT > /etc/apt/sources.list
-deb     http://ftp.jp.debian.org/debian            stretch         main contrib non-free
-deb-src http://ftp.jp.debian.org/debian            stretch         main contrib non-free
-deb     http://ftp.jp.debian.org/debian            stretch-updates main contrib non-free
-deb-src http://ftp.jp.debian.org/debian            stretch-updates main contrib non-free
-deb     http://security.debian.org/debian-security stretch/updates main contrib non-free
-deb-src http://security.debian.org/debian-security stretch/updates main contrib non-free
+deb     http://ftp.jp.debian.org/debian            buster         main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            buster         main contrib non-free
+deb     http://ftp.jp.debian.org/debian            buster-updates main contrib non-free
+deb-src http://ftp.jp.debian.org/debian            buster-updates main contrib non-free
+deb     http://security.debian.org/debian-security buster/updates main contrib non-free
+deb-src http://security.debian.org/debian-security buster/updates main contrib non-free
 EOT
 
 cat <<EOT > /etc/apt/apt.conf.d/71-no-recommends
@@ -26,7 +26,7 @@ apt-get update  -y
 
 apt-get install -y locales dialog
 dpkg-reconfigure locales
-apt-get install -y net-tools openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh
+apt-get install -y net-tools openssh-server ntpdate resolvconf sudo less hwinfo ntp tcsh zsh file
 
 #### Setup hostname
 
@@ -89,8 +89,6 @@ apt-get install -y u-boot-tools
 apt-get install -y libssl-dev
 apt-get install -y socat
 apt-get install -y ruby ruby-msgpack ruby-serialport
-gem install rake
-
 apt-get install -y python  python-dev  python-setuptools  python-wheel  python-pip
 apt-get install -y python3 python3-dev python3-setuptools python3-wheel python3-pip python3-numpy
 pip3 install msgpack-rpc-python
