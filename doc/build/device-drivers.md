@@ -1,11 +1,11 @@
 ### Build Device Drivers and Services Package
 
-#### dtbocfg-4.19.57-armv7-fpga_0.0.6-1_armhf.deb
+#### dtbocfg-4.19.57-armv7-fpga_0.0.8-1_armhf.deb
 
 ##### Download repository
 
 ```console
-shell$ git clone --recursive --depth=1 -b v0.0.7 git://github.com/ikwzm/dtbocfg-kmod-dpkg
+shell$ git clone --recursive --depth=1 -b v0.0.8 git://github.com/ikwzm/dtbocfg-kmod-dpkg
 shell$ cd dtbocfg-kmod-dpkg
 ```
 ##### Cross Compile for linux-4.19.57-armv7-fpga
@@ -15,7 +15,7 @@ shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=4.19.57-armv7-fp
     :
     :
     :
-shell$ file ../dtbocfg-4.19.57-armv7-fpga_0.0.7-1_armhf.deb 
+shell$ file ../dtbocfg-4.19.57-armv7-fpga_0.0.8-1_armhf.deb 
 ../dtbocfg-4.19.57-armv7-fpga_0.0.7-1_armhf.deb: Debian binary package (format 2.0)
 ```
 
