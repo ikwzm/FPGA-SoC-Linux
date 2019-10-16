@@ -41,7 +41,7 @@ make deb-pkg
 make zynq-zybo.dtb
 make zynq-zybo-z7.dtb
 make zynq-pynqz1.dtb
-make socfpga_cyclone5_de0_sockit.dtb
+make socfpga_cyclone5_de0_nano_soc.dtb
  
 ### Copy zImage and devicetree to tareget/zybo-zynq/boot/
 cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/vmlinuz-5.4.0-rc2-armv7-fpga
@@ -59,13 +59,13 @@ cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-5.4.0
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-pynqz1/boot/devicetree-5.4.0-rc2-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
 
 ### Copy zImage and devicetree to tareget/de0-nano-soc/boot/
-cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/vmlinuz-5.4.0-rc2-armv7-fpga
-cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de0-nano-soc/boot/devicetree-5.4.0-rc2-socfpga.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de0-nano-soc/boot/devicetree-5.4.0-rc2-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
+cp arch/arm/boot/zImage                                ../target/de0-nano-soc/boot/vmlinuz-5.4.0-rc2-armv7-fpga
+cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de0-nano-soc/boot/devicetree-5.4.0-rc2-socfpga.dtb
+./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de0-nano-soc/boot/devicetree-5.4.0-rc2-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
 
 ### Copy zImage and devicetree to tareget/de10-nano/boot/
-cp arch/arm/boot/zImage                              ../target/de10-nano/boot/vmlinuz-5.4.0-rc2-armv7-fpga
-cp arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb ../target/de10-nano/boot/devicetree-5.4.0-rc2-socfpga.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-5.4.0-rc2-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_sockit.dtb
+cp arch/arm/boot/zImage                                ../target/de10-nano/boot/vmlinuz-5.4.0-rc2-armv7-fpga
+cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de10-nano/boot/devicetree-5.4.0-rc2-socfpga.dtb
+./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-5.4.0-rc2-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
 
 cd ..
