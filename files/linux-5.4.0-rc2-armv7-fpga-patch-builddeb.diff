@@ -1,0 +1,29 @@
+diff --git a/scripts/package/builddeb b/scripts/package/builddeb
+index c4c580f54..ac6a294ca 100755
+--- a/scripts/package/builddeb
++++ b/scripts/package/builddeb
+@@ -166,7 +166,7 @@ done
+ 
+ # Build kernel header package
+ (cd $srctree; find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl) > "$objtree/debian/hdrsrcfiles"
+-(cd $srctree; find arch/*/include include scripts -type f -o -type l) >> "$objtree/debian/hdrsrcfiles"
++(cd $srctree; find arch/*/include include tools/include scripts -type f -o -type l) >> "$objtree/debian/hdrsrcfiles"
+ (cd $srctree; find arch/$SRCARCH -name module.lds -o -name Kbuild.platforms -o -name Platform) >> "$objtree/debian/hdrsrcfiles"
+ (cd $srctree; find $(find arch/$SRCARCH -name include -o -name scripts -type d) -type f) >> "$objtree/debian/hdrsrcfiles"
+ if is_enabled CONFIG_STACK_VALIDATION; then
+@@ -183,6 +183,15 @@ mkdir -p "$destdir"
+ (cd $objtree; cp $KCONFIG_CONFIG $destdir/.config) # copy .config manually to be where it's expected to be
+ ln -sf "/usr/src/linux-headers-$version" "$kernel_headers_dir/lib/modules/$version/build"
+ rm -f "$objtree/debian/hdrsrcfiles" "$objtree/debian/hdrobjfiles"
++mkdir -m 755 -p "$kernel_headers_dir/DEBIAN"
++cat <<EOF >> $kernel_headers_dir/DEBIAN/postinst
++#!/bin/sh -e
++
++make -C /usr/src/linux-headers-$version scripts
++
++EOF
++
++chmod 755 $kernel_headers_dir/DEBIAN/postinst
+ 
+ if [ "$ARCH" != "um" ]; then
+ 	create_package "$kernel_headers_packagename" "$kernel_headers_dir"
