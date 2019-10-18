@@ -24,7 +24,7 @@ git commit -m "patch for usb chipidea driver for issue #3"
 
 patch -p1 < ../files/linux-5.1.21-armv7-fpga-patch-builddeb.diff
 git add --update
-git commit -m "patch for scripts/package/builddeb to add tools/include and postinst script to header package"
+git commit -m "patch for scripts/package/builddeb to add tools/include and arch/arm/tools and postinst script to header package"
 
 ### Create tag and .version
 git tag -a v5.1.21-armv7-fpga -m "release v5.1.21-armv7-fpga"
