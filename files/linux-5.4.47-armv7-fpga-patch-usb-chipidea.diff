@@ -79,11 +79,11 @@ index c044fba46..77715bb53 100644
  
  	priv->ci_pdev = ci_hdrc_add_device(dev, pdev->resource,
 diff --git a/drivers/usb/chipidea/host.c b/drivers/usb/chipidea/host.c
-index b45ceb91c..f33344e75 100644
+index 48e4a5ca1..b49edda34 100644
 --- a/drivers/usb/chipidea/host.c
 +++ b/drivers/usb/chipidea/host.c
-@@ -55,6 +55,14 @@ static int ehci_ci_portpower(struct usb_hcd *hcd, int portnum, bool enable)
- 		}
+@@ -57,6 +57,14 @@ static int ehci_ci_portpower(struct usb_hcd *hcd, int portnum, bool enable)
+ 		priv->enabled = enable;
  	}
  
 +	if (ci->platdata->flags & CI_HDRC_PHY_VBUS_CONTROL &&
@@ -97,7 +97,7 @@ index b45ceb91c..f33344e75 100644
  	if (enable && (ci->platdata->phy_mode == USBPHY_INTERFACE_MODE_HSIC)) {
  		/*
  		 * Marvell 28nm HSIC PHY requires forcing the port to HS mode.
-@@ -63,6 +71,7 @@ static int ehci_ci_portpower(struct usb_hcd *hcd, int portnum, bool enable)
+@@ -65,6 +73,7 @@ static int ehci_ci_portpower(struct usb_hcd *hcd, int portnum, bool enable)
  		hw_port_test_set(ci, 5);
  		hw_port_test_set(ci, 0);
  	}
