@@ -15,17 +15,17 @@ shell$ git lfs pull
      - boot.bin                                                      : Stage 1 Boot Loader(U-boot-spl)
      - u-boot.img                                                    : Stage 2 Boot Loader(U-boot)
      - uEnv.txt                                                      : U-Boot environment variables for linux boot
-     - vmlinuz-4.19.57-armv7-fpga                                    : Linux Kernel Image       (use Git LFS)
-     - devicetree-4.19.57-zynq-zybo-z7.dtb                           : Linux Device Tree Blob   
-     - devicetree-4.19.57-zynq-zybo-z7.dts                           : Linux Device Tree Source
+     - vmlinuz-5.4.47-armv7-fpga                                     : Linux Kernel Image       (use Git LFS)
+     - devicetree-5.4.47-zynq-zybo-z7.dtb                            : Linux Device Tree Blob   
+     - devicetree-5.4.47-zynq-zybo-z7.dts                            : Linux Device Tree Source
  * debian10-rootfs-vanilla.tgz                                       : Debian10 Root File System (use Git LFS)
- * linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb     : Linux Image Package      (use Git LFS)
- * linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   : Linux Headers Package    (use Git LFS)
+ * linux-image-5.4.47-armv7-fpga_5.4.47-armv7-fpga-0_armhf.deb       : Linux Image Package      (use Git LFS)
+ * linux-headers-5.4.47-armv7-fpga_5.4.47-armv7-fpga-0_armhf.deb     : Linux Headers Package    (use Git LFS)
  * dtbocfg-ctrl_0.0.5-1_all.deb                                      : dtbocfg Control Pakcage  (use Git LFS)
- * dtbocfg-4.19.57-armv7-fpga_0.0.8-1_armhf.deb                      : dtbocfg Kernel Module    (use Git LFS)
- * fclkcfg-4.19.57-armv7-fpga_1.2.0-1_armhf.deb                      : fclkcfg Kernel Module    (use Git LFS)
- * udmabuf-4.19.57-armv7-fpga_1.4.2-0_armhf.deb                      : udmabuf Kernel Module    (use Git LFS)
- * zptty-4.19.57-armv7-fpga_1.0.0-1_armhf.deb                        : zptty   Kernel Module    (use Git LFS)
+ * dtbocfg-5.4.47-armv7-fpga_0.0.8-1_armhf.deb                       : dtbocfg Kernel Module    (use Git LFS)
+ * fclkcfg-5.4.47-armv7-fpga_1.2.0-1_armhf.deb                       : fclkcfg Kernel Module    (use Git LFS)
+ * u-dma-buf-5.4.47-armv7-fpga_3.0.1-0_armhf.deb                     : u-dma-buf Kernel Module  (use Git LFS)
+ * zptty-5.4.47-armv7-fpga_1.0.0-1_armhf.deb                         : zptty   Kernel Module    (use Git LFS)
 
 #### Format SD-Card
 
@@ -39,13 +39,13 @@ shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-zybo-z7/boot/*                                        /mnt/usb1
 shell# tar xfz debian10-rootfs-vanilla.tgz -C                               /mnt/usb2
 shell# mkdir                                                                /mnt/usb2/home/fpga/debian
-shell# cp linux-image-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb     /mnt/usb2/home/fpga/debian
-shell# cp linux-headers-4.19.57-armv7-fpga_4.19.57-armv7-fpga-0_armhf.deb   /mnt/usb2/home/fpga/debian
+shell# cp linux-image-5.4.47-armv7-fpga_5.4.47-armv7-fpga-0_armhf.deb       /mnt/usb2/home/fpga/debian
+shell# cp linux-headers-5.4.47-armv7-fpga_5.4.47-armv7-fpga-0_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                      /mnt/usb2/home/fpga/debian
-shell# cp dtbocfg-4.19.57-armv7-fpga_0.0.8-1_armhf.deb                      /mnt/usb2/home/fpga/debian
-shell# cp fclkcfg-4.19.57-armv7-fpga_1.2.0-1_armhf.deb                      /mnt/usb2/home/fpga/debian
-shell# cp udmabuf-4.19.57-armv7-fpga_1.4.2-0_armhf.deb                      /mnt/usb2/home/fpga/debian
-shell# cp zptty-4.19.57-armv7-fpga_1.0.0-1_armhf.deb                        /mnt/usb2/home/fpga/debian
+shell$ cp dtbocfg-5.4.47-armv7-fpga_0.0.8-1_armhf.deb                       /mnt/usb2/home/fpga/debian
+shell# cp fclkcfg-5.4.47-armv7-fpga_1.2.0-1_armhf.deb                       /mnt/usb2/home/fpga/debian
+shell# cp u-dma-buf-5.4.47-armv7-fpga_3.0.1-0_armhf.deb                     /mnt/usb2/home/fpga/debian
+shell# cp zptty-5.4.47-armv7-fpga_1.0.0-1_armhf.deb                         /mnt/usb2/home/fpga/debian
 shell# umount mnt/usb1
 shell# umount mnt/usb2
 ````
