@@ -22,7 +22,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
   + Enable bootmenu
-* Linux Kernel Version v4.19.57
+* Linux Kernel Version v5.4.47
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
@@ -39,7 +39,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
 * FPGA Device Drivers and Services
   + [dtbocfg    (Device Tree Blob Overlay Configuration File System)](https://github.com/ikwzm/dtbocfg)
   + [fclkcfg    (FPGA Clock Configuration Device Driver)](https://github.com/ikwzm/fclkcfg)
-  + [udmabuf    (User space mappable DMA Buffer)](https://github.com/ikwzm/udmabuf)
+  + [u-dma-buf  (User space mappable DMA Buffer)](https://github.com/ikwzm/udmabuf)
   + [zptty      (Pseudo TeleTYpewriter for FPGA Device)](https://github.com/ikwzm/PTTY_AXI4)
 
 Install
@@ -53,8 +53,7 @@ Install
   + [DE10-Nano](doc/install/de10-nano.md)
   + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
-* [Upgrade to v0.5.4 from v0.5.3](doc/install/upgrade-v0.5.4.md)
-* [Upgrade to v0.8.1 from previous version](doc/install/upgrade-v0.8.1.md)
+* [Upgrade to v1.1.0 from v1.0.x](doc/install/upgrade-v1.1.0.md)
 
 Tutorial
 ------------------------------------------------------------------------------------
@@ -74,7 +73,7 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build U-boot for DE10-Nano](doc/build/u-boot-de10-nano.md)
-* [Build Linux Kernel](doc/build/linux-kernel-4.19.57.md)
+* [Build Linux Kernel](doc/build/linux-kernel-5.4.47.md)
 * [Build Debian10 RootFS](doc/build/debian10-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
