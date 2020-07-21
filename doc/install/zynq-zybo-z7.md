@@ -2,8 +2,10 @@
 
 #### Downlowd from github
 
+**Note: Downloading the entire repository is time consuming, so download only the branch you need.**
+
 ```console
-shell$ git clone --depth=1 --branch v1.0.1 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v1.1.0 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
