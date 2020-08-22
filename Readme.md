@@ -51,7 +51,6 @@ Install
   + [PYNQ-Z1](doc/install/zynq-pynqz1.md)
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [DE10-Nano](doc/install/de10-nano.md)
-  + [Dual Boot(ZYBO and DE0-Nano-SoC)](doc/install/zynq-zybo-de0-nano-soc.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
 * [Upgrade to v1.2.0 from v1.0.x/v1.1.x](doc/install/upgrade-v1.2.0.md)
 
