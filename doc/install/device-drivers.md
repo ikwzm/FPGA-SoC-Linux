@@ -1,6 +1,6 @@
 ### Install Device Drivers and Services
 
-#### Boot ZYBO or DE0-Nano-SoC and login fpga or root user
+#### Boot ZYBO/ZYBO-Z7/PYNQ-Z1/DE0-Nano-SoC/DE10-Nano and login fpga or root user
 
 fpga'password is "fpga".
 
@@ -58,7 +58,7 @@ Setting up fclkcfg-5.4.59-armv7-fpga (1.7.2-1) ...
 
 ```console
 fpga@debian-fpga:~$ cd /home/fpga/debian
-fpga@debian-fpga:~/debian$ udo dpkg -i u-dma-buf-5.4.59-armv7-fpga_3.2.2-0_armhf.deb
+fpga@debian-fpga:~/debian$ sudo dpkg -i u-dma-buf-5.4.59-armv7-fpga_3.2.2-0_armhf.deb
 Selecting previously unselected package u-dma-buf-5.4.59-armv7-fpga.
 (Reading database ... 64401 files and directories currently installed.)
 Preparing to unpack u-dma-buf-5.4.59-armv7-fpga_3.2.2-0_armhf.deb ...
