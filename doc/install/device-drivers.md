@@ -78,6 +78,20 @@ Unpacking zptty-5.4.59-armv7-fpga (1.0.0-1) ...
 Setting up zptty-5.4.59-armv7-fpga (1.0.0-1) ...
 ```
 
+#### Install zynq-afi kernel module package
+
+This debian package only installs ZYNQ(ZYBO/ZYBO-Z7/PYNQ-Z1).
+
+```console
+fpga@debian-fpga:~$ cd /home/fpga/debian
+fpga@debian-fpga:~/debian$ sudo dpkg -i zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb
+Selecting previously unselected package zynq-afi-5.4.59-armv7-fpga.
+(Reading database ... 84118 files and directories currently installed.)
+Preparing to unpack zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb ...
+Unpacking zynq-afi-5.4.59-armv7-fpga (0.0.1-0) ...
+Setting up zynq-afi-5.4.59-armv7-fpga (0.0.1-0) ...
+```
+
 #### Install dtbocfg control package
 
 ```console
