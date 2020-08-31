@@ -5,7 +5,7 @@
 **Note: Downloading the entire repository is time consuming, so download only the branch you need.**
 
 ```console
-shell$ git clone --depth=1 --branch v1.2.0 git://github.com/ikwzm/FPGA-SoC-Linux
+shell$ git clone --depth=1 --branch v1.2.1 git://github.com/ikwzm/FPGA-SoC-Linux
 shell$ cd FPGA-SoC-Linux
 shell$ git lfs pull
 ```
@@ -30,6 +30,7 @@ shell$ git lfs pull
  * fclkcfg-5.4.59-armv7-fpga_1.2.0-1_armhf.deb                       : fclkcfg Kernel Module    (use Git LFS)
  * u-dma-buf-5.4.59-armv7-fpga_3.0.1-0_armhf.deb                     : u-dma-buf Kernel Module  (use Git LFS)
  * zptty-5.4.59-armv7-fpga_1.0.0-1_armhf.deb                         : zptty   Kernel Module    (use Git LFS)
+ * zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb                      : Zynq AFI Kernel Module   (use Git LFS)
 
 #### Format SD-Card
 
@@ -50,6 +51,7 @@ shell$ cp dtbocfg-5.4.59-armv7-fpga_0.0.8-1_armhf.deb                       /mnt
 shell# cp fclkcfg-5.4.59-armv7-fpga_1.7.2-1_armhf.deb                       /mnt/usb2/home/fpga/debian
 shell# cp u-dma-buf-5.4.59-armv7-fpga_3.2.2-0_armhf.deb                     /mnt/usb2/home/fpga/debian
 shell# cp zptty-5.4.59-armv7-fpga_1.0.0-1_armhf.deb                         /mnt/usb2/home/fpga/debian
+shell# cp zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb                      /mnt/usb2/home/fpga/debian
 shell# cp -r target/zynq-zybo/examples                                      /mnt/usb2/home/fpga
 shell# umount mnt/usb1
 shell# umount mnt/usb2

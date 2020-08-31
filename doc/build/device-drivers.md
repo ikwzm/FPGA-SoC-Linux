@@ -11,7 +11,7 @@ shell$ cd dtbocfg-kmod-dpkg
 ##### Cross Compile for linux-5.4.59-armv7-fpga
 
 ```console
-shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=../../linux-5.4.59-armv7-fpga binary
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=$PWD/../linux-5.4.59-armv7-fpga binary
     :
     :
     :
@@ -31,7 +31,7 @@ shell$ cd u-dma-buf-kmod-dpkg
 ##### Cross Compile for linux-5.4.59-armv7-fpga
 
 ```console
-shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=../../linux-5.4.59-armv7-fpga binary
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=$PWD/../linux-5.4.59-armv7-fpga binary
     :
     :
     :
@@ -51,7 +51,7 @@ shell$ cd fclkcfg-kmod-dpkg
 ##### Cross Compile for linux-5.4.59-armv7-fpga
 
 ```console
-shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=../../linux-5.4.59-armv7-fpga binary
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=$PWD/../linux-5.4.59-armv7-fpga binary
     :
     :
     :
@@ -71,12 +71,31 @@ shell$ cd zptty-kmod-dpkg
 ##### Cross Compile for linux-5.4.59-armv7-fpga
 
 ```console
-shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=../../../../../linux-5.4.59-armv7-fpga binary
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=$PWD/../linux-5.4.59-armv7-fpga binary
     :
     :
     :
 shell$ file ../zptty-5.4.59-armv7-fpga_1.0.0-1_armhf.deb
 ../zptty-5.4.59-armv7-fpga_1.0.0-1_armhf.deb: Debian binary package (format 2.0)
+```
+
+#### zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb
+
+##### Download repository
+
+```console
+shell$ git clone --recursive --depth=1 -b v0.0.1 git://github.com/ikwzm/zynq-afi-kmod-dpkg
+shell$ cd zynq-afi-kmod-dpkg
+```
+##### Cross Compile for linux-5.4.59-armv7-fpga
+
+```console
+shell$ sudo debian/rules arch=arm deb_arch=armhf kernel_release=5.4.59-armv7-fpga kernel_src_dir=$PWD/../linux-5.4.59-armv7-fpga binary
+    :
+    :
+    :
+shell$ file file ../zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb 
+../zynq-afi-5.4.59-armv7-fpga_0.0.1-0_armhf.deb: Debian binary package (format 2.0)
 ```
 
 #### dtbocfg-ctrl_0.0.5-1_all.deb

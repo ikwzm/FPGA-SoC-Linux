@@ -41,6 +41,7 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + [fclkcfg    (FPGA Clock Configuration Device Driver)](https://github.com/ikwzm/fclkcfg)
   + [u-dma-buf  (User space mappable DMA Buffer)](https://github.com/ikwzm/udmabuf)
   + [zptty      (Pseudo TeleTYpewriter for FPGA Device)](https://github.com/ikwzm/PTTY_AXI4)
+  + zynq-afi   (Xilinx ZYNQ AFI Kernel Module)
 
 Install
 ------------------------------------------------------------------------------------
