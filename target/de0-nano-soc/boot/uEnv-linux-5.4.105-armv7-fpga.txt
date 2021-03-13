@@ -1,7 +1,7 @@
 ########################################################################
 #uenv: config_name   = socfpga_de10_nano
-#uenv: menu_title    = Boot linux-5.4.59-armv7-fpga
+#uenv: menu_title    = Boot linux-5.4.105-armv7-fpga
 #uenv: menu_priority = -1
 ########################################################################
-linux_kernel_image=vmlinuz-5.4.59-armv7-fpga
-linux_fdt_image=devicetree-5.4.59-socfpga.dtb
+linux_kernel_image=vmlinuz-5.4.105-armv7-fpga
+linux_fdt_image=devicetree-5.4.105-socfpga.dtb
