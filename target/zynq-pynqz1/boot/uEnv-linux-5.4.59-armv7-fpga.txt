@@ -1,7 +1,0 @@
-########################################################################
-#uenv: config_name   = zynq_pynqz1
-#uenv: menu_title    = Boot linux-5.4.59-armv7-fpga
-#uenv: menu_priority = -1
-########################################################################
-linux_kernel_image=vmlinuz-5.4.59-armv7-fpga
-linux_fdt_image=devicetree-5.4.59-zynq-pynqz1.dtb
