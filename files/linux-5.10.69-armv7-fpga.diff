@@ -93,10 +93,10 @@ index 0b021eef0..54e69323b 100644
  			reg = <0xff800000 0x1000>;
  		};
 diff --git a/arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts b/arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts
-index 67076e1b1..11aca2c5b 100644
+index 67076e1b1..a655ffeb1 100644
 --- a/arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts
 +++ b/arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dts
-@@ -94,6 +94,7 @@
+@@ -94,8 +94,25 @@
  
  &uart0 {
  	status = "okay";
@@ -104,6 +104,24 @@ index 67076e1b1..11aca2c5b 100644
  };
  
  &usb1 {
+ 	status = "okay";
+ };
++
++&fpga_bridge_lwhps2fpga {
++	status = "okay";
++};
++
++&fpga_bridge_hps2fpga {
++	status = "okay";
++};
++
++&fpga_bridge_fpga2hps {
++	status = "okay";
++};
++
++&fpga_bridge_fpga2sdram {
++	status = "okay";
++};
 diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
 index db3899b07..430e51aec 100644
 --- a/arch/arm/boot/dts/zynq-7000.dtsi
