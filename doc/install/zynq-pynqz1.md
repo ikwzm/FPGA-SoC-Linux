@@ -41,7 +41,7 @@ shell$ git lfs pull
 shell# mount /dev/sdc1 /mnt/usb1
 shell# mount /dev/sdc2 /mnt/usb2
 shell# cp target/zynq-pynqz1/boot/*                                         /mnt/usb1
-shell# tar xfz debian10-rootfs-vanilla.tgz -C                               /mnt/usb2
+shell# tar xfz debian11-rootfs-vanilla.tgz -C                               /mnt/usb2
 shell# mkdir                                                                /mnt/usb2/home/fpga/debian
 shell# cp linux-image-5.10.69-armv7-fpga_5.10.69-armv7-fpga-0_armhf.deb     /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-5.10.69-armv7-fpga_5.10.69-armv7-fpga-0_armhf.deb   /mnt/usb2/home/fpga/debian
@@ -52,8 +52,8 @@ shell# cp u-dma-buf-5.10.69-armv7-fpga_3.2.4-0_armhf.deb                    /mnt
 shell# cp zptty-5.10.69-armv7-fpga_1.0.0-1_armhf.deb                        /mnt/usb2/home/fpga/debian
 shell# cp zynq-afi-5.10.69-armv7-fpga_0.0.1-0_armhf.deb                     /mnt/usb2/home/fpga/debian
 shell# cp -r target/zynq-pynqz1/examples                                    /mnt/usb2/home/fpga
-shell# umount mnt/usb1
-shell# umount mnt/usb2
+shell# umount /mnt/usb1
+shell# umount /mnt/usb2
 ````
 
 ### Install Device Drivers and Services
