@@ -8,6 +8,8 @@ Overview
 
 This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-SoC.
 
+**Note: Downloading the entire repository is time consuming, so download only the branch you need.**
+
 ### Features
 
 * Hardware
@@ -22,20 +24,20 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
   + Enable bootmenu
-* Linux Kernel Version v5.4.105
+* Linux Kernel Version 5.10.69
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
   + Enable FPGA Bridge
   + Enable FPGA Reagion
   + Patch for issue #3(USB-HOST does not work with PYNQ-Z1)
-* Debian10(buster) Root File System
+* Debian11(bullseye) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
   + Installed ruby ruby-msgpack ruby-serialport
   + Installed python python3 python3-numpy msgpack-rpc-python
   + Installed u-boot-tools
-  + Installed Other package list -> [files/debian10-dpkg-list.txt](files/debian10-dpkg-list.txt)
+  + Installed Other package list -> [files/debian11-dpkg-list.txt](files/debian11-dpkg-list.txt)
 * FPGA Device Drivers and Services
   + [dtbocfg    (Device Tree Blob Overlay Configuration File System)](https://github.com/ikwzm/dtbocfg)
   + [fclkcfg    (FPGA Clock Configuration Device Driver)](https://github.com/ikwzm/fclkcfg)
@@ -73,7 +75,7 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build U-boot for DE10-Nano](doc/build/u-boot-de10-nano.md)
-* [Build Linux Kernel](doc/build/linux-kernel-5.4.105.md)
-* [Build Debian10 RootFS](doc/build/debian10-rootfs.md)
+* [Build Linux Kernel](doc/build/linux-kernel-5.10.69.md)
+* [Build Debian11 RootFS](doc/build/debian11-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
