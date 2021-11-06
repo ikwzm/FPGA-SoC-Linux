@@ -1,10 +1,11 @@
 
-#### Setup APT
+#### Run Second Stage
 
 distro=bullseye
 export LANG=C
-
 /debootstrap/debootstrap --second-stage
+
+#### Setup APT
 
 cat <<EOT > /etc/apt/sources.list
 deb     http://ftp.jp.debian.org/debian  bullseye           main contrib non-free
