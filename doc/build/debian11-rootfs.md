@@ -33,9 +33,9 @@ There are two ways
 1. run build-debian11-rootfs-with-qemu.sh (easy)
 2. run this chapter step-by-step (annoying)
 
-##### Setup APT
+##### Run Second Stage
 
-````console
+```console
 debian11-rootfs# distro=bullseye
 debian11-rootfs# export LANG=C
 debian11-rootfs# /debootstrap/debootstrap --second-stage
