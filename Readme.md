@@ -8,7 +8,7 @@ Overview
 
 This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-SoC.
 
-**Note: Downloading the entire repository is time consuming, so download only the branch you need.**
+**Note: Downloading the entire repository takes time, so download the source code from https://github.com/ikwzm/FPGA-SoC-Linux/releases.**
 
 ### Features
 
