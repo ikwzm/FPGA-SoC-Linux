@@ -2,12 +2,12 @@
 
 #### Downlowd from github
 
-**Note: Downloading the entire repository is time consuming, so download only the branch you need.**
+**Note: Downloading the entire repository takes time, so download the source code from https://github.com/ikwzm/FPGA-SoC-Linux/releases.**
 
 ```console
-shell$ git clone --depth=1 --branch v2.0.0 git://github.com/ikwzm/FPGA-SoC-Linux
-shell$ cd FPGA-SoC-Linux
-shell$ git lfs pull
+shell$ wget https://github.com/ikwzm/FPGA-SoC-Linux/archive/refs/tags/v2.0.1.tar.gz
+shell$ tar xfz v2.0.1.tar.gz
+shell$ cd FPGA-SoC-Linux-v2.0.1
 ```
 
 #### File Description
