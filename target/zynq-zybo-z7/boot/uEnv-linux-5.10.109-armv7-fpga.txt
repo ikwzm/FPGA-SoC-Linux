@@ -1,0 +1,7 @@
+########################################################################
+#uenv: config_name   = zynq_zybo_z7
+#uenv: menu_title    = Boot linux-5.10.109-armv7-fpga
+#uenv: menu_priority = -1
+########################################################################
+linux_kernel_image=vmlinuz-5.10.109-armv7-fpga
+linux_fdt_image=devicetree-5.10.109-zynq-zybo-z7.dtb
