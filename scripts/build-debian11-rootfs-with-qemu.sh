@@ -22,6 +22,7 @@ APT::Install-Suggests   "0";
 EOT
 
 apt-get update  -y
+apt-get upgrade -y
 
 #### Install Core applications
 
@@ -107,7 +108,7 @@ apt-get install -y haveged
 #### Install Linux Modules
 
 mkdir /mnt/boot
-dpkg -i linux-image-5.10.69-armv7-fpga_5.10.69-armv7-fpga-0_armhf.deb
+dpkg -i linux-image-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb
 
 #### Clean Cache
 
