@@ -52,7 +52,7 @@ shell$ git commit -m "patch for scripts/package/builddeb to add tools/include an
 
 ```console
 shell$ git tag -a v5.10.109-armv7-fpga -m "release v5.10.109-armv7-fpga"
-shell$ echo 0 > .version
+shell$ echo 1 > .version
 ```
 
 #### Setup for Build 
