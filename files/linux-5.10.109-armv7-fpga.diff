@@ -279,7 +279,7 @@ index 755f6f109..e01e86485 100644
  &usb0 {
 diff --git a/arch/arm/configs/armv7_fpga_defconfig b/arch/arm/configs/armv7_fpga_defconfig
 new file mode 100644
-index 000000000..585f6811c
+index 000000000..344037fc9
 --- /dev/null
 +++ b/arch/arm/configs/armv7_fpga_defconfig
 @@ -0,0 +1,4982 @@
@@ -4653,10 +4653,10 @@ index 000000000..585f6811c
 +CONFIG_EXT2_FS_POSIX_ACL=y
 +# CONFIG_EXT2_FS_SECURITY is not set
 +CONFIG_EXT3_FS=y
-+# CONFIG_EXT3_FS_POSIX_ACL is not set
++CONFIG_EXT3_FS_POSIX_ACL=y
 +# CONFIG_EXT3_FS_SECURITY is not set
 +CONFIG_EXT4_FS=y
-+# CONFIG_EXT4_FS_POSIX_ACL is not set
++CONFIG_EXT4_FS_POSIX_ACL=y
 +# CONFIG_EXT4_FS_SECURITY is not set
 +# CONFIG_EXT4_ENCRYPTION is not set
 +# CONFIG_EXT4_DEBUG is not set
@@ -4721,7 +4721,7 @@ index 000000000..585f6811c
 +CONFIG_KERNFS=y
 +CONFIG_SYSFS=y
 +CONFIG_TMPFS=y
-+# CONFIG_TMPFS_POSIX_ACL is not set
++CONFIG_TMPFS_POSIX_ACL=y
 +# CONFIG_TMPFS_XATTR is not set
 +CONFIG_MEMFD_CREATE=y
 +CONFIG_CONFIGFS_FS=y
