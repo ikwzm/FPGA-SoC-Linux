@@ -3,8 +3,8 @@
 #  * linux_kernel_image : Linux Kernel Image File Name
 #  * linux_fdt_image    : Linux Device Tree Blob File Name
 ########################################################################
-linux_kernel_image=vmlinuz-5.10.69-armv7-fpga
-linux_fdt_image=devicetree-5.10.69-zynq-pynqz1.dtb
+linux_kernel_image=vmlinuz-5.10.109-armv7-fpga
+linux_fdt_image=devicetree-5.10.109-zynq-pynqz1.dtb
 
 ########################################################################
 # Linux Boot Argments
@@ -50,4 +50,4 @@ external_env_boot=if env run external_env_set; then; boot; else; echo "## Error 
 # Boot Menu
 ########################################################################
 bootmenu_0=Boot Default=boot
-bootmenu_1=Boot Linux 5.10.69=env set external_env_file uEnv-linux-5.10.69-armv7-fpga.txt && env run external_env_boot
+bootmenu_1=Boot Linux 5.10.109=env set external_env_file uEnv-linux-5.10.109-armv7-fpga.txt && env run external_env_boot
