@@ -1,3 +1,0 @@
-vmlinuz-* filter=lfs diff=lfs merge=lfs -text
-zImage-* filter=lfs diff=lfs merge=lfs -text
-*.rbf filter=lfs diff=lfs merge=lfs -text
