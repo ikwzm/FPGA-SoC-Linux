@@ -49,7 +49,7 @@ shell# mkdir                                                                /mnt
 shell# cp linux-image-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb   /mnt/usb2/home/fpga/debian
 shell# cp linux-headers-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb /mnt/usb2/home/fpga/debian
 shell# cp dtbocfg-ctrl_0.0.5-1_all.deb                                      /mnt/usb2/home/fpga/debian
-shell$ cp dtbocfg-5.10.109-armv7-fpga_0.0.9-1_armhf.deb                     /mnt/usb2/home/fpga/debian
+shell# cp dtbocfg-5.10.109-armv7-fpga_0.0.9-1_armhf.deb                     /mnt/usb2/home/fpga/debian
 shell# cp fclkcfg-5.10.109-armv7-fpga_1.7.2-1_armhf.deb                     /mnt/usb2/home/fpga/debian
 shell# cp u-dma-buf-5.10.109-armv7-fpga_3.2.5-0_armhf.deb                   /mnt/usb2/home/fpga/debian
 shell# cp zptty-5.10.109-armv7-fpga_1.1.0-1_armhf.deb                       /mnt/usb2/home/fpga/debian
