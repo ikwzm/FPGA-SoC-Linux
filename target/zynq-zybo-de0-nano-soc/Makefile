@@ -1,4 +1,5 @@
-VERSION=4.19.57
+VERSION=5.10.109
+ROOT_PATH=../..
 XILINX_TARGET_PATH=../zynq-zybo
 ALTERA_TARGET_PATH=../de0-nano-soc
 
@@ -28,7 +29,7 @@ clean  :
 boot/boot.scr : boot/boot.script
 	mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "linux boot script" -d boot/boot.script boot/boot.scr
 
-boot/vmlinuz-$(VERSION)-armv7-fpga       : $(XILINX_TARGET_PATH)/boot/vmlinuz-$(VERSION)-armv7-fpga
+boot/vmlinuz-$(VERSION)-armv7-fpga       : $(ROOT_PATH)/vmlinuz-$(VERSION)-armv7-fpga
 	$(COPY) $< $@
 
 boot/boot.bin                            : $(XILINX_TARGET_PATH)/boot/boot.bin
