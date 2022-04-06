@@ -55,8 +55,7 @@ Install
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [DE10-Nano](doc/install/de10-nano.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
-* [Upgrade to v1.3.0 from v1.0.x/v1.1.x/v1.2.x](doc/install/upgrade-v1.3.0.md)
-* [Upgrade to v2.1.0 from v2.0.x](doc/install/upgrade-v2.1.0.md)
+* [Upgrade to v2.1.1 from v2.0.x](doc/install/upgrade-v2.1.1.md)
 
 Tutorial
 ------------------------------------------------------------------------------------

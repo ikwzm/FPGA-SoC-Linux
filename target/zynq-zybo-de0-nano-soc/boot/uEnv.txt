@@ -1,3 +1,3 @@
-bootmenu_0=Boot 4.14.34=env set kernel_version 4.14.34 && boot
+bootmenu_0=Boot 5.10.109=env set kernel_version 5.10.109 && boot
 
 

@@ -42,28 +42,27 @@ make zynq-zybo-z7.dtb
 make zynq-pynqz1.dtb
 make socfpga_cyclone5_de0_nano_soc.dtb
  
-### Copy zImage and devicetree to tareget/zybo-zynq/boot/
-cp arch/arm/boot/zImage            ../target/zynq-zybo/boot/vmlinuz-5.10.109-armv7-fpga
+### Copy zImage to vmlinuz-5.10.109-armv7-fpga
+
+cp arch/arm/boot/zImage ../vmlinuz-5.10.109-armv7-fpga
+
+### Copy devicetree to tareget/zybo-zynq/boot/
 cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-5.10.109-zynq-zybo.dtb
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-zybo/boot/devicetree-5.10.109-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
 
-### Copy zImage and devicetree to tareget/zybo-zynq-z7/boot/
-cp arch/arm/boot/zImage               ../target/zynq-zybo-z7/boot/vmlinuz-5.10.109-armv7-fpga
+### Copy devicetree to tareget/zybo-zynq-z7/boot/
 cp arch/arm/boot/dts/zynq-zybo-z7.dtb ../target/zynq-zybo-z7/boot/devicetree-5.10.109-zynq-zybo-z7.dtb
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-zybo-z7/boot/devicetree-5.10.109-zynq-zybo-z7.dts arch/arm/boot/dts/zynq-zybo-z7.dtb
 
-### Copy zImage and devicetree to tareget/zybo-pynqz1/boot/
-cp arch/arm/boot/zImage              ../target/zynq-pynqz1/boot/vmlinuz-5.10.109-armv7-fpga
+### Copy devicetree to tareget/zybo-pynqz1/boot/
 cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-5.10.109-zynq-pynqz1.dtb
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-pynqz1/boot/devicetree-5.10.109-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
 
-### Copy zImage and devicetree to tareget/de0-nano-soc/boot/
-cp arch/arm/boot/zImage                              ../target/de0-nano-soc/boot/vmlinuz-5.10.109-armv7-fpga
+### Copy devicetree to tareget/de0-nano-soc/boot/
 cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de0-nano-soc/boot/devicetree-5.10.109-socfpga.dtb
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de0-nano-soc/boot/devicetree-5.10.109-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
 
-### Copy zImage and devicetree to tareget/de10-nano/boot/
-cp arch/arm/boot/zImage                              ../target/de10-nano/boot/vmlinuz-5.10.109-armv7-fpga
+### Copy devicetree to tareget/de10-nano/boot/
 cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de10-nano/boot/devicetree-5.10.109-socfpga.dtb
 ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-5.10.109-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
 
