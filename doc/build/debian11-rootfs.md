@@ -17,7 +17,7 @@ shell$ sudo debootstrap --arch=armhf --foreign $distro                         $
 shell$ sudo cp /usr/bin/qemu-arm-static                                        $PWD/$targetdir/usr/bin
 shell$ sudo cp /etc/resolv.conf                                                $PWD/$targetdir/etc
 shell$ sudo cp scripts/build-debian11-rootfs-with-qemu.sh                      $PWD/$targetdir
-shell$ sudo cp linux-image-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb $PWD/$targetdir
+shell$ sudo cp linux-image-5.10.165-armv7-fpga_5.10.165-armv7-fpga-1_armhf.deb $PWD/$targetdir
 ````
 
 #### Build Debian RootFS second-step with QEMU
@@ -194,10 +194,10 @@ debian11-rootfs# apt-get install -y haveged
 
 ```console
 debian11-rootfs# mkdir /mnt/boot
-debian11-rootfs# dpkg -i linux-image-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb
+debian11-rootfs# dpkg -i linux-image-5.10.165-armv7-fpga_5.10.165-armv7-fpga-1_armhf.deb
 ```
 
-##### Clean Cache
+##### Clean APT Cache
 
 ```console
 debian11-rootfs# apt-get clean
@@ -215,8 +215,14 @@ debian11-rootfs# dpkg -l > dpkg-list.txt
 debian11-rootfs# exit
 shell$ sudo rm -f  $PWD/$targetdir/usr/bin/qemu-arm-static
 shell$ sudo rm -f  $PWD/$targetdir/build-debian11-rootfs-with-qemu.sh
-shell$ sudo rm -f  $PWD/$targetdir/linux-image-5.10.109-armv7-fpga_5.10.109-armv7-fpga-1_armhf.deb
+shell$ sudo rm -f  $PWD/$targetdir/linux-image-5.10.165-armv7-fpga_5.10.165-armv7-fpga-1_armhf.deb
 shell$ sudo mv     $PWD/$targetdir/dpkg-list.txt files/debian11-dpkg-list.txt
+```
+
+##### Clean User Directory on pip build
+
+```console
+shell$ sudo rm -rf $PWD/$targetdir/home/$USERNAME
 ```
 
 #### Build debian11-rootfs-vanilla.tgz
