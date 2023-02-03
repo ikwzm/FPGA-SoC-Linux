@@ -24,14 +24,14 @@ This Repository provides a Linux Boot Image(U-boot, Kernel, Root-fs) for FPGA-So
   + Customized boot by uEnv.txt
   + Customized boot by boot.scr
   + Enable bootmenu
-* Linux Kernel Version 5.10.109
+* Linux Kernel Version 5.10.165
   + Available in both Xilinx-Zynq-7000 and Altera-SoC in a single image
   + Enable Device Tree Overlay
   + Enable FPGA Manager
   + Enable FPGA Bridge
   + Enable FPGA Reagion
   + Patch for issue #3(USB-HOST does not work with PYNQ-Z1)
-* Debian11.3(bullseye) Root File System
+* Debian11.6(bullseye) Root File System
   + Installed build-essential
   + Installed device-tree-compiler
   + Installed ruby ruby-msgpack ruby-serialport
@@ -55,6 +55,7 @@ Install
   + [DE0-Nano-SoC](doc/install/de0-nano-soc.md)
   + [DE10-Nano](doc/install/de10-nano.md)
 * [Install Device Drivers and Services](doc/install/device-drivers.md)
+* [Upgrade to v2.2.0 from v2.1.x](doc/install/upgrade-v2.2.0.md)
 * [Upgrade to v2.1.1 from v2.0.x](doc/install/upgrade-v2.1.1.md)
 
 Tutorial
@@ -75,7 +76,7 @@ Build
 * [Build U-boot for PYNQ-Z1](doc/build/u-boot-zynq-pynqz1.md)
 * [Build U-boot for DE0-Nano-SoC](doc/build/u-boot-de0-nano-soc.md)
 * [Build U-boot for DE10-Nano](doc/build/u-boot-de10-nano.md)
-* [Build Linux Kernel](doc/build/linux-kernel-5.10.109.md)
+* [Build Linux Kernel](doc/build/linux-kernel-5.10.165.md)
 * [Build Debian11 RootFS](doc/build/debian11-rootfs.md)
 * [Build Device Drivers and Services Package](doc/build/device-drivers.md)
 
