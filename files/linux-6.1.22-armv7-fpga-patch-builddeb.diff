@@ -1,0 +1,38 @@
+diff --git a/scripts/package/builddeb b/scripts/package/builddeb
+index 67cd420dc..fd7ed3465 100755
+--- a/scripts/package/builddeb
++++ b/scripts/package/builddeb
+@@ -60,10 +60,10 @@ deploy_kernel_headers () {
+ 
+ 	(
+ 		cd $srctree
+-		find . arch/$SRCARCH -maxdepth 1 -name Makefile\*
+-		find include scripts -type f -o -type l
++		find . -name Makefile\* -o -name Kconfig\* -o -name \*.pl
++		find include tools/include scripts -type f -o -type l
+ 		find arch/$SRCARCH -name Kbuild.platforms -o -name Platform
+-		find $(find arch/$SRCARCH -name include -o -name scripts -type d) -type f
++		find $(find arch/$SRCARCH -name include -o -name scripts -o -name tools -type d) -type f
+ 	) > debian/hdrsrcfiles
+ 
+ 	{
+@@ -84,7 +84,18 @@ deploy_kernel_headers () {
+ 	tar -c -f - -T debian/hdrobjfiles | tar -xf - -C $destdir
+ 	rm -f debian/hdrsrcfiles debian/hdrobjfiles
+ 
+-	# copy .config manually to be where it's expected to be
++        # create postinst 
++	mkdir -m 755 -p "$pdir/DEBIAN"
++	cat <<EOF >> $pdir/DEBIAN/postinst
++#!/bin/sh -e
++
++make -C /usr/src/linux-headers-$version prepare0
++
++EOF
++
++	chmod 755 $pdir/DEBIAN/postinst
++
++        # copy .config manually to be where it's expected to be
+ 	cp $KCONFIG_CONFIG $destdir/.config
+ 
+ 	mkdir -p $pdir/lib/modules/$version/
