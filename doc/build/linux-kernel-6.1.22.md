@@ -51,8 +51,8 @@ shell$ git commit -m "patch for scripts/package/builddeb to add tools/include an
 ##### Create tag and .version
 
 ```console
-shell$ git tag -a v6.1.22-armv7-fpga-3 -m "release v6.1.22-armv7-fpga-3"
-shell$ echo 3 > .version
+shell$ git tag -a v6.1.22-armv7-fpga-4 -m "release v6.1.22-armv7-fpga-4"
+shell$ echo 4 > .version
 ```
 
 ### Build
@@ -80,20 +80,20 @@ shell$ make socfpga_cyclone5_de0_nano_soc.dtb
 ### Install kernel image to this repository
 
 ```console
-shell$ cp arch/arm/boot/zImage ../vmlinuz-6.1.22-armv7-fpga-3
-shell$ cp .config              ../files/config-6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/zImage ../vmlinuz-6.1.22-armv7-fpga-4
+shell$ cp .config              ../files/config-6.1.22-armv7-fpga-4
 ```
 
 ### Install devicetree to this repository
 
 ```console
-shell$ install -d ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/zynq*.dtsi    ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/zynq*.dts     ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/zynq*.dtb     ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/socfpga*.dtsi ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/socfpga*.dts  ../devicetrees/6.1.22-armv7-fpga-3
-shell$ cp arch/arm/boot/dts/socfpga*.dtb  ../devicetrees/6.1.22-armv7-fpga-3
+shell$ install -d ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/zynq*.dtsi    ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/zynq*.dts     ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/zynq*.dtb     ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/socfpga*.dtsi ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/socfpga*.dts  ../devicetrees/6.1.22-armv7-fpga-4
+shell$ cp arch/arm/boot/dts/socfpga*.dtb  ../devicetrees/6.1.22-armv7-fpga-4
 ```
 
 

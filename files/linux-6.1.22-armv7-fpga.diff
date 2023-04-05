@@ -123,10 +123,25 @@ index c8f051fb2..58d936fb4 100644
 +	status = "okay";
 +};
 diff --git a/arch/arm/boot/dts/zynq-7000.dtsi b/arch/arm/boot/dts/zynq-7000.dtsi
-index c193264a8..859da2165 100644
+index c193264a8..2f9f203b3 100644
 --- a/arch/arm/boot/dts/zynq-7000.dtsi
 +++ b/arch/arm/boot/dts/zynq-7000.dtsi
-@@ -357,6 +357,14 @@
+@@ -34,14 +34,6 @@
+ 		};
+ 	};
+ 
+-	fpga_full: fpga-full {
+-		compatible = "fpga-region";
+-		fpga-mgr = <&devcfg>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-	};
+-
+ 	pmu@f8891000 {
+ 		compatible = "arm,cortex-a9-pmu";
+ 		interrupts = <0 5 4>, <0 6 4>;
+@@ -357,6 +349,14 @@
  			syscon = <&slcr>;
  		};
  
@@ -141,7 +156,7 @@ index c193264a8..859da2165 100644
  		global_timer: timer@f8f00200 {
  			compatible = "arm,cortex-a9-global-timer";
  			reg = <0xf8f00200 0x20>;
-@@ -520,4 +528,14 @@
+@@ -520,4 +520,14 @@
  			};
  		};
  	};
