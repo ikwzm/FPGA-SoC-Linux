@@ -13,14 +13,14 @@ There are two ways
 shell$ git clone --depth 1 -b v6.1.22 git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git linux-6.1.22-armv7-fpga
 ```
 
-##### Checkout v6.1.22
+##### Make Build Branch
 
 ```console
 shell$ cd linux-6.1.22-armv7-fpga
 shell$ git checkout -b linux-6.1.22-armv7-fpga refs/tags/v6.1.22
 ```
 
-#### Patch for armv7-fpga
+#### Patch to Linux Kernel
 
 ##### Patch for armv7-fpga
 
@@ -51,9 +51,11 @@ shell$ git commit -m "patch for scripts/package/builddeb to add tools/include an
 ##### Create tag and .version
 
 ```console
-shell$ git tag -a v6.1.22-armv7-fpga -m "release v6.1.22-armv7-fpga"
-shell$ echo 1 > .version
+shell$ git tag -a v6.1.22-armv7-fpga-3 -m "release v6.1.22-armv7-fpga-3"
+shell$ echo 3 > .version
 ```
+
+### Build
 
 #### Setup for Build 
 
@@ -75,47 +77,23 @@ shell$ make zynq-pynqz1.dtb
 shell$ make socfpga_cyclone5_de0_nano_soc.dtb
 ````
 
-#### Copy zImage to vmlinuz-6.1.22-armv7-fpga
+### Install kernel image to this repository
 
 ```console
-shell$ cp arch/arm/boot/zImage ../vmlinuz-6.1.22-armv7-fpga
+shell$ cp arch/arm/boot/zImage ../vmlinuz-6.1.22-armv7-fpga-3
+shell$ cp .config              ../files/config-6.1.22-armv7-fpga-3
 ```
 
-#### Copy devicetree to target/zybo-zynq/boot/
+### Install devicetree to this repository
 
 ```console
-shell$ cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-6.1.22-zynq-zybo.dtb
-shell$ ./scripts/dtc/dtc -I dtb -O dts -o ../target/zynq-zybo/boot/devicetree-6.1.22-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
+shell$ install -d ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/zynq*.dtsi    ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/zynq*.dts     ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/zynq*.dtb     ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/socfpga*.dtsi ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/socfpga*.dts  ../devicetrees/6.1.22-armv7-fpga-3
+shell$ cp arch/arm/boot/dts/socfpga*.dtb  ../devicetrees/6.1.22-armv7-fpga-3
 ```
-
-#### Copy devicetree to tareget/zybo-zynq-z7/boot/
-
-```console
-shell$ cp arch/arm/boot/dts/zynq-zybo-z7.dtb ../target/zynq-zybo-z7/boot/devicetree-6.1.22-zynq-zybo-z7.dtb
-shell$ ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-zybo-z7/boot/devicetree-6.1.22-zynq-zybo-z7.dts arch/arm/boot/dts/zynq-zybo-z7.dtb
-```
-
-
-#### Copy devicetree to target/zybo-pynqz1/boot/
-
-```console
-shell$ cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-6.1.22-zynq-pynqz1.dtb
-shell$ ./scripts/dtc/dtc -I dtb -O dts -o ../target/zynq-pynqz1/boot/devicetree-6.1.22-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
-```
-
-#### Copy devicetree to target/de0-nano-soc/boot/
-
-```console
-shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de0-nano-soc/boot/devicetree-6.1.22-socfpga.dtb
-shell$ ./scripts/dtc/dtc -I dtb -O dts -o ../target/de0-nano-soc/boot/devicetree-6.1.22-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-```
-
-#### Copy devicetree to tareget/de10-nano/boot/
-
-```console
-shell$ cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de10-nano/boot/devicetree-6.1.22-socfpga.dtb
-shell$ ./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-6.1.22-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-```
-
 
 

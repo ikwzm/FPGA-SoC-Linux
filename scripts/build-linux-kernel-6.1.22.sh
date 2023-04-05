@@ -1,33 +1,51 @@
 #!/bin/bash
 
 CURRENT_DIR=`pwd`
-LINUX_BUILD_DIR=linux-6.1.22-armv7-fpga
+KERNEL_VERSION=6.1.22
+LOCAL_VERSION=armv7-fpga
+BUILD_VERSION=3
+KERNEL_RELEASE=$KERNEL_VERSION-$LOCAL_VERSION
+LINUX_BUILD_DIR=linux-$KERNEL_RELEASE
 
-### Download Linux Kernel Source
-git clone --depth 1 -b v6.1.22 git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git $LINUX_BUILD_DIR
+echo "KERNEL_RELEASE  =" $KERNEL_RELEASE
+echo "BUILD_VERSION   =" $BUILD_VERSION
+echo "LINUX_BUILD_DIR =" $LINUX_BUILD_DIR
+
+## Download Linux Kernel Source
+
+### Clone from linux-stable.git
+
+git clone --depth 1 -b v$KERNEL_VERSION git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git $LINUX_BUILD_DIR
+
+### Make Build Branch
+
 cd $LINUX_BUILD_DIR
-git checkout -b linux-6.1.22-armv7-fpga refs/tags/v6.1.22
+git checkout -b $KERNEL_RELEASE refs/tags/$KERNEL_VERSION
+
+## Patch to Linux Kernel
 
 ### Patch for armv7-fpga
-patch -p1 < ../files/linux-6.1.22-armv7-fpga.diff
+patch -p1 < ../files/linux-$KERNEL_VERSION-armv7-fpga.diff
 git add --update
 git add arch/arm/configs/armv7_fpga_defconfig
 git add arch/arm/boot/dts/zynq-pynqz1.dts
 git commit -m "patch for armv7-fpga"
 
 ### Patch for usb chipidea driver
-patch -p1 < ../files/linux-6.1.22-armv7-fpga-patch-usb-chipidea.diff
+patch -p1 < ../files/linux-$KERNEL_VERSION-armv7-fpga-patch-usb-chipidea.diff
 git add --update
 git commit -m "patch for usb chipidea driver for issue #3"
 
 ### Patch for build debian package script
-patch -p1 < ../files/linux-6.1.22-armv7-fpga-patch-builddeb.diff
+patch -p1 < ../files/linux-$KERNEL_VERSION-armv7-fpga-patch-builddeb.diff
 git add --update
 git commit -m "patch for scripts/package/builddeb to add tools/include and arch/arm/tools and postinst script to header package"
 
 ### Create tag and .version
-git tag -a v6.1.22-armv7-fpga -m "release v6.1.22-armv7-fpga"
-echo 1 > .version
+git tag -a $KERNEL_RELEASE-$BUILD_VERSION -m "release $KERNEL_RELEASE-$BUILD_VERSION"
+echo $BUILD_VERSION > .version
+
+## Build
 
 ### Setup for Build 
 export ARCH=arm
@@ -42,28 +60,19 @@ make zynq-zybo-z7.dtb
 make zynq-pynqz1.dtb
 make socfpga_cyclone5_de0_nano_soc.dtb
  
-### Copy zImage to vmlinuz-6.1.22-armv7-fpga
+### Install kernel image to this repository
 
-cp arch/arm/boot/zImage ../vmlinuz-6.1.22-armv7-fpga
+cp arch/arm/boot/zImage ../vmlinuz-$KERNEL_RELEASE-$BUILD_VERSION
+cp .config              ../files/config-$KERNEL_RELEASE-$BUILD_VERSION
 
-### Copy devicetree to tareget/zybo-zynq/boot/
-cp arch/arm/boot/dts/zynq-zybo.dtb ../target/zynq-zybo/boot/devicetree-6.1.22-zynq-zybo.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-zybo/boot/devicetree-6.1.22-zynq-zybo.dts arch/arm/boot/dts/zynq-zybo.dtb
+### Install devicetree to this repository
 
-### Copy devicetree to tareget/zybo-zynq-z7/boot/
-cp arch/arm/boot/dts/zynq-zybo-z7.dtb ../target/zynq-zybo-z7/boot/devicetree-6.1.22-zynq-zybo-z7.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-zybo-z7/boot/devicetree-6.1.22-zynq-zybo-z7.dts arch/arm/boot/dts/zynq-zybo-z7.dtb
+install -d ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/zynq*.dtsi    ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/zynq*.dts     ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/zynq*.dtb     ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/socfpga*.dtsi ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/socfpga*.dts  ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
+cp arch/arm/boot/dts/socfpga*.dtb  ../devicetrees/$KERNEL_RELEASE-$BUILD_VERSION
 
-### Copy devicetree to tareget/zybo-pynqz1/boot/
-cp arch/arm/boot/dts/zynq-pynqz1.dtb ../target/zynq-pynqz1/boot/devicetree-6.1.22-zynq-pynqz1.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/zynq-pynqz1/boot/devicetree-6.1.22-zynq-pynqz1.dts arch/arm/boot/dts/zynq-pynqz1.dtb
 
-### Copy devicetree to tareget/de0-nano-soc/boot/
-cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de0-nano-soc/boot/devicetree-6.1.22-socfpga.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de0-nano-soc/boot/devicetree-6.1.22-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-
-### Copy devicetree to tareget/de10-nano/boot/
-cp arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb ../target/de10-nano/boot/devicetree-6.1.22-socfpga.dtb
-./scripts/dtc/dtc -I dtb -O dts --symbols -o ../target/de10-nano/boot/devicetree-6.1.22-socfpga.dts arch/arm/boot/dts/socfpga_cyclone5_de0_nano_soc.dtb
-
-cd ..
