@@ -27,7 +27,7 @@ git commit -m "patch for scripts/package/builddeb to add tools/include and arch/
 
 ### Create tag and .version
 git tag -a v6.1.22-armv7-fpga -m "release v6.1.22-armv7-fpga"
-echo 0 > .version
+echo 1 > .version
 
 ### Setup for Build 
 export ARCH=arm
