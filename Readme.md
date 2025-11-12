@@ -15,6 +15,8 @@ The reason is that this repository contains many binary files and has become dif
 We have decided to provide a separate repository for each distribution from now on.
 Please refer to the following repositories
 
+ * Debian13
+   - https://github.com/ikwzm/FPGA-SoC-Debian13
  * Debian12
    - https://github.com/ikwzm/FPGA-SoC-Debian12
 
